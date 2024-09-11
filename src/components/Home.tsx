@@ -1,10 +1,12 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import "./Home.css";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from '@mui/material';
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       sx={{
@@ -33,40 +35,41 @@ const Home = () => {
         }}
       >
         <Typography
-          variant="h1"
+          variant={isMobile ? "h2" : "h1"}
           paddingTop={20}
-          paddingRight={15}
-          align="right"
+          paddingRight={isMobile ? 0 : 15}
+          align={isMobile ? "center" : "right"}
         >
           12:45 PM
         </Typography>
-        <Typography variant="h4" paddingRight={15} align="right">
+        <Typography variant={isMobile ? "h5" : "h4"} paddingRight={isMobile ? 0 : 15} align={isMobile ? "center" : "right"}>
           Sunday, January 28
         </Typography>
         <Box
-          sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}
+          sx={{ display: "flex", justifyContent:isMobile? "center": "flex-end", width: "100%", paddingTop: 2 }}
         >
           <WbSunnyIcon
-            sx={{ fontSize: 65, color: "white", paddingRight: "10px" }}
+            sx={{ fontSize:isMobile ? 50 : 65, color: "white", paddingRight: "10px" }}
           />
-          <Typography variant="h2" paddingRight={15}>
+          <Typography variant={isMobile ? "h3" : "h2"} paddingRight={isMobile ? 0 : 15}>
             17°
           </Typography>
         </Box>
         <Box
           sx={{
             display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
+            alignItems:isMobile? "center": "flex-end",
+            justifyContent: isMobile? "center":"space-between",
+            flexDirection: isMobile ? "column" : "row",
           }}
           marginTop={15}
         >
-          <Box sx={{ paddingLeft: 5 }}>
+          <Box sx={{ paddingLeft:isMobile ? 0: 5 }}>
             <Typography variant="h4" fontWeight="bold">
               Welcome, Mr. Anand
             </Typography>
           </Box>
-          <Box sx={{ paddingRight: 15 }}>
+          <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 20 :0 }}>
             <Link to="/cards" style={{ textDecoration: "none" }}>
               <Typography className="round-btn">Tap Here To Begin</Typography>
             </Link>

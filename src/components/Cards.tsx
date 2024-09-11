@@ -1,13 +1,13 @@
 import {
   Box,
   Card,
-  CardActionArea,
   CardContent,
-  CardMedia,
   Grid,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import KingBedIcon from "@mui/icons-material/KingBed";
 import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
@@ -20,9 +20,26 @@ import RoomServiceIcon from "@mui/icons-material/RoomService";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import Sidebar from "./Sidebar";
 
 const Cards = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+    setIsOpen(open);
+  };
   return (
+    <Box>
+    {/* <Sidebar />  */}
     <Box
       sx={{
         position: "relative",
@@ -43,7 +60,7 @@ const Cards = () => {
       }}
     >
       <Grid container spacing={2} direction="row">
-        <Grid item xs={2.4}>
+        <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <Card
@@ -196,11 +213,11 @@ const Cards = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4.8}>
+        <Grid item xs={isMobile? 12 :4.8}>
           <Grid container direction="column" spacing={2}>
             <Grid item xs={12}>
               <Grid container direction="row" spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={isMobile ? 12 : 6}>
                   <Card
                     sx={{
                       background: "rgba(255, 255, 255, 0.1)",
@@ -241,7 +258,7 @@ const Cards = () => {
                     </CardContent>
                   </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={isMobile ? 12 :6}>
                   <Card
                     sx={{
                       background: "rgba(255, 255, 255, 0.1)",
@@ -326,7 +343,7 @@ const Cards = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={2.4}>
+        <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <Card
@@ -467,7 +484,7 @@ const Cards = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={2.4}>
+        <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <Card
@@ -634,8 +651,10 @@ const Cards = () => {
               </Card>
             </Grid>
           </Grid>
+          
         </Grid>
       </Grid>
+    </Box>
     </Box>
   );
 };
