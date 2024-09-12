@@ -3,31 +3,20 @@ import { Box, Card, CardContent, Typography, Button, Drawer } from '@mui/materia
 import DoNotDisturbOnIcon from '@mui/icons-material/DoNotDisturbOn';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true); // Sidebar is open by default
+interface SidebarProps {
+  open: boolean;
+  onClose: () => void;
+}
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-    setIsOpen(open);
-  };
-
+const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   return (
     <Box>
-      <Button onClick={toggleDrawer(!isOpen)} sx={{ position: 'fixed', top: 16, right: 16, zIndex: 1300 }}>
-        {isOpen ? 'Close Sidebar' : 'Open Sidebar'}
-      </Button>
       <Drawer
         anchor="right"
-        open={isOpen}
-        onClose={toggleDrawer(false)}
         variant="persistent" // Make the drawer persistent
+        open={open} // Use the state value
         sx={{ 
           zIndex: 1300,
           '& .MuiDrawer-paper': { 
@@ -43,12 +32,22 @@ const Sidebar = () => {
             flexDirection: 'column',
             gap: 2, // Space between cards
             padding: 2,
-            marginTop: 4,
-            // backgroundColor: 'rgba(255, 255, 255, 0.1)', // Transparent background color
 
           }}
         >
           <Box>
+          <KeyboardDoubleArrowRightIcon 
+              sx={{ 
+                color: "white", 
+                fontSize: 40, 
+                position: "absolute", // Use absolute positioning
+                top: "16px", // Adjust the top position as needed
+                left: "10px", // Adjust the left position as needed
+                zIndex: 1, // Ensure it overlaps the background
+                cursor: "pointer" // Change the cursor to a pointer
+              }}
+              onClick={onClose} // Close the sidebar when clicked
+            />        
             <Typography variant="h6" align='center' color='white'>
                 GREEN CREDITS : +25
             </Typography>
