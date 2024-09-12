@@ -25,6 +25,8 @@ const Home = () => {
           backgroundImage: "url(/staticImages/background4.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat", // Ensure the image does not repeat
+          backgroundAttachment: "fixed", // Ensure the image does not scroll with the page
           filter: "blur(2px)",
         }}
       />
@@ -36,7 +38,7 @@ const Home = () => {
       >
         <Typography
           variant={isMobile ? "h2" : "h1"}
-          paddingTop={20}
+          paddingTop={10}
           paddingRight={isMobile ? 0 : 15}
           align={isMobile ? "center" : "right"}
         >
@@ -62,14 +64,14 @@ const Home = () => {
             justifyContent: isMobile? "center":"space-between",
             flexDirection: isMobile ? "column" : "row",
           }}
-          marginTop={15}
+          marginTop={10}
         >
           <Box sx={{ paddingLeft:isMobile ? 0: 5 }}>
             <Typography variant="h4" fontWeight="bold">
               Welcome, Mr. Anand
             </Typography>
           </Box>
-          <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 20 :0 }}>
+          <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 10 :0 }}>
             <Link to="/cards" style={{ textDecoration: "none" }}>
               <Typography className="round-btn">Tap Here To Begin</Typography>
             </Link>

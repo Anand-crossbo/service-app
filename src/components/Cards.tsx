@@ -7,7 +7,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import KingBedIcon from "@mui/icons-material/KingBed";
 import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
@@ -21,25 +21,57 @@ import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import Sidebar from "./Sidebar";
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 const Cards = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [weatherData, setWeatherData] = useState<{ temp: number, minTemp: number, maxTemp: number, locationName: string, mood: string, sunrise: string, sunset: string } | false>(false);
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-    setIsOpen(open);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(timer); // Cleanup the interval on component unmount
+  }, []);
+
+
+  const handleOpen = () => {
+    setIsOpen(true);
   };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const search = async (city: string) => {
+    try{
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=1d075fcebb507a213dfed3f0ea601fd3`;
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+      setWeatherData({
+        temp: Math.floor(data.main.temp),
+        minTemp: Math.floor(data.main.temp_min),
+        maxTemp: Math.floor(data.main.temp_max),
+        locationName: data.name,
+        mood: data.weather[0].main,
+        sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      })
+    } catch (error) {
+    }
+  }
+
+  useEffect(() => {
+    search("delhi");
+  }, []);
+  
   return (
     <Box>
-    {/* <Sidebar />  */}
+    <Sidebar open={isOpen} onClose={handleClose} /> 
     <Box
       sx={{
         position: "relative",
@@ -59,6 +91,20 @@ const Cards = () => {
         },
       }}
     >
+        {!isOpen && (
+          <KeyboardDoubleArrowLeftIcon 
+            sx={{ 
+              color: "white", 
+              fontSize: 40, 
+              position: "absolute", // Use absolute positioning
+              top: "16px", // Adjust the top position as needed
+              right: "5px", // Adjust the right position as needed
+              zIndex: 1, // Ensure it overlaps the background
+              cursor: "pointer" // Change the cursor to a pointer
+            }} 
+            onClick={handleOpen} // Open the sidebar when clicked
+          />
+        )}     
       <Grid container spacing={2} direction="row">
         <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
@@ -74,7 +120,7 @@ const Cards = () => {
               >
                 <CardContent sx={{ height: "24vh" }}>
                   <Typography variant="h5" color="white">
-                    12:35 PM
+                  {currentTime}
                   </Typography>
                   <Box
                     marginTop={2}
@@ -86,10 +132,10 @@ const Cards = () => {
                   >
                     <Box>
                       <Typography fontSize={24} color="white">
-                        Dubai
+                        {weatherData ? weatherData.locationName : ""}
                       </Typography>
                       <Typography paddingTop={1} fontSize={12} color="white">
-                        25° | H:18° L:9°
+                        {weatherData ? weatherData.temp : 0}° | H: {weatherData ? weatherData.minTemp : 0}° : L:{weatherData ? weatherData.maxTemp : 0}°
                       </Typography>
                     </Box>
                     <Box>
@@ -97,7 +143,7 @@ const Cards = () => {
                         sx={{ fontSize: 35, color: "white", paddingTop: "2px" }}
                       />
                       <Typography fontSize={14} align="right" color="white">
-                        Sunny
+                        {weatherData ? weatherData.mood : ""}
                       </Typography>
                     </Box>
                   </Box>
@@ -114,7 +160,7 @@ const Cards = () => {
                         SUNRISE
                       </Typography>
                       <Typography fontSize={18} color="white">
-                        5:45AM
+                        {weatherData ? weatherData.sunrise : ""}
                       </Typography>
                     </Box>
                     <Box>
@@ -122,7 +168,7 @@ const Cards = () => {
                         SUNSET
                       </Typography>
                       <Typography fontSize={18} align="right" color="white">
-                        6:42PM
+                        {weatherData ? weatherData.sunset : ""}
                       </Typography>
                     </Box>
                   </Box>
@@ -343,6 +389,7 @@ const Cards = () => {
             </Grid>
           </Grid>
         </Grid>
+        {!isOpen && (
         <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
@@ -484,6 +531,8 @@ const Cards = () => {
             </Grid>
           </Grid>
         </Grid>
+        )}
+        {!isOpen && (
         <Grid item xs={isMobile ? 12 :2.4}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
@@ -653,6 +702,7 @@ const Cards = () => {
           </Grid>
           
         </Grid>
+        )}
       </Grid>
     </Box>
     </Box>
