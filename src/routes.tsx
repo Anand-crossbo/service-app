@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Cards from "./components/Cards";
 import Home from "./components/Home";
 import RoomService from "./components/RoomService";
+import MainCard from "./components/MainCard";
 
 export const router = createBrowserRouter([
     {
@@ -15,5 +16,9 @@ export const router = createBrowserRouter([
     {
         path: "/roomservice",
         element: <RoomService />
+    },
+    {
+        path: "/maincard",
+        element: <MainCard />
     },
 ])
