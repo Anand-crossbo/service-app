@@ -90,3 +90,70 @@ code {
   transition: all 0.3s ease; /* Smooth transition for hover effect */
   cursor: pointer;
 }
+
+.photo-grid-first {
+  display: flex;
+  width: 100%; 
+  gap: 1rem; 
+}
+
+.left-section {
+  flex: 3; 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  background: 'transparent';
+  grid-auto-rows: 210px;
+}
+
+.right-section {
+  flex: 2; 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  background-color: 'transparent'; 
+  grid-auto-rows: 210px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blur effect */
+  border-radius: 16px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;   /* future change  */
+}
+
+.card-tall{
+  grid-row: span 2 / auto;
+}
+.card-wide{
+  grid-column: span 2 / auto;
+}
+
+@media screen and (max-width: 768px) {
+  .photo-grid-first {
+    flex-direction: column; /* Stack sections vertically */
+  }
+  .left-section, .right-section {
+    width: 100%; /* Ensure sections take full width */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .left-section {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .left-section, .right-section {
+    grid-template-columns: repeat(2, 1fr); /* Single column layout on small screens */
+    grid-auto-rows: auto; /* Adjust row height automatically */
+    gap: 1rem; /* Ensure consistent gap between cards */
+  }
+}
