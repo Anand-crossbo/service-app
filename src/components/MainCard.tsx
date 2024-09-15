@@ -1,9 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import LeftSection from "./LeftSection";
 import RightSection from "./RightSection";
+import SmallSidebar from "./SmallSidebar";
 
 const MainCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -81,6 +82,7 @@ const MainCard = () => {
           </Box>
         </Box>
       </Box>
+      {isMobile && <SmallSidebar />}
     </Box>
   );
 };
