@@ -157,3 +157,18 @@ code {
     gap: 1rem; /* Ensure consistent gap between cards */
   }
 }
+
+.round-btn-sml-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border-radius: 50%; /* Make the button round */
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
