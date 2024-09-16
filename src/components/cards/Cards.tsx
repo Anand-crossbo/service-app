@@ -11,7 +11,7 @@ import RoomServiceIcon from "@mui/icons-material/RoomService";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import Sidebar from "./Sidebar";
+import Sidebar from "../sidebar/Sidebar";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { Link } from "react-router-dom";
 
