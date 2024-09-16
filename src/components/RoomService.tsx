@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -266,7 +266,17 @@ const RoomService = () => {
                         <Typography fontSize='14px' color='black' align='right' padding='10px 40px'>x1 &nbsp; &nbsp; &nbsp; $20</Typography>
                     </Box>
 
-
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingTop: '20px'}}>
+                            <Typography fontSize='14px' color='black' align='left' fontWeight='bold' padding='10px 40px'>
+                                Total
+                            </Typography>
+                            <Typography fontSize='14px' color='black' align='right' fontWeight='bold' padding='10px 40px'>
+                                $20
+                            </Typography>
+                        </Box>
+                        <Box sx={{ display: 'flex',bottom: 30, justifyContent: 'content', position: 'fixed', alignItems: 'center'}}>
+                            <Button sx={{ borderRadius: '10px', width: '100%', margin: '10px', padding: '8px 40px' ,fontSize:'12px', fontWeight: 'bold', border: '2px solid #000', color: 'black', backgroundColor: 'white' }}>Confirm</Button>
+                        </Box>
                 </Box>
             </Grid>
             

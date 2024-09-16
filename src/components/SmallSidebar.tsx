@@ -22,7 +22,7 @@ const SmallSidebar = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              paddingTop: 2,
+              paddingTop: 1,
             }}>
             <Typography className="round-btn-sml-sidebar">Talk to your Butler!</Typography>
           </Box>
