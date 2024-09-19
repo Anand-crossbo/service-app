@@ -1,5 +1,5 @@
 import { Box, Typography} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import KingBedIcon from "@mui/icons-material/KingBed";
 import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
@@ -73,6 +73,17 @@ const LeftSection = ({ handleToggle, showRightSection }: { handleToggle: () => v
     useEffect(() => {
       search("delhi");
     }, []);
+
+    const bottomRef = useRef<HTMLDivElement>(null);
+
+    const handleShowMoreClick = () => {
+      handleToggle();
+      if (!showRightSection) {
+        setTimeout(() => {
+          bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 0);
+      }
+    };
   return (
     <>
       <Box className="glass">
@@ -229,12 +240,13 @@ const LeftSection = ({ handleToggle, showRightSection }: { handleToggle: () => v
         </Box>
       </Box>
       {isMobile && (
-        <Box className="glass" display="flex" onClick={handleToggle}>
+        <Box className="glass" display="flex" onClick={handleShowMoreClick}>
           <Typography variant="h5" color="white" align="center">
             {showRightSection ? "Show Less" : "Show More"}
           </Typography>
         </Box>
       )}
+        <div ref={bottomRef} />
       </>
   );
 };

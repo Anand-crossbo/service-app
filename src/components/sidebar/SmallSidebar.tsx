@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 
 const SmallSidebar = () => {
@@ -17,7 +17,30 @@ const SmallSidebar = () => {
       zIndex: 1000, // Optional: Set the z-index to 1000
     }}
     >
-          <Box 
+<Box sx={{ padding: '16px' }}>
+      <Grid container spacing={2}>
+        <Grid item xs={6} sm={6}>
+          <Box>
+            <Typography padding='10px'>Quick Actions:</Typography>
+            <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '4px 8px 4px 8px' }}>
+              <Typography padding='4px 12px' fontSize='8px' color='white'>Get me a towel.</Typography>
+            </Box>
+            <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '4px 8px 4px 8px' }}>
+              <Typography padding='4px 12px' fontSize='8px' color='white'>Get me water bottles.</Typography>
+            </Box>
+            <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '4px 8px 4px 8px' }}>
+              <Typography padding='4px 12px' fontSize='8px' color='white'>Send clothes to laundry.</Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={6} sm={6}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <Typography className="round-btn-sml-sidebar">Talk to your Butler!</Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
+          {/* <Box 
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -26,10 +49,10 @@ const SmallSidebar = () => {
             }}>
             <Typography className="round-btn-sml-sidebar">Talk to your Butler!</Typography>
           </Box>
-          <Box sx={{ marginLeft: '12px'}}>
+            <Box sx={{ marginLeft: '12px'}}>
               <Typography fontSize='14px' color='white'>Quick Actions:</Typography>
-          </Box>
-          <Box sx={{ backgroundColor:'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '8px'}}>
+            </Box>
+            <Box sx={{ backgroundColor:'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '8px'}}>
               <Typography padding='4px 12px 4px 12px' fontSize='8px' color='white'>Get me a towel.</Typography>
             </Box>
             <Box sx={{ backgroundColor:'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '8px'}}>
@@ -37,7 +60,7 @@ const SmallSidebar = () => {
             </Box>
             <Box sx={{ backgroundColor:'rgba(255, 255, 255, 0.1)', borderRadius: '20px', display: 'inline-block', border: '2px solid white', margin: '8px'}}>
               <Typography padding='4px 12px 4px 12px' fontSize='8px' color='white'>Send clothes to laundry.</Typography>
-            </Box>
+            </Box> */}
     </Box>
   );
 };
