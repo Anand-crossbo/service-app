@@ -12,10 +12,29 @@ import React, { useState } from "react";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const Menu = ({ onCardClick }: { onCardClick: () => void }) => {
-  const [count, setCount] = useState(0);
+interface Dish {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
+
+interface MenuProps {
+  onCardClick: () => void;
+  onAddToCard: (dish: Dish) => void;
+  onRemoveFromCard: () => void;
+  count: number;
+}
+
+const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard, count }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const dishes: Dish[] = [
+    { id: 1, name: 'Sayadieh', description: 'salmon, rice, fried onions, nuts, and tahini sauce', price: 10, image: '/staticImages/food1.jpg' },
+    // Add more dishes as needed
+  ];
 
   return (
     <Grid
@@ -47,18 +66,19 @@ const Menu = ({ onCardClick }: { onCardClick: () => void }) => {
               marginTop: { xs: "15px", sm: "10px" }, // Adjust margin
             }}
           >
-            <Card sx={{ backgroundColor: "#c9c9c9" }} onClick={onCardClick}>
+            <Card sx={{ backgroundColor: "#c9c9c9" }} >
               <CardMedia
                 component="img"
                 height="125"
                 image={`/staticImages/food${item}.jpg`}
+                onClick={onCardClick}
               />
               <CardContent>
                 <Typography fontSize="18px" fontWeight="bold" component="div">
-                  Sayadieh
+                {dishes[0].name}
                 </Typography>
                 <Typography fontSize="12px" component="div">
-                  salmon, rice, fried onions, nuts, and tahini sauce
+                {dishes[0].description}
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -84,7 +104,7 @@ const Menu = ({ onCardClick }: { onCardClick: () => void }) => {
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={() => setCount(count > 0 ? count - 1 : 0)}
+                      onClick={onRemoveFromCard}
                     />
                     <Typography
                       sx={{
@@ -101,7 +121,7 @@ const Menu = ({ onCardClick }: { onCardClick: () => void }) => {
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={() => setCount(count + 1)}
+                      onClick={() => onAddToCard(dishes[0])}
                     />
                   </Box>
                 </Box>
