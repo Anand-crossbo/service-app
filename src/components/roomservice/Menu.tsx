@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -15,26 +16,40 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 interface Dish {
   id: number;
   name: string;
-  description: string;
+  shortDsc: string;
+  longDsc: string;
   price: number;
-  image: string;
+  img: string;
 }
 
 interface MenuProps {
-  onCardClick: () => void;
+  dishes: Dish[];
+  onCardClick: (dish: Dish) => void;
   onAddToCard: (dish: Dish) => void;
-  onRemoveFromCard: () => void;
-  count: number;
+  onRemoveFromCard: (dish: Dish) => void;
+  counts: { [key: number]: number };
 }
 
-const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard, count }) => {
+const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveFromCard,counts }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const dishes: Dish[] = [
-    { id: 1, name: 'Sayadieh', description: 'salmon, rice, fried onions, nuts, and tahini sauce', price: 10, image: '/staticImages/food1.jpg' },
-    // Add more dishes as needed
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+    // Calculate the items to display on the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = dishes.slice(indexOfFirstItem, indexOfLastItem);
+  
+    // Function to handle page change
+    const handlePageChange = (pageNumber: number) => {
+      setCurrentPage(pageNumber);
+    };
+  
+    // Calculate total pages
+    const totalPages = Math.ceil(dishes.length / itemsPerPage);
+
 
   return (
     <Grid
@@ -57,9 +72,9 @@ const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard,
           "@media (max-width: 600px)": { height: "auto", justifyContent: "center" },
         }}
       >
-        {[1, 2, 3, 4, 5, 6].map((item, index) => (
+        {currentItems.map((dish, index) => (
           <Box
-            key={index}
+          key={index}
             sx={{
               width: { xs: "45%", sm: "30%" }, // Full width on small screens, half width on larger screens
               margin: { xs: "5px", sm: "10px" }, // Adjust padding
@@ -70,25 +85,25 @@ const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard,
               <CardMedia
                 component="img"
                 height="125"
-                image={`/staticImages/food${item}.jpg`}
-                onClick={onCardClick}
+                image={dish.img}
+                onClick={() => onCardClick(dish)}
               />
               <CardContent>
-                <Typography fontSize="18px" fontWeight="bold" component="div">
-                {dishes[0].name}
+                <Typography fontSize="18px" fontWeight="bold" component="div" sx={{ whiteSpace: 'nowrap', overflow:'hidden', textOverflow: 'ellipsis'}}>
+                {dish.name}
                 </Typography>
                 <Typography fontSize="12px" component="div">
-                {dishes[0].description}
+                {dish.shortDsc}
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Typography
-                      fontSize="18px"
+                      fontSize="16px"
                       fontWeight="bold"
                       paddingTop="10px"
                       component="div"
                     >
-                      $20
+                      Aed {dish.price}
                     </Typography>
                   </Box>
                   <Box
@@ -100,28 +115,28 @@ const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard,
                   >
                     <RemoveCircleIcon
                       sx={{
-                        fontSize: "25px",
+                        fontSize: "20px",
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={onRemoveFromCard}
+                      onClick={() => onRemoveFromCard(dish)}
                     />
                     <Typography
                       sx={{
-                        fontSize: "25px",
+                        fontSize: "20px",
                         color: "black",
                         marginRight: "5px",
                       }}
                     >
-                      {count}
+                      {counts[dish.id] || 0}
                     </Typography>
                     <AddCircleIcon
                       sx={{
-                        fontSize: "25px",
+                        fontSize: "20px",
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={() => onAddToCard(dishes[0])}
+                      onClick={() => onAddToCard(dish)}
                     />
                   </Box>
                 </Box>
@@ -129,6 +144,43 @@ const Menu: React.FC<MenuProps> = ({ onCardClick, onAddToCard, onRemoveFromCard,
             </Card>
           </Box>
         ))}
+      <Box display="flex" justifyContent="center" alignItems="center" width='100%'>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            variant={currentPage === index + 1 ? 'contained' : 'outlined'}
+            sx={{
+              mx: 1,
+              mb: 1,
+              fontSize: '12px',
+              borderRadius: '50%', // Make the button circular
+              width: '20px', // Set the width
+              height: '20px', // Set the height
+              minWidth: '20px', // Ensure the button does not expand
+              padding: 0, // Remove padding
+              ...(currentPage === index + 1
+                ? {
+                    backgroundColor: 'black', // Custom color for contained variant
+                    color: 'white', // Text color for contained variant
+                    '&:hover': {
+                      backgroundColor: 'black', // Darker shade on hover
+                    },
+                  }
+                : {
+                    borderColor: 'black', // Custom border color for outlined variant
+                    color: 'black', // Text color for outlined variant
+                    '&:hover': {
+                      borderColor: 'black', // Darker border color on hover
+                      color: 'black', // Darker text color on hover
+                    },
+                  }),
+            }}
+          >
+            {index + 1}
+          </Button>
+        ))}
+      </Box>
       </Box>
     </Grid>
   );

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 
-interface Dish {
-  name: string;
-  price: number;
+interface AddToCartProps {
+  count: number;
+  onPayClick: () => void;
 }
-
-const AddToCart = ({ dish, count, onPayClick }: { dish: Dish, count: number, onPayClick: () => void }) => {
+const AddToCart: React.FC<AddToCartProps> = ({ count, onPayClick }) => {
   return (
     <Box
       sx={{
@@ -19,7 +18,7 @@ const AddToCart = ({ dish, count, onPayClick }: { dish: Dish, count: number, onP
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px'}} >
-        <Typography paddingRight='10px'>{count} Item Added</Typography>
+        <Typography paddingRight='10px'>{count} Items Added</Typography>
         <Button variant="contained" color="primary" onClick={onPayClick}>Pay</Button>
       </Box>
 

@@ -2,7 +2,21 @@ import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from '@mui/mat
 import React, { useState } from 'react'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-const AboutFood = ({ onBack }: { onBack: () => void }) => {
+interface Dish {
+  id: number;
+  name: string;
+  shortDsc: string;
+  longDsc: string;
+  price: number;
+  img: string;
+}
+
+interface AboutFoodProps {
+  dish: Dish | null;
+  onBack: () => void;
+}
+
+const AboutFood: React.FC<AboutFoodProps> = ({ dish, onBack }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [showFullText, setShowFullText] = useState(false);
@@ -17,10 +31,10 @@ const AboutFood = ({ onBack }: { onBack: () => void }) => {
             <HighlightOffIcon sx={{ fontSize: '24px',padding:'10px' }} onClick={onBack} />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <img src="/staticImages/food1.jpg" alt="food" style={{width:'350px', height: '150px', borderRadius: '16px', objectFit: 'cover', padding:'10px 10px 0 10px' }} />
+            {dish && <img src={dish.img} alt="food" style={{width:'350px', height: '150px', borderRadius: '16px', objectFit: 'cover', padding:'10px 10px 0 10px' }} />}
           </Box>
         <Typography fontSize='16px' color='black' fontWeight='bold' padding='10px'>
-          Chef's Signature Sayadieh: A Symphony Of Flavors
+          {dish?.name}
         </Typography>
         <Typography fontSize='12px' color='black' padding='0px 10px 0 10px'>
             {showFullText ? (
