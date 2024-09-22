@@ -1,7 +1,11 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 
-const AddToCart = ({ count, onPayClick }: { count: number, onPayClick: () => void }) => {
+interface AddToCartProps {
+  count: number;
+  onPayClick: () => void;
+}
+const AddToCart: React.FC<AddToCartProps> = ({ count, onPayClick }) => {
   return (
     <Box
       sx={{
