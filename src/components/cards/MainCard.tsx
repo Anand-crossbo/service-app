@@ -10,6 +10,7 @@ const MainCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isOpen, setIsOpen] = useState(true);
   const [showRightSection, setShowRightSection] = useState(false);
+  const [cardData, cardSetData] = useState(null); // State to store fetched data
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,6 +22,22 @@ const MainCard = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    // Function to fetch data from the API
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://5e0ff32c-f097-4213-a9ed-8d0cc1a63c03.mock.pstmn.io/cards`); // Replace with your API endpoint
+        const result = await response.json();
+        cardSetData(result); // Update state with fetched data
+        console.log(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetch function
+  }, []); 
 
   const handleToggle = () => {
     setShowRightSection(!showRightSection);
@@ -78,7 +95,7 @@ const MainCard = () => {
             display={isMobile && !showRightSection ? "none" : "grid"}
             sx={{ visibility: isMobile || !isOpen ? 'visible' : 'hidden' }}
           >
-            <RightSection />
+            <RightSection data={cardData} />
           </Box>
         </Box>
       </Box>
