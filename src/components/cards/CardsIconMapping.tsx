@@ -11,7 +11,7 @@ import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 
 export const cardsIcon = new Map([
     ['Location', <LocationOnIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['In-Room Dinning', <RoomServiceIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
+    ['In-Room Dining', <RoomServiceIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
     ['Activities', <KitesurfingIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
     ['Know your room', <KingBedIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
     ['Connect your device', <WifiIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],

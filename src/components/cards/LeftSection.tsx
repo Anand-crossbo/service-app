@@ -1,13 +1,15 @@
 import { Box, Typography} from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import KingBedIcon from "@mui/icons-material/KingBed";
-import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
-import RoomServiceIcon from "@mui/icons-material/RoomService";
 import { Link } from "react-router-dom";
 import Climate from "./dataCards/Climate";
+import cardsIcon from "./CardsIconMapping";
+import cardsLink from "./LinksMapping";
 
-const LeftSection = ({ handleToggle, showRightSection }: { handleToggle: () => void, showRightSection: boolean }) => {
+interface LeftSectionProps {
+  data: any;
+}
+
+const LeftSection = ({ handleToggle, showRightSection, data }: { handleToggle: () => void, showRightSection: boolean, data: any }) => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -32,52 +34,120 @@ const LeftSection = ({ handleToggle, showRightSection }: { handleToggle: () => v
         }, 0);
       }
   };
+
+  if (!data || !data.leftSection) {
+    return null; // or you can return a loading spinner or a message
+  }
   return (
     <>
-      <Climate />
-      <Box className="glass">
-        <Link to="/roomservicemain" style={{ textDecoration: "none" }}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-          >
-            <RoomServiceIcon sx={{ fontSize: "100px", color: "white" }} />
-          </Box>
-          <Box>
-            <Typography variant="h5" color="white" align="center">
-              In-Room Dinning
-            </Typography>
-          </Box>
-        </Link>
-      </Box>
-      <Box className="glass">
-        <Box>
-          <KitesurfingIcon
-            sx={{ fontSize: "100px", color: "white", align: "center" }}
-          />
+    {data.leftSection.map((item: any, index: number) => (
+  (item.priority === 1 && item.type === 'Icon') ? (
+    <Box className="glass" key={index}>
+      <Link to={cardsLink.get(item.name) || "#"} style={{ textDecoration: "none" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          {cardsIcon.get(item.name)}
         </Box>
         <Box>
           <Typography variant="h5" color="white" align="center">
-            Activities
+            {item.name}
           </Typography>
         </Box>
-      </Box>
-      <Box className="glass">
-        <Box>
-          <LocationOnIcon
-            sx={{ fontSize: "100px", color: "white", align: "center" }}
-          />
+      </Link>
+    </Box>
+  ) : (
+    item.priority === 1 && item.type === 'data' && (
+        <Climate />
+    )
+  )
+))}
+      {data.leftSection.map((item: any, index: number) => (
+  (item.priority === 2 && item.type === 'Icon') ? (
+    <Box className="glass" key={index}>
+      <Link to={cardsLink.get(item.name) || "#"} style={{ textDecoration: "none" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          {cardsIcon.get(item.name)}
         </Box>
         <Box>
           <Typography variant="h5" color="white" align="center">
-            Location
+            {item.name}
           </Typography>
         </Box>
-      </Box>
+      </Link>
+    </Box>
+  ) : (
+    item.priority === 2 && item.type === 'data' && (
+        <Climate />
+    )
+  )
+))}
+      {data.leftSection.map((item: any, index: number) => (
+  (item.priority === 3 && item.type === 'Icon') ? (
+    <Box className="glass" key={index}>
+      <Link to={cardsLink.get(item.name) || "#"} style={{ textDecoration: "none" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          {cardsIcon.get(item.name)}
+        </Box>
+        <Box>
+          <Typography variant="h5" color="white" align="center">
+            {item.name}
+          </Typography>
+        </Box>
+      </Link>
+    </Box>
+  ) : (
+    item.priority === 3 && item.type === 'data' && (
+        <Climate />
+    )
+  )
+))}
+      {data.leftSection.map((item: any, index: number) => (
+  (item.priority === 4 && item.type === 'Icon') ? (
+    <Box className="glass" key={index}>
+      <Link to={cardsLink.get(item.name) || "#"} style={{ textDecoration: "none" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          {cardsIcon.get(item.name)}
+        </Box>
+        <Box>
+          <Typography variant="h5" color="white" align="center">
+            {item.name}
+          </Typography>
+        </Box>
+      </Link>
+    </Box>
+  ) : (
+    item.priority === 4 && item.type === 'data' && (
+        <Climate />
+    )
+  )
+))}
       <Box
         className="card-tall card-wide"
         sx={{
@@ -113,18 +183,33 @@ const LeftSection = ({ handleToggle, showRightSection }: { handleToggle: () => v
           </Typography>
         </Box>
       </Box>
-      <Box className="glass">
-        <Box>
-          <KingBedIcon
-            sx={{ fontSize: "100px", color: "white", align: "center" }}
-          />
+      {data.leftSection.map((item: any, index: number) => (
+  (item.priority === 5 && item.type === 'Icon') ? (
+    <Box className="glass" key={index}>
+      <Link to={cardsLink.get(item.name) || "#"} style={{ textDecoration: "none" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          {cardsIcon.get(item.name)}
         </Box>
         <Box>
           <Typography variant="h5" color="white" align="center">
-            Know your room
+            {item.name}
           </Typography>
         </Box>
-      </Box>
+      </Link>
+    </Box>
+  ) : (
+    item.priority === 5 && item.type === 'data' && (
+        <Climate />
+    )
+  )
+))}
       {isMobile && (
         <Box className="glass" display="flex" onClick={handleShowMoreClick}>
           <Typography variant="h5" color="white" align="center">

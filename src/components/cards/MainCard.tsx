@@ -27,7 +27,7 @@ const MainCard = () => {
     // Function to fetch data from the API
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://5e0ff32c-f097-4213-a9ed-8d0cc1a63c03.mock.pstmn.io/cards`); // Replace with your API endpoint
+        const response = await fetch(`https://2a07242a-7585-4ef6-a6a5-f2802ebf5f74.mock.pstmn.io/cardsOne`); // Replace with your API endpoint
         const result = await response.json();
         cardSetData(result); // Update state with fetched data
         console.log(result);
@@ -88,7 +88,7 @@ const MainCard = () => {
         )}
         <Box className="photo-grid-first">
           <Box className="left-section">
-            <LeftSection handleToggle={handleToggle} showRightSection={showRightSection} />
+            <LeftSection handleToggle={handleToggle} showRightSection={showRightSection}  data={cardData} />
           </Box>
           <Box
             className="right-section"
