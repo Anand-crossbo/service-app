@@ -1,7 +1,7 @@
 export const cardsLink = new Map([
     ['Location', '/location'],
     ['In-Room Dining', '/roomservicemain'],
-    ['Activities', '/activities'],
+    ['Activities', '/activity'],
     ['Know your room', '/mapproperty'],
     ['Connect your device', '/connectyourdevice'],
     ['Taxi Service', '/taxiservice'],

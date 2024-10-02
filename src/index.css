@@ -176,3 +176,26 @@ code {
   color: white;
   cursor: pointer;
 }
+
+.activity-card {
+  margin: 20px 20px 0 20px;
+  padding: 20px;
+  border-radius: 10px;
+  /* background-image: url("/staticImages/jetski1.jpg"); */
+  background-size: cover;
+        position: relative;
+        background-position: center; 
+        z-index: 0; 
+}
+
+.activity-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px; /* Ensure the overlay has the same border-radius */
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity for the overlay effect */
+  z-index: 1; /* Ensure the overlay is above the background image */
+}
