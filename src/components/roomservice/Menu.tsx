@@ -56,7 +56,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
           flexWrap: "wrap",
           flexGrow: 1,
           height: "90vh",
-          backgroundColor: "#c9c9c9",
+          backgroundColor: "primary.main",
           borderTopRightRadius: "16px",
           borderTopLeftRadius: isMobile ? "16px" : "0",
           borderBottomRightRadius: isMobile ? "0" : "16px",
@@ -72,7 +72,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
               marginTop: { xs: "15px", sm: "10px" }, // Adjust margin
             }}
           >
-            <Card sx={{ backgroundColor: "#c9c9c9" }} >
+            <Card sx={{ backgroundColor: "custom.card" }} >
               <CardMedia
                 component="img"
                 height="125"

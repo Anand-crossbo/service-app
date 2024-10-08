@@ -34,7 +34,7 @@ const Orders = ({ cartItems, onBack }: OrdersProps) => {
           overflow: 'hidden',
           alignItems: 'center',
           height: isMobile ? '100vh' : '90vh',
-          backgroundColor: '#c9c9c9',
+          backgroundColor: 'primary.main',
           borderTopLeftRadius: isMobile ? '0' : '16px',
           borderBottomLeftRadius: isMobile ? '0' : '16px',
         }}
