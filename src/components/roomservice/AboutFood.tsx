@@ -29,7 +29,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack }) => {
     <Grid item xs={6} sm={4}>
       <Box sx={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', alignItems: 'center', height: isMobile ? '100vh' : '90vh', backgroundColor: '#c9c9c9', borderTopLeftRadius: isMobile ? '0' : '16px', borderBottomLeftRadius: isMobile ? '0' : '16px' }}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-          <HighlightOffIcon sx={{ fontSize: '24px', padding: '10px' }} onClick={onBack} />
+          <HighlightOffIcon sx={{ fontSize: '40px', padding: '10px' }} onClick={onBack} />
         </Box>
         <Box sx={{ width: '100%' }}>
           {dish.media.filter(media => media.isHero).map((media, index) => (

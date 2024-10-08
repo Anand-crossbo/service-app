@@ -8,7 +8,7 @@ const NavRoomService = () => {
     const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Box sx={{ backgroundColor: '#c9c9c9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
+    <Box sx={{ backgroundColor: 'primary.main', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography fontSize={isMobile ? '10px' : '22px'} align='left'>
             Room Number - 1234

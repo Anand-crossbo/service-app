@@ -12,7 +12,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ count, onPayClick }) => {
         position: 'sticky',
         bottom: 0,
         height: '10vh', // 1/4 of the screen height
-        backgroundColor: '#2a2929', // Optional: Add a background color
+        backgroundColor: 'secondary.main', // Optional: Add a background color
         color: 'white', // Optional: Set text color to white
         zIndex: 1, // Optional: Set the z-index to 1000
       }}

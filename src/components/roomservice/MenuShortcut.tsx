@@ -2,7 +2,6 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-// import { Category } from "../../store/types";
 
 interface MenuItemProps {
   src: string;
@@ -53,7 +52,7 @@ const MenuShortcut = ({ onCategorySelect }: { onCategorySelect: (category: strin
           display: "flex",
           flexDirection: { xs: "row", sm: "column" },
           alignItems: "center",
-          backgroundColor: "#c9c9c9",
+          backgroundColor: "primary.main",
           borderTopLeftRadius: { xs: "0", sm: "16px" },
           borderBottomLeftRadius: { xs: "16px", sm: "16px" },
           borderBottomRightRadius: { xs: "16px", sm: "0" },
