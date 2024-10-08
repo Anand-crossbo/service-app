@@ -12,44 +12,35 @@ import {
 import React, { useState } from "react";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-
-interface Dish {
-  id: number;
-  name: string;
-  shortDsc: string;
-  longDsc: string;
-  price: number;
-  img: string;
-}
+import { Dish } from "../../store/booking/types";
 
 interface MenuProps {
   dishes: Dish[];
-  onCardClick: (dish: Dish) => void;
+  onCardClick: (dishId: number) => void;
   onAddToCard: (dish: Dish) => void;
   onRemoveFromCard: (dish: Dish) => void;
   counts: { [key: number]: number };
 }
 
-const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveFromCard,counts }) => {
+const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveFromCard, counts }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-    // Calculate the items to display on the current page
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = dishes.slice(indexOfFirstItem, indexOfLastItem);
-  
-    // Function to handle page change
-    const handlePageChange = (pageNumber: number) => {
-      setCurrentPage(pageNumber);
-    };
-  
-    // Calculate total pages
-    const totalPages = Math.ceil(dishes.length / itemsPerPage);
+  // Calculate the items to display on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = dishes.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
 
+  // Function to handle page change
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate total pages
+  const totalPages = Math.ceil(dishes.length / itemsPerPage);
 
   return (
     <Grid
@@ -74,7 +65,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
       >
         {currentItems.map((dish, index) => (
           <Box
-          key={index}
+            key={index}
             sx={{
               width: { xs: "45%", sm: "30%" }, // Full width on small screens, half width on larger screens
               margin: { xs: "5px", sm: "10px" }, // Adjust padding
@@ -85,15 +76,15 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
               <CardMedia
                 component="img"
                 height="125"
-                image={dish.img}
-                onClick={() => onCardClick(dish)}
+                image={dish.media.find(media => media.isHero)?.url || ""}
+                onClick={() => onCardClick(dish._id)}
               />
               <CardContent>
                 <Typography fontSize="18px" fontWeight="bold" component="div" sx={{ whiteSpace: 'nowrap', overflow:'hidden', textOverflow: 'ellipsis'}}>
-                {dish.name}
+                  {dish.name}
                 </Typography>
-                <Typography fontSize="12px" component="div">
-                {dish.shortDsc}
+                <Typography fontSize="12px" component="div" sx={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden'}}>
+                  {dish.description}
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -103,7 +94,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                       paddingTop="10px"
                       component="div"
                     >
-                      Aed {dish.price}
+                      Aed {dish.price.afterDiscount}
                     </Typography>
                   </Box>
                   <Box
@@ -128,7 +119,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                         marginRight: "5px",
                       }}
                     >
-                      {counts[dish.id] || 0}
+                      {counts[dish._id] || 0}
                     </Typography>
                     <AddCircleIcon
                       sx={{
@@ -144,43 +135,43 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
             </Card>
           </Box>
         ))}
-      <Box display="flex" justifyContent="center" alignItems="center" width='100%'>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <Button
-            key={index + 1}
-            onClick={() => handlePageChange(index + 1)}
-            variant={currentPage === index + 1 ? 'contained' : 'outlined'}
-            sx={{
-              mx: 1,
-              mb: 1,
-              fontSize: '12px',
-              borderRadius: '50%', // Make the button circular
-              width: '20px', // Set the width
-              height: '20px', // Set the height
-              minWidth: '20px', // Ensure the button does not expand
-              padding: 0, // Remove padding
-              ...(currentPage === index + 1
-                ? {
-                    backgroundColor: 'black', // Custom color for contained variant
-                    color: 'white', // Text color for contained variant
-                    '&:hover': {
-                      backgroundColor: 'black', // Darker shade on hover
-                    },
-                  }
-                : {
-                    borderColor: 'black', // Custom border color for outlined variant
-                    color: 'black', // Text color for outlined variant
-                    '&:hover': {
-                      borderColor: 'black', // Darker border color on hover
-                      color: 'black', // Darker text color on hover
-                    },
-                  }),
-            }}
-          >
-            {index + 1}
-          </Button>
-        ))}
-      </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" width='100%'>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <Button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              variant={currentPage === index + 1 ? 'contained' : 'outlined'}
+              sx={{
+                mx: 1,
+                mb: 1,
+                fontSize: '12px',
+                borderRadius: '50%', // Make the button circular
+                width: '20px', // Set the width
+                height: '20px', // Set the height
+                minWidth: '20px', // Ensure the button does not expand
+                padding: 0, // Remove padding
+                ...(currentPage === index + 1
+                  ? {
+                      backgroundColor: 'black', // Custom color for contained variant
+                      color: 'white', // Text color for contained variant
+                      '&:hover': {
+                        backgroundColor: 'black', // Darker shade on hover
+                      },
+                    }
+                  : {
+                      borderColor: 'black', // Custom border color for outlined variant
+                      color: 'black', // Text color for outlined variant
+                      '&:hover': {
+                        borderColor: 'black', // Darker border color on hover
+                        color: 'black', // Darker text color on hover
+                      },
+                    }),
+              }}
+            >
+              {index + 1}
+            </Button>
+          ))}
+        </Box>
       </Box>
     </Grid>
   );

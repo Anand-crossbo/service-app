@@ -6,52 +6,42 @@ import Menu from './Menu';
 import Orders from './Orders';
 import AboutFood from './AboutFood';
 import AddToCart from './AddToCart';
-
-interface Dish {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  shortDsc: string;
-  longDsc: string;
-}
-
-interface CartItem {
-  dish: Dish;
-  count: number;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { setDishes, setCategories } from '../../store/booking/dishesSlice';
+import { Dish, Category } from '../../store/booking/types';
+import { RootState } from '../../store/store'; // Import RootState from store.ts
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
-  const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
-  // const [count, setCount] = useState(0);
+  const [selectedDishId, setSelectedDishId] = useState<number | null>(null);
   const [showOrders, setShowOrders] = useState(false);
-  const [dishes, setDishes] = useState<Dish[]>([]);
+  const [cartItems, setCartItems] = useState<{ dish: Dish; count: number }[]>([]);
+  const [selectedCategoryTags, setSelectedCategoryTags] = useState<string[]>([]);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [counts, setCounts] = useState<{ [key: number]: number }>({});
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
+  const dispatch = useDispatch();
+  const dishes = useSelector((state: RootState) => state.dishes.dishes);
+  const categories = useSelector((state: RootState) => state.dishes.categories);
 
   useEffect(() => {
-    const fetchDishes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('https://1805c942-ad32-427a-b3e9-633d7a7fc0be.mock.pstmn.io/menu'); // Replace with your API endpoint
+        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/Dishes.json');
         const data = await response.json();
-        setDishes(data);
-        console.log('Fetched dishes:', data);
+        dispatch(setDishes(data[0].dishes as Dish[]));
+        dispatch(setCategories(data[1].categories as Category[]));
       } catch (error) {
-        console.error('Error fetching dishes:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchDishes();
-  }, []);
+    fetchData();
+  }, [dispatch]);
 
-  const handleCardClick = (dish: Dish) => {
-    setSelectedDish(dish);
+  const handleCardClick = (dishId: number) => {
+    setSelectedDishId(dishId);
     setShowAboutFood(true);
   };
 
@@ -61,31 +51,30 @@ const RoomServiceMain = () => {
 
   const handleAddToCard = (dish: Dish) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.dish.id === dish.id);
+      const existingItem = prevItems.find(item => item.dish._id === dish._id);
       if (existingItem) {
         return prevItems.map(item =>
-          item.dish.id === dish.id ? { ...item, count: item.count + 1 } : item
+          item.dish._id === dish._id ? { ...item, count: item.count + 1 } : item
         );
       } else {
         return [...prevItems, { dish, count: 1 }];
       }
     });
-    setSelectedDish(dish);
+    setSelectedDishId(dish._id);
   };
 
   const handleRemoveFromCard = (dish: Dish) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.dish.id === dish.id);
+      const existingItem = prevItems.find(item => item.dish._id === dish._id);
       if (existingItem && existingItem.count > 1) {
         return prevItems.map(item =>
-          item.dish.id === dish.id ? { ...item, count: item.count - 1 } : item
+          item.dish._id === dish._id ? { ...item, count: item.count - 1 } : item
         );
       } else {
-        return prevItems.filter(item => item.dish.id !== dish.id);
+        return prevItems.filter(item => item.dish._id !== dish._id);
       }
     });
   };
-
 
   const handlePayClick = () => {
     setShowOrders(true);
@@ -99,22 +88,51 @@ const RoomServiceMain = () => {
     return cartItems.reduce((total, item) => total + item.count, 0);
   };
 
+  const handleCategorySelect = (categoryName: string) => {
+    console.log("Selected Category:", categoryName); // Debugging log
+    const category = categories.find(cat => cat.name.trim().toLowerCase() === categoryName.trim().toLowerCase());
+    if (category) {
+      setSelectedCategoryTags(category.tag.map(tag => tag.trim().toLowerCase()));
+    } else {
+      setSelectedCategoryTags([]);
+    }
+  };
+
+  const filteredDishes = selectedCategoryTags.length > 0
+    ? dishes.filter(dish => {
+        console.log("Dish Tags:", dish.tags); // Debugging log
+        return dish.tags.some(tag => {
+          const normalizedTag = tag.trim().toLowerCase();
+          console.log(`Comparing tag: ${normalizedTag} with selectedCategoryTags: ${selectedCategoryTags}`); // Debugging log
+          return selectedCategoryTags.includes(normalizedTag);
+        });
+      })
+    : dishes;
+
+  console.log("Filtered Dishes:", filteredDishes); // Debugging log
+
   return (
-<Box sx={{ backgroundColor: 'black', height: '100vh', position: 'relative',overflow:showOrders ? 'hidden' : '', }}>
-      {isMobile && showAboutFood ? (
+    <Box sx={{ backgroundColor: 'black', height: '100vh', position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
+      {isMobile && showAboutFood && selectedDishId !== null ? (
         <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
-          <AboutFood dish={selectedDish!} onBack={handleBackToOrders} />
+          <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
         </Box>
       ) : (
         <>
           <NavRoomService />
           <Grid container display={'flex'} marginTop={1}>
-            <MenuShortcut />
-            <Menu counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish.id]: item.count }), {})} dishes={dishes} onCardClick={handleCardClick} onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard}/>
-            {showAboutFood && selectedDish ? (
-              <AboutFood dish={selectedDish} onBack={handleBackToOrders} />
+            <MenuShortcut onCategorySelect={handleCategorySelect} />
+            <Menu
+              dishes={filteredDishes}
+              counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
+              onCardClick={handleCardClick}
+              onAddToCard={handleAddToCard}
+              onRemoveFromCard={handleRemoveFromCard}
+            />
+            {showAboutFood && selectedDishId !== null ? (
+              <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
             ) : (
-              !isMobile && <Orders cartItems={cartItems} onBack={handleBackClick}/>
+              !isMobile && <Orders cartItems={cartItems} onBack={handleBackClick} />
             )}
           </Grid>
         </>
@@ -123,8 +141,8 @@ const RoomServiceMain = () => {
         <AddToCart count={getTotalCount()} onPayClick={handlePayClick} />
       )}
       {isMobile && showOrders &&
-        <Box sx={{ position: 'fixed',overflow:'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
-          <Orders cartItems={cartItems} onBack={handleBackClick}/>
+        <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
+          <Orders cartItems={cartItems} onBack={handleBackClick} />
         </Box>
       }
     </Box>
