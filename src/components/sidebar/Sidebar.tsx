@@ -4,6 +4,7 @@ import DoNotDisturbOnIcon from '@mui/icons-material/DoNotDisturbOn';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
   open: boolean;
@@ -11,6 +12,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
+  const { t } = useTranslation();
   return (
     <Box>
       <Drawer
@@ -26,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       >
         <Box
           sx={{
-            width: 410, // Adjust the width as needed
+            width: 440, // Adjust the width as needed
             height: '100vh',
             display: 'flex',
             flexDirection: 'column',
@@ -63,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
           </Box>
           <Box>
             <Typography fontSize='14px' align='center' color='white'>
-                Room No: 1234
+            {t(`RoomNumber`)}: 1234
             </Typography>
           </Box>
           <Box>
