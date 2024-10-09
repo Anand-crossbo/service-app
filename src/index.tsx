@@ -8,9 +8,7 @@ import { store } from './store/store'
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
-
-
-
+import './app/i18n';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
