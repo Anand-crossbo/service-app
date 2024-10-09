@@ -1,0 +1,22 @@
+{
+    "DishNotFound": "요리를 찾을 수 없음",
+    "ShowLess": "줄여 표시",
+    "ReadMore": "더 읽기",
+    "GuestReviews": "손님 리뷰",
+    "Reviews": "리뷰",
+    "ItemAdded": "추가된 항목",
+    "BtnPay": "지불",
+    "Cart": "카트",
+    "Orders": "주문",
+    "NoDishSelected": "선택된 요리 없음",
+    "Total": "총계",
+    "BtnConfirm": "확인",
+    "AskButler": "집사와 상의하세요!",
+    "RoomNumber": "객실 번호",
+    "QuickActions": "빠른 작업",
+    "DND": "방해 금지",
+    "LightMode": "조명 모드",
+    "ACCtrl": "AC 제어",
+    "BtnBegin": "여기를 탭하여 시작하세요",
+    "Welcome": "환영합니다"
+}
