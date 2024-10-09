@@ -34,7 +34,7 @@ const theme = createTheme({
       paper: '#f5f5f5',
     },
     custom: {
-        card: '#c9c9c9'
+        card: '#ffffff'
       },
   },
 });

@@ -161,7 +161,7 @@ const LeftSection = ({ handleToggle, showRightSection, data }: { handleToggle: (
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           display: "flex",
-          height: "395px",
+          height: "435px",
           alignItems: "flex-end", // Align items to the bottom
           padding: "20px", // Add padding for spacing
           "::before": {
