@@ -60,12 +60,16 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
           borderTopRightRadius: "16px",
           borderTopLeftRadius: isMobile ? "16px" : "0",
           borderBottomRightRadius: isMobile ? "0" : "16px",
-          "@media (max-width: 600px)": { height: "auto", justifyContent: "center" },
+          "@media (max-width: 600px)": { height: "85vh", justifyContent: "center" },
         }}
       >
-        {currentItems.map((dish, index) => (
+        {currentItems.map((dish) => {
+          const heroMedia = dish.media.find((media) => media.isHero);
+          return (
+
           <Box
-            key={index}
+          key={dish._id}
+          onClick={() => onCardClick(dish._id)}
             sx={{
               width: { xs: "45%", sm: "30%" }, // Full width on small screens, half width on larger screens
               margin: { xs: "5px", sm: "10px" }, // Adjust padding
@@ -73,13 +77,24 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
             }}
           >
             <Card sx={{ backgroundColor: "custom.card" }} >
+            {heroMedia?.type === 'video' ? (
+              <CardMedia
+                component="video"
+                height="125"
+                src={heroMedia?.url}
+                autoPlay
+                muted
+                controls
+                style={{ objectFit: 'cover', width: '100%',}}
+              />
+            ) : (
               <CardMedia
                 component="img"
                 height="125"
-                image={dish.media.find(media => media.isHero)?.url || ""}
-                onClick={() => onCardClick(dish._id)}
+                image={heroMedia?.url || ""}
               />
-              <CardContent>
+            )}
+              <CardContent sx={{ paddingBottom: '4px !important' }}>
                 <Typography fontSize="18px" fontWeight="bold" component="div" sx={{ whiteSpace: 'nowrap', overflow:'hidden', textOverflow: 'ellipsis'}}>
                   {dish.name}
                 </Typography>
@@ -110,8 +125,11 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={() => onRemoveFromCard(dish)}
-                    />
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRemoveFromCard(dish);
+                      }}
+                      />
                     <Typography
                       sx={{
                         fontSize: "20px",
@@ -127,14 +145,25 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                         color: "black",
                         marginRight: "5px",
                       }}
-                      onClick={() => onAddToCard(dish)}
-                    />
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCard(dish);
+                      }}                    
+                      />
                   </Box>
                 </Box>
+                {dish.dietaryTags.map((tag, index) => (
+                  <img
+                    key={index}
+                    src={tag.icon}
+                    style={{ height: "20px", width: "20px", marginRight: "5px" }}
+                  />
+                ))}
               </CardContent>
             </Card>
           </Box>
-        ))}
+          );
+        })}
         <Box display="flex" justifyContent="center" alignItems="center" width='100%'>
           {Array.from({ length: totalPages }, (_, index) => (
             <Button
