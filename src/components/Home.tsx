@@ -72,7 +72,7 @@ const Home = () => {
             </Typography>
           </Box>
           <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 10 :0 }}>
-            <Link to="/maincard" style={{ textDecoration: "none" }}>
+            <Link to="/homecard" style={{ textDecoration: "none" }}>
               <Typography className="round-btn">Tap Here To Begin</Typography>
             </Link>
           </Box>
