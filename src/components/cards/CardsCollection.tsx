@@ -41,7 +41,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
 
@@ -56,7 +56,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Activities
               </Typography>
             </CardContent>
@@ -71,7 +71,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -85,7 +85,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Location
               </Typography>
             </CardContent>
@@ -100,7 +100,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -114,7 +114,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Airport Drop
               </Typography>
             </CardContent>
@@ -129,7 +129,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -143,7 +143,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 In-Room Dining
               </Typography>
             </CardContent>
@@ -158,7 +158,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -172,7 +172,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Know Your Room
               </Typography>
             </CardContent>
@@ -187,7 +187,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -201,7 +201,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Luggage Assistance
               </Typography>
             </CardContent>
@@ -216,7 +216,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -230,7 +230,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Plan Your Trip
               </Typography>
             </CardContent>
@@ -245,7 +245,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 objectFit: 'contain', // Ensure the image scales correctly
                 padding: '10px', // Optional: Add some padding for better appearance
               }}
@@ -259,7 +259,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold'component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold'component="div">
                 Taxi Services
               </Typography>
             </CardContent>
@@ -274,7 +274,7 @@ const AllCards = () => {
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '140px', // Set a maximum height for the image
+                maxHeight: '60px', // Set a maximum height for the image
                 padding: '10px', // Optional: Add some padding for better appearance
                 objectFit: 'contain', // Ensure the image scales correctly
                 opacity: fadeIn ? 1 : 0,
@@ -290,7 +290,7 @@ const AllCards = () => {
                 padding: '5px !important',
               }}
             >
-              <Typography align='center' fontSize='14px' fontWeight='bold' component="div">
+              <Typography align='center' fontSize='12px' fontWeight='bold' component="div">
                 All Services
               </Typography>
             </CardContent>
@@ -342,7 +342,7 @@ const AllCards = () => {
           sx={{
             width: '100%',
             height: 'auto',
-            maxHeight: '140px', // Set a maximum height for the image
+            maxHeight: '60px', // Set a maximum height for the image
             objectFit: 'contain', // Ensure the image scales correctly
             padding: '10px', // Optional: Add some padding for better appearance
           }}
@@ -372,7 +372,7 @@ const AllCards = () => {
           sx={{
             width: '100%',
             height: 'auto',
-            maxHeight: '140px', // Set a maximum height for the image
+            maxHeight: '60px', // Set a maximum height for the image
             objectFit: 'contain', // Ensure the image scales correctly
             padding: '10px', // Optional: Add some padding for better appearance
           }}
@@ -402,7 +402,7 @@ const AllCards = () => {
           sx={{
             width: '100%',
             height: 'auto',
-            maxHeight: '140px', // Set a maximum height for the image
+            maxHeight: '60px', // Set a maximum height for the image
             objectFit: 'contain', // Ensure the image scales correctly
             padding: '10px', // Optional: Add some padding for better appearance
           }}
@@ -432,7 +432,7 @@ const AllCards = () => {
           sx={{
             width: '100%',
             height: 'auto',
-            maxHeight: '140px', // Set a maximum height for the image
+            maxHeight: '60px', // Set a maximum height for the image
             objectFit: 'contain', // Ensure the image scales correctly
             padding: '10px', // Optional: Add some padding for better appearance
           }}
