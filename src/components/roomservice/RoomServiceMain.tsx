@@ -28,7 +28,7 @@ const RoomServiceMain = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/Dishes.json');
+        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/dishes.json');
         const data = await response.json();
         dispatch(setDishes(data[0].dishes as Dish[]));
         dispatch(setCategories(data[1].categories as Category[]));
