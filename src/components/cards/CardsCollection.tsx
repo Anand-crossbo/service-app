@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+
+
 
 const AllCards = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fadeIn, setFadeIn] = useState(true);
+  const navigate = useNavigate();
+
 
   const images = [
     "https://cdn-icons-png.flaticon.com/128/1940/1940922.png",
@@ -14,9 +21,6 @@ const AllCards = () => {
     "https://cdn-icons-png.flaticon.com/128/2656/2656398.png"
   ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fadeIn, setFadeIn] = useState(true);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setFadeIn(false);
@@ -28,6 +32,10 @@ const AllCards = () => {
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [images.length]);
+
+  const handleCardClick = () => {
+    navigate('/servicescollection');
+  };
   
   return (
     <>
@@ -266,7 +274,7 @@ const AllCards = () => {
           </Card>
         </Grid>
         <Grid item xs={4} sm={4} md={4}>
-          <Card  sx={{ backgroundColor: 'white'}}>
+          <Card  sx={{ backgroundColor: 'white'}} onClick={handleCardClick}>
             <CardMedia
               component="img"
               image={images[currentImageIndex]}
