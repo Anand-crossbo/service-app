@@ -1,0 +1,43 @@
+.carousel-container {
+  position: relative;
+  width: '115px';
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  scroll-snap-align: start;
+}
+
+.carousel-item {
+  min-width: 33.33%; 
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 600px) {
+  .carousel-item {
+    min-width: 25%; /* Display 4 cards on larger screens */
+  }
+}
+
+@media (min-width: 960px) {
+  .carousel-item {
+    min-width: 20%; /* Display 5 cards on even larger screens */
+  }
+}

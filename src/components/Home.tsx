@@ -16,20 +16,23 @@ const Home = () => {
       }}
     >
       <Box
+        component="video"
+        autoPlay
+        loop
+        muted
         sx={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: "url(/staticImages/background4.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat", // Ensure the image does not repeat
-          backgroundAttachment: "fixed", // Ensure the image does not scroll with the page
-          filter: "blur(2px)",
+          objectFit: "cover",
+          // filter: "blur(1px)",
         }}
-      />
+      >
+        <source src="/staticImages/background2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </Box>
       <Box
         sx={{
           position: "relative",
