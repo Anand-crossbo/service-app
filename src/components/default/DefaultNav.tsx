@@ -22,13 +22,13 @@ const DefaultNav = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    gsap.fromTo(
-      containerRef.current,
-      { y: "100%" },
-      { y: 0, duration: 0.5, ease: "easeInOut" }
-    );
-  }, []);
+  // useEffect(() => {
+  //   gsap.fromTo(
+  //     containerRef.current,
+  //     { y: "100%" },
+  //     { y: 0, duration: 0.5, ease: "easeInOut" }
+  //   );
+  // }, []);
 
   const handleBackClick = () => {
     gsap.to(containerRef.current, {
