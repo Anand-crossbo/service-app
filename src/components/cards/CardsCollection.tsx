@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Card, CardMedia, CardContent, Typography, CircularProgress, Grid } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import cardsLink from "./Mapping/LinksMapping";
-import Advertisement from "./Advertisement";
-import QuickActions from "./QuickActions";
+import Advertisement from "../advertisement/Advertisement";
+import QuickActions from "../quickactions/QuickActions";
 
 const CardsCollection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
