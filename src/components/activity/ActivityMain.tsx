@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import { Box, Typography, Button,useMediaQuery, useTheme } from '@mui/material';
 import "slick-carousel/slick/slick.css";
@@ -6,11 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import ActivityCategory from './ActivityCategory';
 import Sports from './Sports';
 import BigActivityCards from './BigActivityCards';
+import DefaultNav from '../default/DefaultNav';
+import gsap from "gsap";
 
 const ActivityMain = () => {
 
   const theme = useTheme();
-const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const containerRef = useRef(null);
 
 
   const settings = {
@@ -66,8 +69,17 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     ],
   };
 
+  useEffect(() => {
+    gsap.fromTo(
+      containerRef.current,
+      { y: '100%' },
+      { y: 0, duration: 0.5, ease: 'easeInOut' }
+    );
+  }, []);
+
   return (
-    <Box>
+    <Box ref={containerRef} >
+      <DefaultNav/>
       <ActivityCategory/>
       <BigActivityCards/>
       <Sports />
