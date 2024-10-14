@@ -1,7 +1,5 @@
 import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import NavRoomService from './NavRoomService';
-import MenuShortcut from './MenuShortcut';
+import React, { useEffect, useRef, useState } from 'react';
 import Menu from './Menu';
 import Orders from './Orders';
 import AboutFood from './AboutFood';
@@ -10,6 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDishes, setCategories } from '../../store/booking/dishesSlice';
 import { Dish, Category } from '../../store/booking/types';
 import { RootState } from '../../store/store'; // Import RootState from store.ts
+import RoomServiceNav from './RoomServiceNav';
+import Categories from './Categories';
+import gsap from "gsap";
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
@@ -25,10 +26,12 @@ const RoomServiceMain = () => {
   const dishes = useSelector((state: RootState) => state.dishes.dishes);
   const categories = useSelector((state: RootState) => state.dishes.categories);
 
+  const containerRef = useRef(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/dishes.json');
+        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/dish.json');
         const data = await response.json();
         dispatch(setDishes(data[0].dishes as Dish[]));
         dispatch(setCategories(data[1].categories as Category[]));
@@ -111,17 +114,26 @@ const RoomServiceMain = () => {
 
   console.log("Filtered Dishes:", filteredDishes); // Debugging log
 
+  useEffect(() => {
+    gsap.fromTo(
+      containerRef.current,
+      { y: '100%' },
+      { y: 0, duration: 0.5, ease: 'easeInOut' }
+    );
+  }, []);
+
   return (
-    <Box sx={{ backgroundColor: 'black', height: '100vh', position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
+    <Box ref={containerRef} sx={{ backgroundColor: 'white', height: '100vh', position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
       {isMobile && showAboutFood && selectedDishId !== null ? (
         <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
           <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
         </Box>
       ) : (
         <>
-          <NavRoomService />
+          <RoomServiceNav />
           <Grid container display={'flex'} marginTop={1}>
-            <MenuShortcut onCategorySelect={handleCategorySelect} />
+            <Categories onCategorySelect={handleCategorySelect} />
+            {/* <MenuShortcut onCategorySelect={handleCategorySelect} /> */}
             <Menu
               dishes={filteredDishes}
               counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
