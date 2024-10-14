@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import CommentIcon from '@mui/icons-material/Comment';
+import TopDrawer from './TopDrawer';
 
 const HomeCardNav = () => {
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
     <Typography
@@ -25,9 +36,10 @@ const HomeCardNav = () => {
       <Typography variant="h6" component="div">
         Genie
       </Typography>
-      <IconButton sx={{ backgroundColor: 'black'}}>
-            <MenuIcon sx={{ color: 'white'}} />
-            </IconButton>
+      <IconButton sx={{ backgroundColor: 'black'}} onClick={handleDrawerOpen}>
+        <MenuIcon sx={{ color: 'white'}} />
+      </IconButton>
+      <TopDrawer open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen} />
     </Box>
   )
 }

@@ -20,6 +20,7 @@ const Home = () => {
         autoPlay
         loop
         muted
+        playsInline // Add this attribute for iOS
         sx={{
           position: "absolute",
           top: 0,
