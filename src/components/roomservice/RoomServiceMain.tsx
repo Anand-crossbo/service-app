@@ -11,6 +11,7 @@ import { RootState } from '../../store/store'; // Import RootState from store.ts
 import RoomServiceNav from './RoomServiceNav';
 import Categories from './Categories';
 import gsap from "gsap";
+import NewMenu from './NewMenu';
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
@@ -141,6 +142,7 @@ const RoomServiceMain = () => {
               onAddToCard={handleAddToCard}
               onRemoveFromCard={handleRemoveFromCard}
             />
+            {/* <NewMenu /> */}
             {showAboutFood && selectedDishId !== null ? (
               <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
             ) : (
