@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
 const App = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
@@ -42,6 +44,8 @@ const App = () => {
 
   return (
     <div>
+      <RouterProvider router={router} />
+
       {/* Your existing app content */}
       {showInstallPrompt && (
         <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', padding: '10px', textAlign: 'center', boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' }}>
