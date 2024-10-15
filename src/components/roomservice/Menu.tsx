@@ -84,14 +84,15 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                 src={heroMedia?.url}
                 autoPlay
                 muted
-                controls
-                style={{ objectFit: 'cover', width: '100%',}}
-              />
+                // controls
+                sx={{ objectFit: 'cover', width: '100%' }}
+                />
             ) : (
               <CardMedia
                 component="img"
                 height="125"
                 image={heroMedia?.url || ""}
+                sx={{ objectFit: 'cover', width: '100%' }}
               />
             )}
               <CardContent sx={{ paddingBottom: '4px !important' }}>
