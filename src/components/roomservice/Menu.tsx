@@ -84,7 +84,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
                 src={heroMedia?.url}
                 autoPlay
                 muted
-                // controls
+                playsInline
                 sx={{ objectFit: 'cover', width: '100%' }}
                 />
             ) : (

@@ -5,6 +5,7 @@ import { router } from './routes';
 const App = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -17,6 +18,12 @@ const App = () => {
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    // Detect if the user is on iOS
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+      setIsIOS(true);
+    }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -47,9 +54,15 @@ const App = () => {
       <RouterProvider router={router} />
 
       {/* Your existing app content */}
-      {showInstallPrompt && (
+      {showInstallPrompt && !isIOS && (
         <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', padding: '10px', textAlign: 'center', boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' }}>
           <button onClick={handleInstallClick}>Add to Home Screen</button>
+        </div>
+      )}
+
+      {isIOS && (
+        <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', padding: '10px', textAlign: 'center', boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' }}>
+          <p>To add this app to your home screen, open the Safari menu and tap "Add to Home Screen".</p>
         </div>
       )}
     </div>
