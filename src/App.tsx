@@ -7,6 +7,7 @@ const App = () => {
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
+  const [showIOSMessage, setShowIOSMessage] = useState(false);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -27,6 +28,11 @@ const App = () => {
       // Check if the app is running in standalone mode
       if ((window.navigator as any).standalone) {
         setIsStandalone(true);
+      } else {
+        setShowIOSMessage(true);
+        setTimeout(() => {
+          setShowIOSMessage(false);
+        }, 5000); // Hide the message after 5 seconds
       }
     }
 
@@ -63,18 +69,18 @@ const App = () => {
     <div>
       <RouterProvider router={router} />
 
-      {/* Your existing app content */}
+      {/* Your existing app content
       {showInstallPrompt && !isStandalone && !isIOS && (
         <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', padding: '10px', textAlign: 'center', boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' }}>
           <button onClick={handleInstallClick}>Add to Home Screen</button>
         </div>
-      )}
+      )} */}
 
-      {isIOS && !isStandalone && (
+      {/* {isIOS && !isStandalone && (
         <div style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', padding: '10px', textAlign: 'center', boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' }}>
           <p>To add this app to your home screen, open the Safari menu and tap "Add to Home Screen".</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
