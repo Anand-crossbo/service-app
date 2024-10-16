@@ -38,7 +38,7 @@ const CardsCollection = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          `https://04e74f50-3d1d-460e-870b-0c6ab456d2c3.mock.pstmn.io/services`
+          `https://genie-menu-data.s3.eu-west-1.amazonaws.com/servicecard.json`
         ); // Replace with the actual path to your JSON file
         const data = await response.json();
         const priorityServices = data.filter(
