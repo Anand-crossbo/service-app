@@ -1,13 +1,21 @@
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import QuickActionDrawer from './QuickActionDrawer';
 
 const QuickActions = () => {
   const navigate = useNavigate();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerText, setDrawerText] = useState('');
 
-  const handleCardClick = (actionText: string, imageUrl: string) => {
-    navigate('/actions', { state: { actionText, imageUrl } });
+  const handleDrawerOpen = (text: string) => () => {
+    setDrawerText(text);
+    setDrawerOpen(true);
   };
+
+  // const handleCardClick = (actionText: string, imageUrl: string) => {
+  //   navigate('/actions', { state: { actionText, imageUrl } });
+  // };
   return (
     <Box>
       <Typography marginLeft="20px" marginTop= '30px' fontSize="18px" fontWeight="bold">
@@ -16,7 +24,7 @@ const QuickActions = () => {
 
       <Grid container spacing={2} sx={{ padding: "16px" }}>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={() => handleCardClick('Get me towel','https://cdn-icons-png.flaticon.com/128/2729/2729761.png')}>
+          <Card sx={{ backgroundColor: "white" }} onClick={handleDrawerOpen("Get me Towel")}>
             <CardMedia
               component="img"
               height="140"
@@ -51,7 +59,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={() => handleCardClick('Get me water bottle',"https://cdn-icons-png.flaticon.com/128/2745/2745060.png")}>
+          <Card sx={{ backgroundColor: "white" }}  onClick={handleDrawerOpen("Get me water bottle")}>
             <CardMedia
               component="img"
               height="140"
@@ -86,7 +94,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={() => handleCardClick('Send clothes to laundry',"https://cdn-icons-png.flaticon.com/128/3946/3946975.png")}>
+          <Card sx={{ backgroundColor: "white" }} onClick={handleDrawerOpen("Send clothes to laundry")}>
             <CardMedia
               component="img"
               height="140"
@@ -121,7 +129,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={() => handleCardClick('Book Taxi',"https://cdn-icons-png.flaticon.com/128/619/619006.png")}>
+          <Card sx={{ backgroundColor: "white" }}  onClick={handleDrawerOpen("Book Taxi")}>
             <CardMedia
               component="img"
               height="140"
@@ -156,6 +164,9 @@ const QuickActions = () => {
           </Card>
         </Grid>
       </Grid>
+      <QuickActionDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)} />
     </Box>
   )
 }
