@@ -60,7 +60,9 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
           borderTopRightRadius: "16px",
           borderTopLeftRadius: isMobile ? "16px" : "0",
           borderBottomRightRadius: isMobile ? "0" : "16px",
-          "@media (max-width: 600px)": { height: "85vh", justifyContent: "center" },
+          justifyContent: "flex-start", // Align items to the start
+        alignItems: "flex-start", // Align items to the start
+          "@media (max-width: 600px)": { height: "85vh", justifyContent: "flex-start",width: "100%" }, // Adjust height for smaller screens
         }}
       >
         {currentItems.map((dish) => {
@@ -71,7 +73,7 @@ const Menu: React.FC<MenuProps> = ({ dishes, onCardClick, onAddToCard, onRemoveF
           key={dish._id}
           onClick={() => onCardClick(dish._id)}
             sx={{
-              width: { xs: "45%", sm: "30%" }, // Full width on small screens, half width on larger screens
+              width: { xs: "47%", sm: "30%" }, // Full width on small screens, half width on larger screens
               margin: { xs: "5px", sm: "10px" }, // Adjust padding
               marginTop: { xs: "15px", sm: "10px" }, // Adjust margin
             }}
