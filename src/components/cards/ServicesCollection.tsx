@@ -25,7 +25,7 @@ const ServicesCollection = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(`https://04e74f50-3d1d-460e-870b-0c6ab456d2c3.mock.pstmn.io/services`); // Replace with the actual path to your JSON file
+        const response = await fetch( `https://genie-menu-data.s3.eu-west-1.amazonaws.com/servicecard.json`); // Replace with the actual path to your JSON file
         const data = await response.json();
         setServices(data);
         setTravelServices(data.filter((service: { category: string }) => service.category === 'Travel'));

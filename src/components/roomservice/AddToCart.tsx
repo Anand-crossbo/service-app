@@ -1,28 +1,59 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
+import { Dish } from '../../store/booking/types';
+
+interface CartItem {
+  dish: Dish;
+  count: number;
+}
 
 interface AddToCartProps {
+  cartItems: CartItem[];
   count: number;
   onPayClick: () => void;
 }
-const AddToCart: React.FC<AddToCartProps> = ({ count, onPayClick }) => {
+const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) => {
+  const calculateTotalAmount = (price: number, count: number): number => {
+    return price * count;
+  };
+
+  const totalAmount = cartItems.reduce((total, item) => total + calculateTotalAmount(item.dish.price.afterDiscount, item.count), 0);
   return (
+<Box
+  sx={{
+    position: 'sticky',
+    bottom: 10,
+    left: 0,
+    right: 0,
+    height: '8vh', // 1/10 of the screen height
+    backgroundColor: '#76d45f', // Optional: Add a background color
+    color: 'white', // Optional: Set text color to white
+    zIndex: 1, // Ensure it is above other content
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '15px',
+    width: '50%',
+    margin: '0 auto', // Center the box horizontally
+    borderRadius: '40px'
+  }}
+>
     <Box
       sx={{
-        position: 'sticky',
-        bottom: 0,
-        height: '10vh', // 1/4 of the screen height
-        backgroundColor: 'secondary.main', // Optional: Add a background color
-        color: 'white', // Optional: Set text color to white
-        zIndex: 1, // Optional: Set the z-index to 1000
+        width: '35px',
+        height: '35px',
+        borderRadius: '50%',
+        backgroundColor: '#095715',
+        color: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px'}} >
-        <Typography paddingRight='10px'>{count} Items Added</Typography>
-        <Button variant="contained" color="primary" onClick={onPayClick}>Pay</Button>
-      </Box>
-
+      <Typography>{count}</Typography>
     </Box>
+  <Typography color="black" onClick={onPayClick}>Basket: AED {totalAmount}</Typography>
+</Box>
   );
 };
 

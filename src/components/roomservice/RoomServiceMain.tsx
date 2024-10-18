@@ -11,7 +11,8 @@ import { RootState } from '../../store/store'; // Import RootState from store.ts
 import RoomServiceNav from './RoomServiceNav';
 import Categories from './Categories';
 import gsap from "gsap";
-import NewMenu from './NewMenu';
+import NewMenu from './menudesigns/NewMenu';
+import { Add, Room } from '@mui/icons-material';
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
@@ -32,7 +33,7 @@ const RoomServiceMain = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/dish.json');
+        const response = await fetch('https://genie-menu-data.s3.eu-west-1.amazonaws.com/newdish.json');
         const data = await response.json();
         dispatch(setDishes(data[0].dishes as Dish[]));
         dispatch(setCategories(data[1].categories as Category[]));
@@ -124,17 +125,16 @@ const RoomServiceMain = () => {
   }, []);
 
   return (
-    <Box ref={containerRef} sx={{ backgroundColor: 'white', height: '100vh', position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
+    <Box ref={containerRef} sx={{ backgroundColor: 'white', height:'100vh',  position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
       {isMobile && showAboutFood && selectedDishId !== null ? (
         <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
-          <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
+          <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes}/>
         </Box>
       ) : (
         <>
           <RoomServiceNav />
           <Grid container display={'flex'} marginTop={1}>
             <Categories onCategorySelect={handleCategorySelect} />
-            {/* <MenuShortcut onCategorySelect={handleCategorySelect} /> */}
             <Menu
               dishes={filteredDishes}
               counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
@@ -142,9 +142,8 @@ const RoomServiceMain = () => {
               onAddToCard={handleAddToCard}
               onRemoveFromCard={handleRemoveFromCard}
             />
-            {/* <NewMenu /> */}
             {showAboutFood && selectedDishId !== null ? (
-              <AboutFood dishId={selectedDishId} onBack={handleBackToOrders} />
+              <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes} />
             ) : (
               !isMobile && <Orders cartItems={cartItems} onBack={handleBackClick} />
             )}
@@ -152,7 +151,7 @@ const RoomServiceMain = () => {
         </>
       )}
       {isMobile && getTotalCount() > 0 && (
-        <AddToCart count={getTotalCount()} onPayClick={handlePayClick} />
+        <AddToCart cartItems={cartItems} count={getTotalCount()} onPayClick={handlePayClick} />
       )}
       {isMobile && showOrders &&
         <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
@@ -160,6 +159,7 @@ const RoomServiceMain = () => {
         </Box>
       }
     </Box>
+
   );
 };
 
