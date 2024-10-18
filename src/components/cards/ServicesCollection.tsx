@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Card, CardContent, CardMedia, CircularProgress, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import gsap from 'gsap';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Link, useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import './ServicesCollection.css';
 import cardsLink from './Mapping/LinksMapping';
+import theme from '../../theme';
 
 const ServicesCollection = () => {
   const containerRef = useRef(null);
@@ -19,8 +17,6 @@ const ServicesCollection = () => {
   const [informationServices, setInformationServices] = useState([]);
   const [helperServices, setHelperServices] = useState([]);
   const [groomingServices, setGroomingServices] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -59,23 +55,6 @@ const ServicesCollection = () => {
       ease: 'easeInOut',
       onComplete: () => navigate(-1)
     });
-  };
-
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   const renderCards = (services: { icon: string; name: string }[]) => (
@@ -123,14 +102,14 @@ const ServicesCollection = () => {
             justifyContent: 'center',
             width: '40px',
             height: '40px',
-            border: '1px solid #4a4949',
+            // border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: '50%',
-            backgroundColor: '#ffffff',
+            backgroundColor: 'primary.main',
             marginRight: '14px',
           }}
           onClick={handleBackClick}
         >
-          <KeyboardBackspaceIcon />
+          <KeyboardBackspaceIcon sx={{ color: 'common.white'}} />
         </Box>
         <Typography variant="h6">All Services</Typography>
       </Box>

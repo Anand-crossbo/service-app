@@ -4,11 +4,13 @@ import { Box, Button, Typography } from '@mui/material'
 import gsap from "gsap";
 import { useLocation } from 'react-router-dom';
 
-
 const ActivityAdAbout = () => {
+
   const containerRef = useRef(null);
   const location = useLocation();
+
   const { title, img } = location.state || { title: 'No action text provided', img: '' };
+
   const handleOrder = () => {
     // Implement order logic here
     alert('Offer availed!');
@@ -45,13 +47,13 @@ const ActivityAdAbout = () => {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: '#3868aa',
-          color: 'white',
+          backgroundColor: 'primary.main',
+          color: 'common.white',
           '&:hover': {
-            backgroundColor: '#2c4f7c',
+            backgroundColor: 'primary.main',
           },
           '&:active': {
-            backgroundColor: '#1e3554',
+            backgroundColor: 'primary.main',
           },
         }}
         onClick={handleOrder}

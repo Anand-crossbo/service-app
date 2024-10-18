@@ -15,29 +15,30 @@ const HomeCardNav = () => {
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
     <Typography
       fontSize='16px'
       component="div"
       sx={{
-        backgroundColor: 'black',
-        color: 'white',
+        backgroundColor: 'primary.main',
+        color: 'common.white',
         borderRadius: '16px',
         padding: '8px', // Optional: Add some padding for better appearance
         display: 'flex',
         alignItems: 'center', // Align items vertically centered
       }}
     >
-      <CommentIcon sx={{ color: 'white', marginRight: '8px' }} />
+      <CommentIcon sx={{ color: 'common.white', marginRight: '8px' }} />
       Chat
     </Typography>
 
       <Typography variant="h6" component="div">
         Genie
       </Typography>
-      <IconButton sx={{ backgroundColor: 'black'}} onClick={handleDrawerOpen}>
-        <MenuIcon sx={{ color: 'white'}} />
+      <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
+        <MenuIcon sx={{ color: 'common.white'}} />
       </IconButton>
       <TopDrawer open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen} />
     </Box>

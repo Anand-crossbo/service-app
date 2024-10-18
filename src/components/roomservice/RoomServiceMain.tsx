@@ -114,8 +114,6 @@ const RoomServiceMain = () => {
       })
     : dishes;
 
-  console.log("Filtered Dishes:", filteredDishes); // Debugging log
-
   useEffect(() => {
     gsap.fromTo(
       containerRef.current,

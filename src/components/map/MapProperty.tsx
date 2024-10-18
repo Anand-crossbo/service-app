@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { GoogleMap, MarkerF, InfoWindow, useJsApiLoader, InfoWindowF, DirectionsRenderer } from '@react-google-maps/api';
 import { Box, Button, Typography } from '@mui/material';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import DefaultNav from '../default/DefaultNav';
 
 const mapStyles = {
   height: "100vh",
@@ -87,7 +88,9 @@ const MapProperty = () => {
   }
 
   return (
-<GoogleMap
+    <Box>
+      <DefaultNav />
+        <GoogleMap
       mapContainerStyle={mapStyles}
       zoom={17}
       center={defaultCenter}
@@ -127,6 +130,8 @@ const MapProperty = () => {
         <DirectionsRenderer  directions={directionsResponse} options={{ suppressMarkers: true }} />
       )}
     </GoogleMap>
+    </Box>
+
   );
 };
 

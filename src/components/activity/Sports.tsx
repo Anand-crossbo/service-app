@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Box, Typography, ButtonBase, Button} from '@mui/material';
+import { Box, Typography, Button} from '@mui/material';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -23,7 +23,6 @@ const ActivityMain = () => {
       },
     ],
   };
-
 
   return (
     <Box sx={{ marginTop: '20px'}}>

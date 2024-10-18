@@ -5,34 +5,22 @@ import cardsLink from "./Mapping/LinksMapping";
 import Advertisement from "../advertisement/Advertisement";
 import QuickActions from "../quickactions/QuickActions";
 
+interface Service {
+  id: string;
+  name: string;
+  icon: string;
+  priority: boolean;
+}
+
 const CardsCollection = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fadeIn, setFadeIn] = useState(true);
-  const navigate = useNavigate();
-
-  const images = [
-    "https://cdn-icons-png.flaticon.com/128/1940/1940922.png",
-    "https://cdn-icons-png.flaticon.com/128/2868/2868865.png",
-    "https://cdn-icons-png.flaticon.com/128/9561/9561688.png",
-    "https://cdn-icons-png.flaticon.com/128/2099/2099193.png",
-    "https://cdn-icons-png.flaticon.com/128/3946/3946975.png",
-    "https://cdn-icons-png.flaticon.com/128/3270/3270184.png",
-    "https://cdn-icons-png.flaticon.com/128/1032/1032989.png",
-    "https://cdn-icons-png.flaticon.com/128/2656/2656398.png",
-  ];
-
-  interface Service {
-    id: string;
-    name: string;
-    icon: string;
-    priority: boolean;
-  }
 
   const [services, setServices] = useState<Service[]>([]);
   const [nonPriorityImages, setNonPriorityImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fadeIn, setFadeIn] = useState(true);
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -65,7 +53,7 @@ const CardsCollection = () => {
     const interval = setInterval(() => {
       setFadeIn(false);
       setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % nonPriorityImages.length);
         setFadeIn(true);
       }, 500); // Duration of fade-out
     }, 2000); // Change image every 2 seconds
@@ -90,7 +78,7 @@ const CardsCollection = () => {
       <Grid container spacing={2} sx={{ padding: "16px" }}>
         {services.map((service) => (
           <Grid item xs={4} sm={4} md={4} key={service.id}>
-            <Card sx={{ backgroundColor: "white" }}>
+            <Card sx={{ backgroundColor: "common.white" }}>
             <Link to={cardsLink.get(service.name) || "#"} style={{ textDecoration: "none", color: 'black' }}>
               <CardMedia
                 component="img"
@@ -127,7 +115,7 @@ const CardsCollection = () => {
           </Grid>
         ))}
         <Grid item xs={4} sm={4} md={4}>
-          <Card sx={{ backgroundColor: "white" }} onClick={handleCardClick}>
+          <Card sx={{ backgroundColor: "common.white" }} onClick={handleCardClick}>
             <CardMedia
               component="img"
               image={nonPriorityImages[currentImageIndex]}

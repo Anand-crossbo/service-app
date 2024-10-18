@@ -5,6 +5,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import theme from '../../theme';
 
 interface TopDrawerProps {
   open: boolean;
@@ -15,14 +16,15 @@ interface TopDrawerProps {
 const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
 
     const Puller = styled('div')(({ theme }) => ({
-        width: 60,
-        height: 6,
-        backgroundColor: 'black',
-        borderRadius: 3,
-        position: 'absolute',
-        bottom: 8,
-        left: 'calc(50% - 30px)',
-      }));
+      width: 60,
+      height: 6,
+      backgroundColor: '#9886c6',
+      borderRadius: 3,
+      position: 'absolute',
+      bottom: 8,
+      left: 'calc(50% - 30px)',
+    }));
+  
   return (
     <SwipeableDrawer
       anchor="top"
@@ -32,7 +34,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
       PaperProps={{
         sx: {
           borderRadius: '0 0 16px 16px', // Apply border radius to the bottom corners
-          backgroundColor: '#ffffff',
+          backgroundColor: 'background.default',
         },
       }}
     >
@@ -40,7 +42,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
         sx={{
           width: 'auto',
           padding: '16px',
-          backgroundColor: '#ffffff',
+          backgroundColor: 'background.default',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -56,13 +58,13 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             justifyContent: "center",
             width: "40px",
             height: "40px",
-            border: "1px solid #4a4949",
+            // border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: "50%",
-            backgroundColor: "#ffffff",
+            backgroundColor: "primary.main",
           }}
           onClick={onClose}
         >
-          <CloseIcon />
+          <CloseIcon sx={{color: 'common.white'}}/>
         </IconButton>
       </Box>
       <Box
@@ -71,7 +73,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             justifyContent: 'space-around',
             width: '100%',
             marginBottom: '40px',
-            backgroundColor: '#ffffff',
+            backgroundColor: 'background.default',
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -82,14 +84,14 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 justifyContent: "center",
                 width: "40px",
                 height: "40px",
-                border: "1px solid #4a4949",
+                border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
-                backgroundColor: "#ffffff",
+                backgroundColor: "background.default",
               }}
             >
               <HomeOutlinedIcon />
             </IconButton>
-            <Typography variant="caption">Home</Typography>
+            <Typography fontSize='14px'>Home</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -99,14 +101,14 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 justifyContent: "center",
                 width: "40px",
                 height: "40px",
-                border: "1px solid #4a4949",
+                border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
-                backgroundColor: "#ffffff",
+                backgroundColor: "background.default",
               }}
             >
               <HeadsetMicOutlinedIcon />
             </IconButton>
-            <Typography variant="caption">Support</Typography>
+            <Typography fontSize='14px'>Support</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -116,14 +118,14 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 justifyContent: "center",
                 width: "40px",
                 height: "40px",
-                border: "1px solid #4a4949",
+                border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
-                backgroundColor: "#ffffff",
+                backgroundColor: "background.default",
               }}
             >
               <FeedOutlinedIcon />
             </IconButton>
-            <Typography variant="caption">Activities</Typography>
+            <Typography fontSize='14px'>Activities</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -133,14 +135,14 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 justifyContent: "center",
                 width: "40px",
                 height: "40px",
-                border: "1px solid #4a4949",
+                border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
-                backgroundColor: "#ffffff",
+                backgroundColor: "background.default",
               }}
             >
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <Typography variant="caption">Profile</Typography>
+            <Typography fontSize='14px'>Profile</Typography>
           </Box>
         </Box>
         <Puller />

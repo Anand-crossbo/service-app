@@ -1,5 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Grid, IconButton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box } from '@mui/material'
 import HomeCardNav from './HomeCardNav';
 import CardsCollection from './CardsCollection';
 
