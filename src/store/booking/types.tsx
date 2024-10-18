@@ -7,6 +7,7 @@ export interface Media {
 export interface Ingredient {
   name: string;
   qty: string;
+  icon: string;
 }
 
 export interface DietaryTag {
@@ -52,6 +53,7 @@ export interface Dish {
     base: number;
     afterDiscount: number;
   };
+  currency: string;
   ingredients: Ingredient[];
   dietaryTags: DietaryTag[];
   addons: number[];
