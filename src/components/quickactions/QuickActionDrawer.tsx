@@ -9,7 +9,8 @@ interface QuickActionDrawerProps {
 }
 
 const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) => {
-    const [quantity, setQuantity] = useState(1);
+
+  const [quantity, setQuantity] = useState(1);
     
   const handleIncrease = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -27,7 +28,7 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
   const Puller = styled('div')(({ theme }) => ({
     width: 60,
     height: 6,
-    backgroundColor: 'black',
+    backgroundColor: '#9886c6',
     borderRadius: 3,
     position: 'absolute',
     top: 10,
@@ -43,7 +44,7 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
         PaperProps={{
             sx: {
               borderRadius: '16px 16px 0 0', // Apply border radius to the bottom corners
-              backgroundColor: '#ffffff',
+              backgroundColor: 'background.default',
             },
           }}
       >
@@ -52,22 +53,22 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
          <Box display="flex" alignItems="center" justifyContent="space-evenly" margin="20px 16px 16px 16px">
             <Typography align='left' margin="16px" fontSize="18px">Select Quantity: </Typography>
             <Box display="flex" alignItems="center">
-            <RemoveCircleIcon onClick={handleDecrease} />
+            <RemoveCircleIcon sx={{ color: 'primary.main'}} onClick={handleDecrease} />
             <Typography align='center' variant="h6" margin="0 16px">{quantity}</Typography>
-            <AddCircleIcon onClick={handleIncrease} />
+            <AddCircleIcon sx={{ color: 'primary.main'}} onClick={handleIncrease} />
             </Box>
         </Box>
         <Box display="flex" justifyContent="center" margin="16px">
       <Button
         variant="contained"
         sx={{
-          backgroundColor: '#3868aa',
-          color: 'white',
+          backgroundColor: 'primary.main',
+          color: 'common.white',
           '&:hover': {
-            backgroundColor: '#2c4f7c',
+            backgroundColor: 'primary.main',
           },
           '&:active': {
-            backgroundColor: '#1e3554',
+            backgroundColor: 'primary.main',
           },
         }}
         onClick={handleOrder}

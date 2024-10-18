@@ -1,10 +1,9 @@
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import QuickActionDrawer from './QuickActionDrawer';
 
 const QuickActions = () => {
-  const navigate = useNavigate();
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerText, setDrawerText] = useState('');
 
@@ -13,9 +12,6 @@ const QuickActions = () => {
     setDrawerOpen(true);
   };
 
-  // const handleCardClick = (actionText: string, imageUrl: string) => {
-  //   navigate('/actions', { state: { actionText, imageUrl } });
-  // };
   return (
     <Box>
       <Typography marginLeft="20px" marginTop= '30px' fontSize="18px" fontWeight="bold">
@@ -24,7 +20,7 @@ const QuickActions = () => {
 
       <Grid container spacing={2} sx={{ padding: "16px" }}>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={handleDrawerOpen("Get me Towel")}>
+          <Card sx={{ backgroundColor: "common.white" }} onClick={handleDrawerOpen("Get me Towel")}>
             <CardMedia
               component="img"
               height="140"
@@ -59,7 +55,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }}  onClick={handleDrawerOpen("Get me water bottle")}>
+          <Card sx={{ backgroundColor: "common.white" }}  onClick={handleDrawerOpen("Get me water bottle")}>
             <CardMedia
               component="img"
               height="140"
@@ -94,7 +90,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }} onClick={handleDrawerOpen("Send clothes to laundry")}>
+          <Card sx={{ backgroundColor: "common.white" }} onClick={handleDrawerOpen("Send clothes to laundry")}>
             <CardMedia
               component="img"
               height="140"
@@ -129,7 +125,7 @@ const QuickActions = () => {
           </Card>
         </Grid>
         <Grid item xs={3} sm={6} md={3}>
-          <Card sx={{ backgroundColor: "white" }}  onClick={handleDrawerOpen("Book Taxi")}>
+          <Card sx={{ backgroundColor: "common.white" }}  onClick={handleDrawerOpen("Book Taxi")}>
             <CardMedia
               component="img"
               height="140"

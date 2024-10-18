@@ -10,7 +10,6 @@ import TopDrawer from '../cards/TopDrawer';
 
 const RoomServiceNav = () => {
 
-  
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -57,21 +56,21 @@ const RoomServiceNav = () => {
           justifyContent: "center",
           width: "40px",
           height: "40px",
-          border: "1px solid #4a4949",
+          // border: "1px solid #4a4949",
           borderRadius: "50%",
-          backgroundColor: "#ffffff",
+          backgroundColor: "primary.main",
           marginRight: "14px",
         }}
         onClick={handleBackClick}
       >
-        <CloseIcon />
+        <CloseIcon sx={{color: 'common.white'}} />
       </Box>
 
       <Typography variant="h6" component="div">
         Room No: 101
       </Typography>
-      <IconButton sx={{ backgroundColor: 'black'}} onClick={handleDrawerOpen}>
-        <MenuIcon sx={{ color: 'white'}} />
+      <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
+        <MenuIcon sx={{ color: 'common.white'}} />
       </IconButton>
       <TopDrawer open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen} />
     </Box>
@@ -81,7 +80,7 @@ const RoomServiceNav = () => {
           display: "flex",
           justifyContent: "center",
           padding: "10px",
-          backgroundColor: "#ffffff",
+          backgroundColor: "background.default",
         }}
       >
         <TextField
@@ -100,7 +99,7 @@ const RoomServiceNav = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <SearchIcon />
+                <SearchIcon sx={{ color: 'primary.main'}}/>
               </InputAdornment>
             ),
           }}

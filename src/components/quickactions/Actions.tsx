@@ -7,12 +7,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import gsap from "gsap";
 
 const Actions = () => {
-  const location = useLocation();
-  const { actionText, imageUrl } = location.state || { actionText: 'No action text provided', imageUrl: '' };
 
-  const [quantity, setQuantity] = useState(1);
+  const location = useLocation();
   const containerRef = useRef(null);
 
+  const { actionText, imageUrl } = location.state || { actionText: 'No action text provided', imageUrl: '' };
+  const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -34,7 +34,6 @@ const Actions = () => {
       { y: 0, duration: 0.5, ease: 'easeInOut' }
     );
   }, []);
-
   
   return (
     <Box ref={containerRef}>
@@ -66,13 +65,13 @@ const Actions = () => {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: '#3868aa',
-          color: 'white',
+          backgroundColor: 'primary.main',
+          color: 'common.white',
           '&:hover': {
-            backgroundColor: '#2c4f7c',
+            backgroundColor: 'primary.main',
           },
           '&:active': {
-            backgroundColor: '#1e3554',
+            backgroundColor: 'primary.main',
           },
         }}
         onClick={handleOrder}

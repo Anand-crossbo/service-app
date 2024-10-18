@@ -43,6 +43,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
   
     // Calculate total pages
     const totalPages = Math.ceil(dishes.length / itemsPerPage);
+
   return (
   <Box margin={1}>
   <Grid container spacing={1}>
@@ -51,7 +52,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
     return (
       <Grid item marginTop='10px' width='50%' sm={6} md={4} lg={3} key={dish._id}>
         <Box onClick={() => onCardClick(dish._id)} >
-          <Card sx={{ backgroundColor: "custom.card" }}>
+          <Card sx={{ backgroundColor: "common.white" }}>
             {heroMedia?.type === 'video' ? (
               <CardMedia
                 component="video"
@@ -75,9 +76,9 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                 {dish.name}
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <StarIcon sx={{ fontSize: '14px', color: 'green', margin: '2px' }} />
-                <Typography fontSize='12px' color='green' margin='2px'> {dish.feedback.rating} </Typography>
-                <FiberManualRecordIcon sx={{ fontSize: '6px', color: 'black', margin: '2px' }} />
+                <StarIcon sx={{ fontSize: '14px', color: 'primary.main', margin: '2px' }} />
+                <Typography fontSize='12px' color='primary.main' margin='2px'> {dish.feedback.rating} </Typography>
+                <FiberManualRecordIcon sx={{ fontSize: '6px', color: 'primary.main', margin: '2px' }} />
                 <Typography fontSize='12px' margin='2px'> {dish.preparationTime} mins </Typography>
               </Box>
               <Typography fontSize="12px" component="div" sx={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
@@ -91,7 +92,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                     paddingTop="10px"
                     component="div"
                   >
-                    Aed {dish.price.afterDiscount}
+                    {dish.currency} {dish.price.afterDiscount}
                   </Typography>
                 </Box>
                 <Box
@@ -104,7 +105,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                   <RemoveCircleIcon
                     sx={{
                       fontSize: "20px",
-                      color: "black",
+                      color: "primary.main",
                       marginRight: "5px",
                     }}
                     onClick={(e) => {
@@ -115,7 +116,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                   <Typography
                     sx={{
                       fontSize: "20px",
-                      color: "black",
+                      color: "common.black",
                       marginRight: "5px",
                     }}
                   >
@@ -124,7 +125,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                   <AddCircleIcon
                     sx={{
                       fontSize: "20px",
-                      color: "black",
+                      color: "primary.main",
                       marginRight: "5px",
                     }}
                     onClick={(e) => {
@@ -165,18 +166,18 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
               padding: 0, // Remove padding
               ...(currentPage === index + 1
                 ? {
-                    backgroundColor: 'black', // Custom color for contained variant
+                    backgroundColor: 'primary.main', // Custom color for contained variant
                     color: 'white', // Text color for contained variant
                     '&:hover': {
-                      backgroundColor: 'black', // Darker shade on hover
+                      backgroundColor: 'primary.main', // Darker shade on hover
                     },
                   }
                 : {
-                    borderColor: 'black', // Custom border color for outlined variant
-                    color: 'black', // Text color for outlined variant
+                    borderColor: 'primary.main', // Custom border color for outlined variant
+                    color: 'primary.main', // Text color for outlined variant
                     '&:hover': {
-                      borderColor: 'black', // Darker border color on hover
-                      color: 'black', // Darker text color on hover
+                      borderColor: 'primary.main', // Darker border color on hover
+                      color: 'primary.main', // Darker text color on hover
                     },
                   }),
             }}

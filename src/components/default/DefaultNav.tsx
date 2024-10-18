@@ -11,6 +11,9 @@ const DefaultNav = () => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const containerRef = useRef(null);
+  const navigate = useNavigate();
+
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
   };
@@ -18,17 +21,6 @@ const DefaultNav = () => {
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
-  
-  const containerRef = useRef(null);
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   gsap.fromTo(
-  //     containerRef.current,
-  //     { y: "100%" },
-  //     { y: 0, duration: 0.5, ease: "easeInOut" }
-  //   );
-  // }, []);
 
   const handleBackClick = () => {
     gsap.to(containerRef.current, {
@@ -55,21 +47,21 @@ const DefaultNav = () => {
           justifyContent: "center",
           width: "40px",
           height: "40px",
-          border: "1px solid #4a4949",
+          // border: "1px solid #4a4949",
           borderRadius: "50%",
-          backgroundColor: "#ffffff",
+          backgroundColor: "primary.main",
           marginRight: "14px",
         }}
         onClick={handleBackClick}
       >
-        <CloseIcon />
+        <CloseIcon sx={{ color: 'common.white'}} />
       </Box>
 
       <Typography variant="h6" component="div">
         Room No: 101
       </Typography>
-      <IconButton sx={{ backgroundColor: 'black'}} onClick={handleDrawerOpen}>
-        <MenuIcon sx={{ color: 'white'}} />
+      <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
+        <MenuIcon sx={{ color: 'common.white'}} />
       </IconButton>
       <TopDrawer open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen} />
     </Box>

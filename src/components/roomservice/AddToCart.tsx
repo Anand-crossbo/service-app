@@ -26,7 +26,7 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
     left: 0,
     right: 0,
     height: '8vh', // 1/10 of the screen height
-    backgroundColor: '#76d45f', // Optional: Add a background color
+    backgroundColor: 'custom.lightMain', // Optional: Add a background color
     color: 'white', // Optional: Set text color to white
     zIndex: 1, // Ensure it is above other content
     display: 'flex',
@@ -43,7 +43,7 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
         width: '35px',
         height: '35px',
         borderRadius: '50%',
-        backgroundColor: '#095715',
+        backgroundColor: 'primary.main',
         color: 'white',
         display: 'flex',
         alignItems: 'center',
@@ -52,7 +52,7 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
     >
       <Typography>{count}</Typography>
     </Box>
-  <Typography color="black" onClick={onPayClick}>Basket: AED {totalAmount}</Typography>
+  <Typography color="common.white" onClick={onPayClick}>Basket: AED {totalAmount}</Typography>
 </Box>
   );
 };

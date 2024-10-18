@@ -5,17 +5,20 @@ declare module '@mui/material/styles' {
     interface Palette {
       custom: {
         card: string;
-        darkBlue: string;
-        lightGreen: string;
-        darkGreen: string;
+        headText: string;
+        subText: string;
+        lightText: string;
+        lightMain: string;
+
       };
     }
     interface PaletteOptions {
       custom?: {
         card?: string;
-        darkBlue?: string;
-        lightGreen?: string;
-        darkGreen?: string;
+        headText: string;
+        subText: string;
+        lightText: string;
+        lightMain: string;
       };
     }
   }
@@ -24,7 +27,7 @@ const theme = createTheme({
   palette: {
     mode: 'light', // or 'dark' for dark mode
     primary: {
-      main: '#fafafa',
+      main: '#5F479A',
     },
     secondary: {
       main: '#2a2929',
@@ -33,8 +36,19 @@ const theme = createTheme({
       default: '#ffffff',
       paper: '#f5f5f5',
     },
+    common: {
+      white: '#fefefe',
+      black: '#141414',
+    },
+    error: {
+      main: '#D3180C',
+    },
     custom: {
-        card: '#ffffff'
+        card: '#ffffff',
+        headText: '#141414',
+        subText: '#6b6b6b',
+        lightText: '#fefefe',
+        lightMain: '#9886c6',
       },
   },
 });

@@ -1,4 +1,5 @@
 import { Box, Card, CardMedia, Typography } from '@mui/material'
+import { common } from '@mui/material/colors';
 import React from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,8 +28,6 @@ const Advertisement = () => {
   };
   const navigate = useNavigate();
 
-
-
   const ads = [
     {
       title: '25% off for your spa appointment today',
@@ -53,13 +52,14 @@ const Advertisement = () => {
           marginTop="20px"
           marginLeft="20px"
           fontSize="18px"
+          color={common.black}
           fontWeight="bold"
         >
           Get Great Deals at your Fingertips!
         </Typography>
         <Slider {...settings}>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "white", margin:"10px" }} onClick={() => handleCardClick(ads[0].title,ads[0].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px" }} onClick={() => handleCardClick(ads[0].title,ads[0].img)}>
             <CardMedia
               component="img"
               height="280"
@@ -79,7 +79,7 @@ const Advertisement = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                color: "white",
+                color: "common.white",
                 opacity: 1, // Initially hidden
                 transition: "opacity 0.3s ease-in-out", // Smooth transition
               }}
@@ -97,7 +97,7 @@ const Advertisement = () => {
           </Card>
           </Box>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "white", margin: '10px'}} onClick={() => handleCardClick(ads[1].title,ads[1].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin: '10px'}} onClick={() => handleCardClick(ads[1].title,ads[1].img)}>
             <CardMedia
               component="img"
               height="280"
@@ -135,7 +135,7 @@ const Advertisement = () => {
           </Card>
           </Box>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "white", margin: '10px'}} onClick={() => handleCardClick(ads[2].title,ads[2].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin: '10px'}} onClick={() => handleCardClick(ads[2].title,ads[2].img)}>
             <CardMedia
               component="img"
               height="280"
