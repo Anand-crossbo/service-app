@@ -32,10 +32,6 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
   const [selectedImage, setSelectedImage] = useState('');
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
 
-  useEffect(() => {
-    // Ensure the component re-renders when selectedAddOns changes
-  }, [selectedAddOns]);
-
   const handleAddOnToggle = (addOnId: string) => {
     setSelectedAddOns((prevSelectedAddOns) =>
       prevSelectedAddOns.includes(addOnId)
@@ -43,6 +39,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         : [...prevSelectedAddOns, addOnId]
     );
   };
+
 
   useEffect(() => {
     if (descriptionRef.current && dish) {
@@ -316,7 +313,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                 alignSelf: 'right',
               }}
               onClick={(e) => {
-                // e.stopPropagation();
+                e.stopPropagation();
                 handleAddOnToggle(addOn._id.toString());
                 if (selectedAddOns.includes(addOn._id.toString())) {
                   onRemoveFromCard(addOn);
@@ -324,14 +321,6 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                   onAddToCard(addOn);
                 }
               }}
-              //   if (selectedAddOns.includes(addOn._id.toString())) {
-              //     onRemoveFromCard(addOn);
-              //     handleAddOnToggle(addOn._id.toString());
-              //   } else {
-              //     onAddToCard(addOn);
-              //     handleAddOnToggle(addOn._id.toString());
-              //   }
-              // }}
             >
               {selectedAddOns.includes(addOn._id.toString()) ? <DeleteIcon sx={{ color: 'common.white' }} /> : <AddIcon sx={{ color: 'common.white' }} />}
             </IconButton>

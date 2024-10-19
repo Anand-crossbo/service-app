@@ -63,7 +63,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                 playsInline
                 webkit-playsinline="true" // Add this attribute for iOS
                 x5-playsinline="true" // Add this attribute for other browsers
-                sx={{ objectFit: 'cover', width: '100%' }}
+                sx={{ objectFit: 'cover', width: '100%', pointerEvents: 'none'  }} // Disable pointer events
               />
             ) : (
               <CardMedia
