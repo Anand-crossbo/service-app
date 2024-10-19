@@ -313,14 +313,21 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
               }}
               onClick={(e) => {
                 e.stopPropagation();
+                handleAddOnToggle(addOn._id.toString());
                 if (selectedAddOns.includes(addOn._id.toString())) {
                   onRemoveFromCard(addOn);
-                  handleAddOnToggle(addOn._id.toString());
                 } else {
                   onAddToCard(addOn);
-                  handleAddOnToggle(addOn._id.toString());
                 }
               }}
+              //   if (selectedAddOns.includes(addOn._id.toString())) {
+              //     onRemoveFromCard(addOn);
+              //     handleAddOnToggle(addOn._id.toString());
+              //   } else {
+              //     onAddToCard(addOn);
+              //     handleAddOnToggle(addOn._id.toString());
+              //   }
+              // }}
             >
               {selectedAddOns.includes(addOn._id.toString()) ? <DeleteIcon sx={{ color: 'common.white' }} /> : <AddIcon sx={{ color: 'common.white' }} />}
             </IconButton>
