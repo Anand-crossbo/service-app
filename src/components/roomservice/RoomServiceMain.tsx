@@ -54,6 +54,20 @@ const RoomServiceMain = () => {
     setShowAboutFood(false);
   };
 
+  // const handleAddToCard = (dish: Dish) => {
+  //   setCartItems((prevItems) => {
+  //     const existingItem = prevItems.find(item => item.dish._id === dish._id);
+  //     if (existingItem) {
+  //       return prevItems.map(item =>
+  //         item.dish._id === dish._id ? { ...item, count: item.count + 1 } : item
+  //       );
+  //     } else {
+  //       return [...prevItems, { dish, count: 1 }];
+  //     }
+  //   });
+  //   setSelectedDishId(dish._id);
+  // };
+
   const handleAddToCard = (dish: Dish) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(item => item.dish._id === dish._id);
@@ -65,7 +79,6 @@ const RoomServiceMain = () => {
         return [...prevItems, { dish, count: 1 }];
       }
     });
-    setSelectedDishId(dish._id);
   };
 
   const handleRemoveFromCard = (dish: Dish) => {
@@ -123,40 +136,71 @@ const RoomServiceMain = () => {
   }, []);
 
   return (
-    <Box ref={containerRef} sx={{ backgroundColor: 'white', height:'100vh',  position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
-      {isMobile && showAboutFood && selectedDishId !== null ? (
-        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
-          <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes}/>
-        </Box>
+    // <Box ref={containerRef} sx={{ backgroundColor: 'white', height:'100vh',  position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
+    //   {isMobile && showAboutFood && selectedDishId !== null ? (
+    //     <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
+    //       <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes}/>
+    //     </Box>
+    //   ) : (
+    //     <>
+    //       <RoomServiceNav />
+    //       <Grid container display={'flex'} marginTop={1}>
+    //         <Categories onCategorySelect={handleCategorySelect} />
+    //         <Menu
+    //           dishes={filteredDishes}
+    //           counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
+    //           onCardClick={handleCardClick}
+    //           onAddToCard={handleAddToCard}
+    //           onRemoveFromCard={handleRemoveFromCard}
+    //         />
+    //         {showAboutFood && selectedDishId !== null ? (
+    //           <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes} />
+    //         ) : (
+    //           !isMobile && <Orders cartItems={cartItems} onBack={handleBackClick} />
+    //         )}
+    //       </Grid>
+    //     </>
+    //   )}
+    //   {isMobile && getTotalCount() > 0 && (
+    //     <AddToCart cartItems={cartItems} count={getTotalCount()} onPayClick={handlePayClick} />
+    //   )}
+    //   {isMobile && showOrders &&
+    //     <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
+    //       <Orders cartItems={cartItems} onBack={handleBackClick} />
+    //     </Box>
+    //   }
+    // </Box>
+    <Box>
+      {showAboutFood && selectedDishId !== null ? (
+        <AboutFood
+          dishId={selectedDishId}
+          onBack={handleBackToOrders}
+          allDishes={dishes}
+          onAddToCard={handleAddToCard}
+          onRemoveFromCard={handleRemoveFromCard}
+        />
       ) : (
-        <>
-          <RoomServiceNav />
-          <Grid container display={'flex'} marginTop={1}>
-            <Categories onCategorySelect={handleCategorySelect} />
-            <Menu
-              dishes={filteredDishes}
-              counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
-              onCardClick={handleCardClick}
-              onAddToCard={handleAddToCard}
-              onRemoveFromCard={handleRemoveFromCard}
-            />
-            {showAboutFood && selectedDishId !== null ? (
-              <AboutFood onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} dishId={selectedDishId} onBack={handleBackToOrders} allDishes={dishes} />
-            ) : (
-              !isMobile && <Orders cartItems={cartItems} onBack={handleBackClick} />
-            )}
-          </Grid>
-        </>
+        <Box>
+      <RoomServiceNav />
+      <Categories onCategorySelect={handleCategorySelect} />
+      <Menu
+        dishes={filteredDishes}
+        counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
+        onCardClick={handleCardClick}
+        onAddToCard={handleAddToCard}
+        onRemoveFromCard={handleRemoveFromCard}
+      />
+      </Box>
       )}
-      {isMobile && getTotalCount() > 0 && (
+      {cartItems.length > 0 && (
         <AddToCart cartItems={cartItems} count={getTotalCount()} onPayClick={handlePayClick} />
-      )}
-      {isMobile && showOrders &&
-        <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
+      )} 
+      {showOrders &&
+      <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
           <Orders cartItems={cartItems} onBack={handleBackClick} />
         </Box>
       }
-    </Box>
+</Box>
 
   );
 };

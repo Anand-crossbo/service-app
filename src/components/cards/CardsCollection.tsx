@@ -68,7 +68,7 @@ const CardsCollection = () => {
   if (loading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress sx={{ color: 'black'}} />
+        <CircularProgress sx={{ color: 'primary.main'}} />
       </Box>
     ); // Show a circular loader while data is being fetched
   }
