@@ -2,6 +2,7 @@ import { Box, Button, SwipeableDrawer, Typography,styled } from '@mui/material';
 import React, { useState } from 'react'
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useTranslation } from 'react-i18next';
 
 interface QuickActionDrawerProps {
   open: boolean;
@@ -9,6 +10,8 @@ interface QuickActionDrawerProps {
 }
 
 const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) => {
+
+  const { t } = useTranslation();
 
   const [quantity, setQuantity] = useState(1);
     
@@ -51,7 +54,7 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
         <Puller />
         <Typography align='center' variant="h6"></Typography>
          <Box display="flex" alignItems="center" justifyContent="space-evenly" margin="20px 16px 16px 16px">
-            <Typography align='left' margin="16px" fontSize="18px">Select Quantity: </Typography>
+            <Typography align='left' margin="16px" fontSize="18px">{t(`SELECT_QTY`)}: </Typography>
             <Box display="flex" alignItems="center">
             <RemoveCircleIcon sx={{ color: 'primary.main'}} onClick={handleDecrease} />
             <Typography align='center' variant="h6" margin="0 16px">{quantity}</Typography>
@@ -73,7 +76,7 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
         }}
         onClick={handleOrder}
       >
-        Order
+        {t(`BTN_ORDER`)}
       </Button>
     </Box>
         

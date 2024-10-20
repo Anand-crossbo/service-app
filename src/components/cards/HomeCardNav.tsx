@@ -3,8 +3,11 @@ import { Box, IconButton, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import CommentIcon from '@mui/icons-material/Comment';
 import TopDrawer from './TopDrawer';
+import { useTranslation } from 'react-i18next';
 
 const HomeCardNav = () => {
+
+  const { t } = useTranslation();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -31,11 +34,11 @@ const HomeCardNav = () => {
       }}
     >
       <CommentIcon sx={{ color: 'common.white', marginRight: '8px' }} />
-      Chat
+      {t(`CHAT`)}
     </Typography>
 
       <Typography variant="h6" component="div">
-        Genie
+      {t(`GENIE`)}
       </Typography>
       <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
         <MenuIcon sx={{ color: 'common.white'}} />

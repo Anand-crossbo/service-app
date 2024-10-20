@@ -6,6 +6,7 @@ import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import theme from '../../theme';
+import { useTranslation } from 'react-i18next';
 
 interface TopDrawerProps {
   open: boolean;
@@ -15,15 +16,17 @@ interface TopDrawerProps {
 
 const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
 
-    const Puller = styled('div')(({ theme }) => ({
-      width: 60,
-      height: 6,
-      backgroundColor: '#9886c6',
-      borderRadius: 3,
-      position: 'absolute',
-      bottom: 8,
-      left: 'calc(50% - 30px)',
-    }));
+  const { t } = useTranslation();
+
+  const Puller = styled('div')(({ theme }) => ({
+    width: 60,
+    height: 6,
+    backgroundColor: '#9886c6',
+    borderRadius: 3,
+    position: 'absolute',
+    bottom: 8,
+    left: 'calc(50% - 30px)',
+  }));
   
   return (
     <SwipeableDrawer
@@ -49,7 +52,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
         }}
       >
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-          Room No: 101
+          {t(`RoomNumber`)}: 101
         </Typography>
         <IconButton
           sx={{
@@ -91,7 +94,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <HomeOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>Home</Typography>
+            <Typography fontSize='14px'>{t(`HOME`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -108,7 +111,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <HeadsetMicOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>Support</Typography>
+            <Typography fontSize='14px'>{t(`SUPPORT`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -125,7 +128,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <FeedOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>Activities</Typography>
+            <Typography fontSize='14px'>{t(`ACTIVITIES`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -142,7 +145,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>Profile</Typography>
+            <Typography fontSize='14px'>{t(`PROFILE`)}</Typography>
           </Box>
         </Box>
         <Puller />

@@ -1,8 +1,11 @@
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import QuickActionDrawer from './QuickActionDrawer';
+import { useTranslation } from 'react-i18next';
 
 const QuickActions = () => {
+
+  const { t } = useTranslation();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerText, setDrawerText] = useState('');
@@ -15,7 +18,7 @@ const QuickActions = () => {
   return (
     <Box>
       <Typography marginLeft="20px" marginTop= '30px' fontSize="18px" fontWeight="bold">
-        Quick Actions
+        {t(`QuickActions`)}
       </Typography>
 
       <Grid container spacing={2} sx={{ padding: "16px" }}>

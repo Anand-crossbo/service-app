@@ -6,9 +6,13 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import SearchIcon from '@mui/icons-material/Search';
 import TopDrawer from '../cards/TopDrawer';
-
+import { useTranslation } from 'react-i18next';
 
 const RoomServiceNav = () => {
+
+  const { t } = useTranslation();
+  const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -19,9 +23,6 @@ const RoomServiceNav = () => {
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
-  
-  const containerRef = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     gsap.fromTo(
@@ -67,7 +68,7 @@ const RoomServiceNav = () => {
       </Box>
 
       <Typography variant="h6" component="div">
-        Room No: 101
+        {t(`RoomNumber`)}: 101
       </Typography>
       <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
         <MenuIcon sx={{ color: 'common.white'}} />

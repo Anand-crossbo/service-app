@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { Dish } from '../../store/booking/types';
+import { useTranslation } from 'react-i18next';
 
 interface CartItem {
   dish: Dish;
@@ -13,6 +14,9 @@ interface AddToCartProps {
   onPayClick: () => void;
 }
 const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) => {
+
+  const { t } = useTranslation();
+
   const calculateTotalAmount = (price: number, count: number): number => {
     return price * count;
   };
@@ -52,7 +56,7 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
     >
       <Typography>{count}</Typography>
     </Box>
-  <Typography color="common.white" onClick={onPayClick}>Basket: AED {totalAmount}</Typography>
+  <Typography color="common.white" onClick={onPayClick}>{t(`BASKET`)}: {cartItems[0]?.dish.currency} {totalAmount}</Typography>
 </Box>
   );
 };

@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from '@mui/mat
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import React from 'react';
 import { Dish } from '../../store/booking/types';
-import DefaultNav from '../default/DefaultNav';
+import { useTranslation } from 'react-i18next';
 
 interface CartItem {
   dish: Dish;
@@ -17,6 +17,7 @@ interface OrdersProps {
 const Orders = ({ cartItems, onBack }: OrdersProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation();
 
   const calculateTotalAmount = (price: number, count: number): number => {
     return price * count;
@@ -46,12 +47,12 @@ const Orders = ({ cartItems, onBack }: OrdersProps) => {
         <Box sx={{ display: 'flex', paddingTop: isMobile ? '0' : '20px' }}>
           <Box sx={{ backgroundColor: 'primary.main', width: '120px', borderTopLeftRadius: '16px', borderBottomLeftRadius: '16px' }}>
             <Typography variant="h6" color="common.white" align="center" padding="10px">
-              Cart
+              {t(`Cart`)}
             </Typography>
           </Box>
           <Box sx={{ backgroundColor: 'common.white', width: '120px', borderTopRightRadius: '16px', borderBottomRightRadius: '16px', border: `2px solid ${theme.palette.primary.main}` }}>
             <Typography variant="h6" color="common.black" align="center" padding="10px">
-              Orders
+            {t(`Orders`)}
             </Typography>
           </Box>
         </Box>
@@ -68,15 +69,15 @@ const Orders = ({ cartItems, onBack }: OrdersProps) => {
           ))
         ) : (
           <Typography fontSize="14px" color='common.black' align="center" padding="10px 40px">
-            No dish selected
+            {t(`NoDishSelected`)}
           </Typography>
         )}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingTop: '20px' }}>
           <Typography fontSize="14px" color='common.black' align="left" fontWeight="bold" padding="10px 40px">
-            Total
+            {t(`Total`)}
           </Typography>
           <Typography fontSize="14px" color='common.black' align="right" fontWeight="bold" padding="10px 40px">
-            Aed {totalAmount.toFixed(2)}
+            AED {totalAmount.toFixed(2)}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', bottom: 30, justifyContent: 'center', position: 'fixed', alignItems: 'center' }}>
@@ -93,7 +94,7 @@ const Orders = ({ cartItems, onBack }: OrdersProps) => {
               backgroundColor: 'primary.main',
             }}
           >
-            Confirm
+            {t(`BtnConfirm`)}
           </Button>
         </Box>
       </Box>
