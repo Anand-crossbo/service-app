@@ -8,8 +8,10 @@ import cardsLink from './Mapping/LinksMapping';
 import theme from '../../theme';
 
 const ServicesCollection = () => {
+  
   const containerRef = useRef(null);
   const navigate = useNavigate();
+
   const [services, setServices] = useState([]);
   const [travelServices, setTravelServices] = useState([]);
   const [foodServices, setFoodServices] = useState([]);

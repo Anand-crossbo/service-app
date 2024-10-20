@@ -3,10 +3,14 @@ import React from "react";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -72,12 +76,12 @@ const Home = () => {
         >
           <Box sx={{ paddingLeft:isMobile ? 0: 5 }}>
             <Typography variant="h4" fontWeight="bold">
-              Welcome, Mr. Anand
+              {t(`Welcome`)}, Mr. Anand
             </Typography>
           </Box>
           <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 10 :0 }}>
             <Link to="/homecard" style={{ textDecoration: "none" }}>
-              <Typography className="round-btn">Tap Here To Begin</Typography>
+              <Typography className="round-btn">{t(`BtnBegin`)}</Typography>
             </Link>
           </Box>
         </Box>

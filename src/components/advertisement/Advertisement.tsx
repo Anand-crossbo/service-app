@@ -5,9 +5,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const Advertisement = () => {
+
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const settings = {
     dots: true,
@@ -26,7 +30,6 @@ const Advertisement = () => {
       },
     ],
   };
-  const navigate = useNavigate();
 
   const ads = [
     {
@@ -55,7 +58,7 @@ const Advertisement = () => {
           color={common.black}
           fontWeight="bold"
         >
-          Get Great Deals at your Fingertips!
+          {t(`AD_Headline`)}
         </Typography>
         <Slider {...settings}>
           <Box>

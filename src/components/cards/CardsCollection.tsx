@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import cardsLink from "./Mapping/LinksMapping";
 import Advertisement from "../advertisement/Advertisement";
 import QuickActions from "../quickactions/QuickActions";
+import { useTranslation } from 'react-i18next';
 
 interface Service {
   id: string;
@@ -20,6 +21,7 @@ const CardsCollection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(true);
 
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -145,7 +147,7 @@ const CardsCollection = () => {
                 fontWeight="bold"
                 component="div"
               >
-                All Services
+                {t(`ALL_SERVICES`)}
               </Typography>
             </CardContent>
           </Card>

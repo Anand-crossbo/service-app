@@ -11,6 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useTranslation } from 'react-i18next';
 
 interface AboutFoodProps {
   dishId: number;
@@ -21,16 +22,19 @@ interface AboutFoodProps {
 }
 
 const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToCard, onRemoveFromCard, }) => {
+  
   const theme = useTheme();
+  const { t } = useTranslation();
+  const descriptionRef = useRef(null);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
   const [showFullText, setShowFullText] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
-  const descriptionRef = useRef(null);
-
-  const dish = useSelector((state: RootState) => state.dishes.dishes.find(d => d._id === dishId));
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+
+  const dish = useSelector((state: RootState) => state.dishes.dishes.find(d => d._id === dishId));
 
   const handleAddOnToggle = (addOnId: string) => {
     setSelectedAddOns((prevSelectedAddOns) =>
@@ -157,13 +161,6 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px'>
           {dish.name} 
         </Typography>
-        {/* {dish.dietaryTags.map((tag, index) => (
-          <img
-            key={index}
-            src={tag.icon}
-            style={{ height: "20px", width: "20px", marginRight: "5px" }}
-          />
-        ))} */}
         </Box>
         <Box sx={{display: 'flex', alignContent:'center', justifyContent:'center'}}>
           <Box sx={{margin:'5px'}}>
@@ -171,7 +168,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
             <StarIcon sx={{ color: 'primary.main',padding:'2px' }} />
             <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.feedback.rating}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='custom.subText' padding='2px'>{dish.feedback.totalRatings} Ratings</Typography>
+            <Typography fontSize='12px' align='center' color='custom.subText' padding='2px'>{dish.feedback.totalRatings} {t(`RATINGS`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <Box sx={{ borderLeft:  `1px solid ${theme.palette.custom.subText}`, height: '25px', margin: '0 10px' }} />
@@ -180,7 +177,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
             <Box sx={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
             <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.currency} {dish.price.afterDiscount}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>Price</Typography>
+            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>{t(`PRICE`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <Box sx={{ borderLeft: `1px solid ${theme.palette.custom.subText}`, height: '25px', margin: '0 10px' }} />
@@ -188,9 +185,9 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
           <Box sx={{margin:'5px'}}>
             <Box sx={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
             <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.preparationTime}</Typography>
-            <Typography fontSize='14px' color='common.black' padding='4px'>mins</Typography>
+            <Typography fontSize='14px' color='common.black' padding='4px'>{t(`MINS`)}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>Time</Typography>
+            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>{t(`TIME`)}</Typography>
           </Box>
 
         </Box>
@@ -244,7 +241,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         padding='10px 10px 0 10px'
         sx={{ alignSelf: 'flex-start', textAlign: 'left' }}
       >
-        Key Ingredients
+        {t(`KEY_INGREDIENTS`)}
       </Typography>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
       {dish.ingredients.map((ingredient, index) => (
@@ -258,27 +255,27 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         </Box>
 
       {/* Nutrients Section */}
-  <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>Nutrients</Typography>
+  <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`NUTRIENTS`)}</Typography>
   <Box sx={{ display: 'flex', flexWrap: 'wrap',padding: '10px' }}>
   <Box sx={{margin:'6px', borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>Calories: {dish.nutreints.calories}</Typography>
+    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`CALORIES`)}: {dish.nutreints.calories}</Typography>
   </Box>
   <Box sx={{margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>Protein: {dish.nutreints.protein}</Typography>
+    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`PROTEIN`)}: {dish.nutreints.protein}</Typography>
   </Box>
   <Box sx={{margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>Carbs: {dish.nutreints.carbs}</Typography>
+    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`CARBS`)}: {dish.nutreints.carbs}</Typography>
   </Box>
   <Box sx={{margin:'6px', borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>Sugar: {dish.nutreints.sugar}</Typography>
+    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`SUGAR`)}: {dish.nutreints.sugar}</Typography>
   </Box>
   <Box sx={{ margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>Fat: {dish.nutreints.fat}</Typography>
+    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`FAT`)}: {dish.nutreints.fat}</Typography>
   </Box>
 </Box>
         
         {/* Dietary Tags */}
-        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>Dietary Tags</Typography>
+        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`DIETARY_TAGS`)}</Typography>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
           {dish.dietaryTags.map((tag, index) => (
             <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', backgroundColor: '#cecece4f', padding: '5px', margin: '5px' }}>
@@ -291,7 +288,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
           </Box>
 
       {/* Other content */}
-      <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>Pairing Suggestions</Typography>
+      <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`PAIRING_SUG`)}</Typography>
       {addOns && addOns.length > 0 && (
         <Box sx={{ margin:'10px'}}>
           {addOns.map((addOn) => (
@@ -332,7 +329,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         </Box>
       )}
 
-        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>Guest Reviews</Typography>
+        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`GuestReviews`)}</Typography>
         {dish.feedback.topReviews.map((review, index) => (
             <Typography  key={index} fontSize='14px' padding='0 10px 10px 10px' color='common.black' sx={{ alignSelf: 'flex-start' }}>
               -- {review.review}
