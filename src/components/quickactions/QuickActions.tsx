@@ -17,7 +17,7 @@ const QuickActions = () => {
 
   return (
     <Box>
-      <Typography marginLeft="20px" marginTop= '30px' fontSize="18px" fontWeight="bold">
+      <Typography marginLeft="16px" marginTop= '10px' fontSize="16px" fontWeight="bold">
         {t(`QuickActions`)}
       </Typography>
 
@@ -26,15 +26,14 @@ const QuickActions = () => {
           <Card sx={{ backgroundColor: "common.white" }} onClick={handleDrawerOpen("Get me Towel")}>
             <CardMedia
               component="img"
-              height="140"
               image="https://cdn-icons-png.flaticon.com/128/2729/2729761.png"
               alt="Card 1"
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "60px", // Set a maximum height for the image
+                maxHeight: "40px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
-                padding: "10px", // Optional: Add some padding for better appearance
+                padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
@@ -67,9 +66,9 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "60px", // Set a maximum height for the image
+                maxHeight: "40px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
-                padding: "10px", // Optional: Add some padding for better appearance
+                padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
@@ -102,9 +101,9 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "60px", // Set a maximum height for the image
+                maxHeight: "40px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
-                padding: "10px", // Optional: Add some padding for better appearance
+                padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
@@ -137,9 +136,9 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "60px", // Set a maximum height for the image
+                maxHeight: "40px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
-                padding: "10px", // Optional: Add some padding for better appearance
+                padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent

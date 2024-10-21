@@ -38,7 +38,7 @@ const HomeCardNav = () => {
     </Typography>
 
       <Typography variant="h6" component="div">
-      {t(`GENIE`)}
+      {t(`RoomNumber`)}: 101
       </Typography>
       <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
         <MenuIcon sx={{ color: 'common.white'}} />

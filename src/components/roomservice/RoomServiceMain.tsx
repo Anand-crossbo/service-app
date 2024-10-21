@@ -8,11 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDishes, setCategories } from '../../store/booking/dishesSlice';
 import { Dish, Category } from '../../store/booking/types';
 import { RootState } from '../../store/store'; // Import RootState from store.ts
-import RoomServiceNav from './RoomServiceNav';
 import Categories from './Categories';
 import gsap from "gsap";
-import NewMenu from './menudesigns/NewMenu';
-import { Add, Room } from '@mui/icons-material';
+import DefaultNav from '../default/DefaultNav';
+import MenuSearchBar from './MenuSearchBar';
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
@@ -181,7 +180,8 @@ const RoomServiceMain = () => {
         />
       ) : (
         <Box>
-      <RoomServiceNav />
+          <DefaultNav />
+      <MenuSearchBar />
       <Categories onCategorySelect={handleCategorySelect} />
       <Menu
         dishes={filteredDishes}
@@ -196,8 +196,8 @@ const RoomServiceMain = () => {
         <AddToCart cartItems={cartItems} count={getTotalCount()} onPayClick={handlePayClick} />
       )} 
       {showOrders &&
-      <Box sx={{ position: 'fixed', overflow: 'hidden', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10 }}>
-          <Orders cartItems={cartItems} onBack={handleBackClick} />
+      <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 10, overflowY: 'auto' }}>
+          <Orders cartItems={cartItems} onBack={handleBackClick} onAddToCard={handleAddToCard} onRemoveFromCard={handleRemoveFromCard} />
         </Box>
       }
 </Box>

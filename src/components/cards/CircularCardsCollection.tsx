@@ -80,70 +80,92 @@ const CardsCollection = () => {
       <Grid container spacing={2} sx={{ padding: "16px" }}>
         {services.map((service) => (
           <Grid item xs={4} sm={4} md={4} key={service.id}>
-            <Card sx={{ backgroundColor: "common.white" }}>
-            <Link to={cardsLink.get(service.name) || "#"} style={{ textDecoration: "none", color: 'black' }}>
-              <CardMedia
-                component="img"
-                image={service.icon}
-                alt={service.name}
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: "40px", // Set a maximum height for the image
-                  objectFit: "contain", // Ensure the image scales correctly
-                  padding: "2px", // Optional: Add some padding for better appearance
-                }}
-              />
-              <CardContent
-                sx={{
-                  height: "40px", // Define the height of CardContent
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "2px !important",
-                }}
+           <Card
+          key={service.name}
+          sx={{
+            backgroundColor: "common.white",
+            borderRadius: "50%", // Make the card circular
+            width: "100px", // Set a fixed width for the card
+            height: "100px", // Set a fixed height for the card
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            alignContent: "center",
+            overflow: "hidden", // Ensure content doesn't overflow the circular shape
+          }}
+        >
+          <Link to={cardsLink.get(service.name) || "#"} style={{ textDecoration: "none", color: 'black' }}>
+            <CardMedia
+              component="img"
+              image={service.icon}
+              alt={service.name}
+              sx={{
+                width: "35px", // Adjust the width of the image
+                height: "35px", // Adjust the height of the image
+                objectFit: "contain", // Ensure the image scales correctly
+                margin: "auto", // Center the image
+            }}
+            />
+            <CardContent
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "2px !important",
+                textAlign: "center",
+              }}
+            >
+              <Typography
+                fontSize="10px"
+                fontWeight="bold"
+                component="div"
               >
-                <Typography
-                  align="center"
-                  fontSize="12px"
-                  fontWeight="bold"
-                  component="div"
-                >
-                  {service.name}
-                </Typography>
-              </CardContent>
-            </Link>
-            </Card>
+                {service.name}
+              </Typography>
+            </CardContent>
+          </Link>
+        </Card>
           </Grid>
         ))}
         <Grid item xs={4} sm={4} md={4}>
-          <Card sx={{ backgroundColor: "common.white" }} onClick={handleCardClick}>
+          <Card sx={{
+            backgroundColor: "common.white",
+            borderRadius: "50%", // Make the card circular
+            width: "100px", // Set a fixed width for the card
+            height: "100px", // Set a fixed height for the card
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            alignContent: "center",
+            overflow: "hidden", // Ensure content doesn't overflow the circular shape
+          }}
+           onClick={handleCardClick}>
             <CardMedia
               component="img"
               image={nonPriorityImages[currentImageIndex]}
               alt="Card 9"
               sx={{
-                width: "100%",
-                height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
-                padding: "2px", // Optional: Add some padding for better appearance
+                width: "35px", // Adjust the width of the image
+                height: "35px", // Adjust the height of the image
                 objectFit: "contain", // Ensure the image scales correctly
                 opacity: fadeIn ? 1 : 0,
                 transition: "opacity 0.5s ease-in-out", // Apply fade-in transition
+                // margin: "auto", // Center the image
               }}
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 padding: "2px !important",
+                textAlign: "center",
               }}
             >
               <Typography
-                align="center"
-                fontSize="12px"
+                fontSize="10px"
                 fontWeight="bold"
                 component="div"
               >

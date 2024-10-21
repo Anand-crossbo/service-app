@@ -15,6 +15,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import StarIcon from '@mui/icons-material/Star';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Dish } from "../../../store/booking/types";
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface GridMenuProps {
     dishes: Dish[];
@@ -44,11 +46,13 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
     // Calculate total pages
     const totalPages = Math.ceil(dishes.length / itemsPerPage);
 
+
   return (
   <Box margin={1}>
   <Grid container spacing={1}>
   {currentItems.map((dish) => {
     const heroMedia = dish.media.find((media) => media.isHero);
+    const count = counts[dish._id] || 0;
     return (
       <Grid item marginTop='10px' width='50%' sm={6} md={4} lg={3} key={dish._id}>
         <Box onClick={() => onCardClick(dish._id)} >
@@ -86,18 +90,37 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
               <Typography fontSize="12px" component="div" sx={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
                 {dish.description}
               </Typography>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", marginTop:'10px' }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography
                     fontSize="16px"
                     fontWeight="bold"
-                    paddingTop="10px"
+                    // paddingTop="10px"
                     component="div"
                   >
                     {dish.currency} {dish.price.afterDiscount}
                   </Typography>
                 </Box>
-                <Box
+                {/* <Box
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '30px', // Adjust the size as needed
+                      height: '30px', // Adjust the size as needed
+                      border: '2px solid',
+                      borderColor: 'primary.main', // Adjust the color as needed
+                      borderRadius: '50%',
+                      padding: '8px', // Adjust the padding as needed
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAddToCard(dish);
+                    }}
+                  >
+                    <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                  </Box> */}
+                {/* <Box
                   sx={{
                     paddingTop: "10px",
                     display: "flex",
@@ -135,7 +158,84 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                       onAddToCard(dish);
                     }}
                   />
+                </Box> */}
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  {count === 0 && (
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '30px', // Adjust the size as needed
+                        height: '30px', // Adjust the size as needed
+                        border: '2px solid',
+                        borderColor: 'primary.main', // Adjust the color as needed
+                        borderRadius: '50%',
+                        padding: '8px', // Adjust the padding as needed
+                        cursor: 'pointer',
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCard(dish);
+                      }}
+                    >
+                      <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                    </Box>
+                  )}
+                  {count > 0 && (
+                    <>
+                      {count === 1 ? (
+                        <DeleteIcon
+                          sx={{
+                            fontSize: '20px',
+                            color: 'primary.main',
+                            marginRight: '5px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onRemoveFromCard(dish);
+                          }}
+                        />
+                      ) : (
+                        <RemoveCircleIcon
+                          sx={{
+                            fontSize: '20px',
+                            color: 'primary.main',
+                            marginRight: '5px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onRemoveFromCard(dish);
+                          }}
+                        />
+                      )}
+                      <Typography
+                        sx={{
+                          fontSize: '20px',
+                          color: 'common.black',
+                          marginRight: '5px',
+                        }}
+                      >
+                        {count}
+                      </Typography>
+                      <AddCircleIcon
+                        sx={{
+                          fontSize: '20px',
+                          color: 'primary.main',
+                          marginRight: '5px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAddToCard(dish);
+                        }}
+                      />
+                    </>
+                  )}
                 </Box>
+
               </Box>
               {dish.dietaryTags.map((tag, index) => (
                 <img
