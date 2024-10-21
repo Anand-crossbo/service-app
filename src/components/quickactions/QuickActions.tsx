@@ -31,14 +31,14 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
+                maxHeight: "60px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
                 padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
+                height: "60px", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -66,14 +66,14 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
+                maxHeight: "60px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
                 padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
+                height: "60px", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -101,14 +101,14 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
+                maxHeight: "60px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
                 padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
+                height: "60px", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -136,14 +136,14 @@ const QuickActions = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
+                maxHeight: "60px", // Set a maximum height for the image
                 objectFit: "contain", // Ensure the image scales correctly
                 padding: "2px", // Optional: Add some padding for better appearance
               }}
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
+                height: "60px", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

@@ -89,7 +89,7 @@ const CardsCollection = () => {
                 sx={{
                   width: "100%",
                   height: "auto",
-                  maxHeight: "40px", // Set a maximum height for the image
+                  maxHeight: "60px", // Set a maximum height for the image
                   objectFit: "contain", // Ensure the image scales correctly
                   padding: "2px", // Optional: Add some padding for better appearance
                 }}
@@ -125,7 +125,7 @@ const CardsCollection = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "40px", // Set a maximum height for the image
+                maxHeight: "60px", // Set a maximum height for the image
                 padding: "2px", // Optional: Add some padding for better appearance
                 objectFit: "contain", // Ensure the image scales correctly
                 opacity: fadeIn ? 1 : 0,

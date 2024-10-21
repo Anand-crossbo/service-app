@@ -64,7 +64,7 @@ const Advertisement = () => {
           <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px" }} onClick={() => handleCardClick(ads[0].title,ads[0].img)}>
             <CardMedia
               component="img"
-              height="100"
+              height="150"
               image="/staticImages/spa.jpg" // Use relative path to the image in the public folder
               alt="Card 10"
             />
@@ -102,7 +102,7 @@ const Advertisement = () => {
           <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px"}} onClick={() => handleCardClick(ads[1].title,ads[1].img)}>
             <CardMedia
               component="img"
-              height="100"
+              height="150"
               image="https://images.unsplash.com/photo-1532517891316-72a08e5c03a7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGJlYWNofGVufDB8fDB8fHwy" // Use relative path to the image in the public folder
               alt="Card 10"
             />
@@ -140,7 +140,7 @@ const Advertisement = () => {
           <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px"}} onClick={() => handleCardClick(ads[2].title,ads[2].img)}>
             <CardMedia
               component="img"
-              height="100"
+              height="150"
               image="https://images.unsplash.com/photo-1650878932027-5502ed475dba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGR1YmFpJTIwYXR0cmFjdGlvbnN8ZW58MHx8MHx8fDI%3D" // Use relative path to the image in the public folder
               alt="Card 10"
             />
