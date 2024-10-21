@@ -11,6 +11,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useTranslation } from 'react-i18next';
 
 interface AboutFoodProps {
@@ -36,12 +38,28 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
 
   const dish = useSelector((state: RootState) => state.dishes.dishes.find(d => d._id === dishId));
 
-  const handleAddOnToggle = (addOnId: string) => {
-    setSelectedAddOns((prevSelectedAddOns) =>
-      prevSelectedAddOns.includes(addOnId)
-        ? prevSelectedAddOns.filter((id) => id !== addOnId)
-        : [...prevSelectedAddOns, addOnId]
-    );
+  // const handleAddOnToggle = (addOnId: string) => {
+  //   setSelectedAddOns((prevSelectedAddOns) =>
+  //     prevSelectedAddOns.includes(addOnId)
+  //       ? prevSelectedAddOns.filter((id) => id !== addOnId)
+  //       : [...prevSelectedAddOns, addOnId]
+  //   );
+  // };
+
+  const handleAddOnToggle = (addOnId: string, action: 'add' | 'remove') => {
+    setSelectedAddOns((prevSelectedAddOns) => {
+      if (action === 'add') {
+        return [...prevSelectedAddOns, addOnId];
+      } else {
+        const index = prevSelectedAddOns.indexOf(addOnId);
+        if (index > -1) {
+          const newSelectedAddOns = [...prevSelectedAddOns];
+          newSelectedAddOns.splice(index, 1);
+          return newSelectedAddOns;
+        }
+        return prevSelectedAddOns;
+      }
+    });
   };
 
 
@@ -288,9 +306,9 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
           </Box>
 
       {/* Other content */}
-      <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`PAIRING_SUG`)}</Typography>
-      {addOns && addOns.length > 0 && (
+      {/* {addOns && addOns.length > 0 && (
         <Box sx={{ margin:'10px'}}>
+          <Typography fontSize='16px' color='common.black' fontWeight='bold' paddingTop='10px' sx={{ alignSelf: 'flex-start' }}>{t(`PAIRING_SUG`)}</Typography>
           {addOns.map((addOn) => (
             addOn && (
               <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
@@ -327,7 +345,109 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
             )
           ))}
         </Box>
-      )}
+      )} */}
+
+{addOns && addOns.length > 0 && (
+  <Box sx={{ margin: '10px' }}>
+    <Typography fontSize='16px' color='common.black' fontWeight='bold' paddingTop='10px' sx={{ alignSelf: 'flex-start' }}>{t('PAIRING_SUG')}</Typography>
+    {addOns.map((addOn) => (
+      addOn && (
+        <Box key={addOn._id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 0' }}>
+          <Box sx={{ display: 'flex', margin: '10px' }}>
+            <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '100px', height: '75px', borderRadius: '8px' }} />
+            <Box sx={{ justifyContent: 'center', marginLeft: '10px' }}>
+              <Typography fontSize='14px' color='common.black' padding='10px'>{addOn.name}</Typography>
+              <Typography fontSize='14px' color='common.black' padding='0 10px 10px 10px'>{dish.currency} {addOn.price.afterDiscount}</Typography>
+            </Box>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {selectedAddOns.filter(id => id === addOn._id.toString()).length === 0 && (
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '30px', // Adjust the size as needed
+                  height: '30px', // Adjust the size as needed
+                  border: '2px solid',
+                  borderColor: 'primary.main', // Adjust the color as needed
+                  borderRadius: '50%',
+                  padding: '8px', // Adjust the padding as needed
+                  cursor: 'pointer',
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddOnToggle(addOn._id.toString(), 'add');
+                  onAddToCard(addOn);
+                }}
+              >
+                <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+              </Box>
+            )}
+            {selectedAddOns.filter(id => id === addOn._id.toString()).length > 0 && (
+              <>
+                {selectedAddOns.filter(id => id === addOn._id.toString()).length === 1 ? (
+                  <DeleteIcon
+                    sx={{
+                      fontSize: '20px',
+                      color: 'primary.main',
+                      marginRight: '5px',
+                      cursor: 'pointer',
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddOnToggle(addOn._id.toString(), 'remove');
+                      onRemoveFromCard(addOn);
+                    }}
+                  />
+                ) : (
+                  <RemoveCircleIcon
+                    sx={{
+                      fontSize: '20px',
+                      color: 'primary.main',
+                      marginRight: '5px',
+                      cursor: 'pointer',
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddOnToggle(addOn._id.toString(), 'remove');
+                      onRemoveFromCard(addOn);
+                    }}
+                  />
+                )}
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    color: 'common.black',
+                    marginRight: '5px',
+                  }}
+                >
+                  {selectedAddOns.filter(id => id === addOn._id.toString()).length}
+                </Typography>
+                <AddCircleIcon
+                  sx={{
+                    fontSize: '20px',
+                    color: 'primary.main',
+                    marginRight: '5px',
+                    cursor: 'pointer',
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddOnToggle(addOn._id.toString(), 'add');
+                    onAddToCard(addOn);
+                  }}
+                />
+              </>
+            )}
+          </Box>
+        </Box>
+      )
+    ))}
+  </Box>
+)}
+      
+
+      
 
         <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`GuestReviews`)}</Typography>
         {dish.feedback.topReviews.map((review, index) => (
