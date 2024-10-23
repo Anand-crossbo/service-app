@@ -107,8 +107,8 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '2rem', // Adjust the size as needed
-                        height: '2rem', // Adjust the size as needed
+                        width: '1.5rem', // Adjust the size as needed
+                        height: '1.5rem', // Adjust the size as needed
                         border: '2px solid',
                         borderColor: 'primary.main', // Adjust the color as needed
                         borderRadius: '50%',
