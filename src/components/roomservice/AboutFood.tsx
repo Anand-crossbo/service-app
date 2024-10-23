@@ -303,7 +303,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
       addOn && (
         <Box key={addOn._id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0.5rem 0' }}>
           <Box sx={{ display: 'flex', m: 1 }}>
-            <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '6.25rem', height: '4.5rem', borderRadius: '0.5rem' }} />
+            <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '6.25rem', height: '5rem', borderRadius: '0.5rem' }} />
             <Box sx={{ justifyContent: 'center', ml: 1 }}>
               <Typography variant='h4' color='common.black' p={1}>{addOn.name}</Typography>
               <Typography variant='h4' color='common.black' m={1}>{dish.currency} {addOn.price.afterDiscount}</Typography>
@@ -316,8 +316,8 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '2rem', // Adjust the size as needed
-                  height: '2rem', // Adjust the size as needed
+                  width: '1.5rem', // Adjust the size as needed
+                  height: '1.5rem', // Adjust the size as needed
                   border: '2px solid',
                   borderColor: 'primary.main', // Adjust the color as needed
                   borderRadius: '50%',
