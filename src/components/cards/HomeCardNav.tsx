@@ -20,24 +20,24 @@ const HomeCardNav = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 2 }}>
     <Typography
-      fontSize='16px'
+      variant='h4'
       component="div"
       sx={{
         backgroundColor: 'primary.main',
         color: 'common.white',
-        borderRadius: '16px',
-        padding: '8px', // Optional: Add some padding for better appearance
+        borderRadius: '1rem',
+        p: 1, // Optional: Add some padding for better appearance: ;
         display: 'flex',
         alignItems: 'center', // Align items vertically centered
       }}
     >
-      <CommentIcon sx={{ color: 'common.white', marginRight: '8px' }} />
+      <CommentIcon sx={{ color: 'common.white', mr: 1 }} />
       {t(`CHAT`)}
     </Typography>
 
-      <Typography variant="h6" component="div">
+      <Typography variant="h3" component="div">
       {t(`RoomNumber`)}: 101
       </Typography>
       <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>

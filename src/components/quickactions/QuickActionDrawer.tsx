@@ -46,22 +46,22 @@ const QuickActionDrawer: React.FC<QuickActionDrawerProps> = ({ open, onClose }) 
         onOpen={() => {}}
         PaperProps={{
             sx: {
-              borderRadius: '16px 16px 0 0', // Apply border radius to the bottom corners
+              borderRadius: '1rem 1rem 0 0', // Apply border radius to the bottom corners
               backgroundColor: 'background.default',
             },
           }}
       >
         <Puller />
         <Typography align='center' variant="h6"></Typography>
-         <Box display="flex" alignItems="center" justifyContent="space-evenly" margin="20px 16px 16px 16px">
-            <Typography align='left' margin="16px" fontSize="18px">{t(`SELECT_QTY`)}: </Typography>
+         <Box display="flex" alignItems="center" justifyContent="space-evenly" m={2}>
+            <Typography align='left' m={2} variant='h3'>{t(`SELECT_QTY`)}: </Typography>
             <Box display="flex" alignItems="center">
             <RemoveCircleIcon sx={{ color: 'primary.main'}} onClick={handleDecrease} />
-            <Typography align='center' variant="h6" margin="0 16px">{quantity}</Typography>
+            <Typography align='center' variant="h6" margin="0 1rem">{quantity}</Typography>
             <AddCircleIcon sx={{ color: 'primary.main'}} onClick={handleIncrease} />
             </Box>
         </Box>
-        <Box display="flex" justifyContent="center" margin="16px">
+        <Box display="flex" justifyContent="center" m={2}>
       <Button
         variant="contained"
         sx={{

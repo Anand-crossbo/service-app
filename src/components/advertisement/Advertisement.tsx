@@ -51,9 +51,9 @@ const Advertisement = () => {
   return (
     <Box>
       <Typography
-          marginTop="10px"
-          marginLeft="16px"
-          fontSize="16px"
+          mt={1}
+          ml={2}
+          variant='h4'
           color={common.black}
           fontWeight="bold"
         >
@@ -61,7 +61,7 @@ const Advertisement = () => {
         </Typography>
         <Slider {...settings}>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px" }} onClick={() => handleCardClick(ads[0].title,ads[0].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"0.5rem 0.5rem 0px 0.5rem" }} onClick={() => handleCardClick(ads[0].title,ads[0].img)}>
             <CardMedia
               component="img"
               height="150"
@@ -72,7 +72,7 @@ const Advertisement = () => {
             <Box
               sx={{
                 position: "absolute",
-                padding: '10px',
+                pt: 1,
                 top: 0,
                 left: 0,
                 width: "100%",
@@ -87,11 +87,11 @@ const Advertisement = () => {
               }}
             >
               <Typography
-                fontSize="24px"
+                variant='h2'
                 fontWeight="bold"
                 position="absolute"
                 bottom="0"
-                padding="10px"
+                p={2}
               >
                 {ads[0].title}
               </Typography>
@@ -99,7 +99,7 @@ const Advertisement = () => {
           </Card>
           </Box>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px"}} onClick={() => handleCardClick(ads[1].title,ads[1].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"0.5rem 0.5rem 0px 0.5rem"}} onClick={() => handleCardClick(ads[1].title,ads[1].img)}>
             <CardMedia
               component="img"
               height="150"
@@ -121,15 +121,15 @@ const Advertisement = () => {
                 color: "white",
                 opacity: 1, // Initially hidden
                 transition: "opacity 0.3s ease-in-out", // Smooth transition
-                padding: '10px',
+                pt: 1,
               }}
             >
               <Typography
-                fontSize="24px"
+                variant='h2'
                 fontWeight="bold"
                 position="absolute"
                 bottom="0"
-                padding="10px"
+                p={2}
               >
                 {ads[1].title}
               </Typography>
@@ -137,7 +137,7 @@ const Advertisement = () => {
           </Card>
           </Box>
           <Box>
-          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"10px 10px 0px 10px"}} onClick={() => handleCardClick(ads[2].title,ads[2].img)}>
+          <Card sx={{ position: "relative", backgroundColor: "common.white", margin:"0.5rem 0.5rem 0px 0.5rem"}} onClick={() => handleCardClick(ads[2].title,ads[2].img)}>
             <CardMedia
               component="img"
               height="150"
@@ -159,15 +159,15 @@ const Advertisement = () => {
                 color: "white",
                 opacity: 1, // Initially hidden
                 transition: "opacity 0.3s ease-in-out", // Smooth transition
-                padding: '10px',
+                pt: 1,
               }}
             >
               <Typography
-                fontSize="24px"
+                variant='h2'
                 fontWeight="bold"
                 position="absolute"
                 bottom="0"
-                padding="10px"
+                p={2}
               >
                 {ads[2].title}
               </Typography>

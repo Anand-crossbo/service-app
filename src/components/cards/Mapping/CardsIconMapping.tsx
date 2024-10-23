@@ -10,15 +10,15 @@ import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 
 
 export const cardsIcon = new Map([
-    ['Location', <LocationOnIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['In-Room Dining', <RoomServiceIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Activities', <KitesurfingIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Know your room', <KingBedIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Connect your device', <WifiIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Taxi Service', <LocalTaxiIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Plan your trip', <BeachAccessIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Luggage Pickup', <LuggageIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
-    ['Airport Drop', <LocalAirportIcon sx={{ fontSize: "100px", color: "white", align: "center" }} />],
+    ['Location', <LocationOnIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['In-Room Dining', <RoomServiceIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Activities', <KitesurfingIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Know your room', <KingBedIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Connect your device', <WifiIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Taxi Service', <LocalTaxiIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Plan your trip', <BeachAccessIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Luggage Pickup', <LuggageIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
+    ['Airport Drop', <LocalAirportIcon sx={{ fontSize: "6.25rem", color: "common.white", align: "center" }} />],
   
 ]);
   

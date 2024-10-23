@@ -36,16 +36,16 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '15px',
+    p: 1.5,
     width: '50%',
     margin: '0 auto', // Center the box horizontally
-    borderRadius: '40px'
+    borderRadius: '2.5rem'
   }}
 >
     <Box
       sx={{
-        width: '35px',
-        height: '35px',
+        width: '2.5rem',
+        height: '2.5rem',
         borderRadius: '50%',
         backgroundColor: 'primary.main',
         color: 'white',
@@ -56,7 +56,7 @@ const AddToCart: React.FC<AddToCartProps> = ({cartItems, count, onPayClick }) =>
     >
       <Typography>{count}</Typography>
     </Box>
-  <Typography color="common.white" onClick={onPayClick}>{t(`BASKET`)}: {cartItems[0]?.dish.currency} {totalAmount}</Typography>
+  <Typography variant='h4' color="common.white" onClick={onPayClick}>{t(`BASKET`)}: {cartItems[0]?.dish.currency} {totalAmount}</Typography>
 </Box>
   );
 };

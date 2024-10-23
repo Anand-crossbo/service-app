@@ -38,14 +38,6 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
 
   const dish = useSelector((state: RootState) => state.dishes.dishes.find(d => d._id === dishId));
 
-  // const handleAddOnToggle = (addOnId: string) => {
-  //   setSelectedAddOns((prevSelectedAddOns) =>
-  //     prevSelectedAddOns.includes(addOnId)
-  //       ? prevSelectedAddOns.filter((id) => id !== addOnId)
-  //       : [...prevSelectedAddOns, addOnId]
-  //   );
-  // };
-
   const handleAddOnToggle = (addOnId: string, action: 'add' | 'remove') => {
     setSelectedAddOns((prevSelectedAddOns) => {
       if (action === 'add') {
@@ -100,18 +92,18 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
 
 
   return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', overflowX: 'hidden',  height: isMobile ? '100vh' : '90vh', backgroundColor: 'background.default', borderTopLeftRadius: isMobile ? '0' : '16px', borderBottomLeftRadius: isMobile ? '0' : '16px' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', overflowX: 'hidden',  height: isMobile ? '100vh' : '90vh', backgroundColor: 'background.default', borderTopLeftRadius: isMobile ? '0' : '1rem', borderBottomLeftRadius: isMobile ? '0' : '1rem' }}>
         <IconButton
           sx={{
             position: 'absolute',
-            margin: '10px',
+            m: 2,
             top: 0,
             left: 0,
             zIndex: 2,
             backgroundColor: 'common.white',
             color: 'primary.main',
             borderRadius: '50%',
-            padding: '5px',
+           p: 0.5,
             '&:hover': {
               backgroundColor: 'common.white',
             },
@@ -126,10 +118,10 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
           top: 0,
           right: 0,
           zIndex: 2,
-          margin: '10px',
+          m: 2,
           backgroundColor: 'common.white',
           borderRadius: '50%',
-          padding: '5px',
+         p: 0.5,
           color: 'primary.main',
           '&:hover': {
             backgroundColor: 'primary.main',
@@ -150,7 +142,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
               position: 'sticky',
               top: 0,
               left: 0,
-              height: '200px',
+              height: '12.5rem',
               width: '100%',
               objectFit: 'cover',
               zIndex: 1,
@@ -167,7 +159,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
               position: 'sticky',
               top: 0,
               left: 0,
-              height: '200px',
+              height: '12.5rem',
               width: '100%',
               objectFit: 'cover',
               zIndex: 1,
@@ -176,73 +168,73 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         )
       ))}
     <Box sx={{ display : 'flex', justifyContent:'center', alignItems:'center'}}>
-        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px'>
+        <Typography variant='h3' color='common.black' fontWeight='bold' p={1}>
           {dish.name} 
         </Typography>
         </Box>
         <Box sx={{display: 'flex', alignContent:'center', justifyContent:'center'}}>
-          <Box sx={{margin:'5px'}}>
+          <Box sx={{m: 0.5}}>
             <Box sx={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-            <StarIcon sx={{ color: 'primary.main',padding:'2px' }} />
-            <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.feedback.rating}</Typography>
+            <StarIcon sx={{ color: 'primary.main',p:0.5 }} />
+            <Typography variant='h3' color='common.black' fontWeight='bold' p={0.5}>{dish.feedback.rating}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='custom.subText' padding='2px'>{dish.feedback.totalRatings} {t(`RATINGS`)}</Typography>
+            <Typography variant='h5' align='center' color='custom.subText' p={0.5}>{dish.feedback.totalRatings} {t(`RATINGS`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <Box sx={{ borderLeft:  `1px solid ${theme.palette.custom.subText}`, height: '25px', margin: '0 10px' }} />
+            <Box sx={{ borderLeft:  `1px solid ${theme.palette.custom.subText}`, height: '1.5rem', margin: '0 0.5rem' }} />
           </Box>
-          <Box sx={{margin:'5px'}}>
+          <Box sx={{m: 0.5}}>
             <Box sx={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-            <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.currency} {dish.price.afterDiscount}</Typography>
+            <Typography variant='h3' color='common.black' fontWeight='bold' p={0.5}>{dish.currency} {dish.price.afterDiscount}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>{t(`PRICE`)}</Typography>
+            <Typography variant='h5' align='center' color='#5f5c5c' p={0.5}>{t(`PRICE`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <Box sx={{ borderLeft: `1px solid ${theme.palette.custom.subText}`, height: '25px', margin: '0 10px' }} />
+            <Box sx={{ borderLeft: `1px solid ${theme.palette.custom.subText}`, height: '1.5rem', margin: '0 0.5rem' }} />
           </Box>
-          <Box sx={{margin:'5px'}}>
+          <Box sx={{m: 0.5}}>
             <Box sx={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-            <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='2px'>{dish.preparationTime}</Typography>
-            <Typography fontSize='14px' color='common.black' padding='4px'>{t(`MINS`)}</Typography>
+            <Typography variant='h3' color='common.black' fontWeight='bold' p={0.5}>{dish.preparationTime}</Typography>
+            <Typography variant='h4' color='common.black' p={0.5}>{t(`MINS`)}</Typography>
             </Box>
-            <Typography fontSize='12px' align='center' color='#5f5c5c' padding='2px'>{t(`TIME`)}</Typography>
+            <Typography variant='h5' align='center' color='#5f5c5c' p={0.5}>{t(`TIME`)}</Typography>
           </Box>
 
         </Box>
 
 
-        <Typography fontSize='12px' color='common.black' padding='0px 10px 0 10px'>
+        <Typography variant='h5' color='common.black' padding='0 0.5rem 0 0.5rem'>
           <span>
             {showFullText ? dish.description : `${dish.description.substring(0, 150)}...`}
           </span>
           <span
             onClick={handleToggleText}
-            style={{ color: 'blue', cursor: 'pointer', marginLeft: '5px' }}
+            style={{ color: 'blue', cursor: 'pointer', marginLeft: 0.5 }}
           >
             {showFullText ? 'Show Less' : 'Read More'}
           </span>
         </Typography>
-    <Box sx={{ width: '100%', paddingTop: '10px', paddingBottom: '40px' }}>
+    <Box sx={{ width: '100%', pt: 1, pb: 5 }}>
       <Slider {...settings}>
         {dish.media.filter(media => !media.isHero).map((media, index) => (
           media.type === 'video' ? (
-            <Box key={index} sx={{ padding: '0 10px' }}>
+            <Box key={index} sx={{ padding: '0 0.5rem' }}>
               <video
                 src={media.url}
                 autoPlay
                 muted
                 controls
-                style={{ width: '100%', height: '100px', borderRadius: '8px', backgroundColor: 'black' }}
+                style={{ width: '100%', height: '6.25rem', borderRadius: '0.5rem', backgroundColor: 'black' }}
               >
                 Your browser does not support the video tag.
               </video>
             </Box>
           ) : (
-            <Box key={index} sx={{ padding: '0 5px' }}>
+            <Box key={index} sx={{ padding: '0 0.5rem' }}>
               <img
                 src={media.url}
                 alt={`small${index}`}
-                style={{ width: '100%', height: '100px', borderRadius: '8px' }}
+                style={{ width: '100%', height: '6.25rem', borderRadius: '0.5rem' }}
                 onClick={() => handleClickOpen(media.url)}
               />
             </Box>
@@ -253,19 +245,18 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
 
       {/* Ingredients Section */}
       <Typography
-        fontSize='16px'
+        variant='h4'
         color='common.black'
         fontWeight='bold'
-        padding='10px 10px 0 10px'
-        sx={{ alignSelf: 'flex-start', textAlign: 'left' }}
+        sx={{ alignSelf: 'flex-start', textAlign: 'left', ml: 2 }}
       >
         {t(`KEY_INGREDIENTS`)}
       </Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', p: 1 }}>
       {dish.ingredients.map((ingredient, index) => (
-          <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', backgroundColor: '#cecece4f', padding: '5px', margin: '5px' }}>
-          <img src={ingredient.icon} alt={ingredient.name} style={{ width: '20px', height: '20px', marginRight: '5px' }} />
-          <Typography fontSize='14px' color='common.black'>
+          <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', backgroundColor: 'custom.cardBg',p: 0.5, m: 0.5 }}>
+          <img src={ingredient.icon} alt={ingredient.name} style={{ width: '1.5rem', height: '1.5rem', marginRight: '4px' }} />
+          <Typography variant='h4' color='common.black'>
             {ingredient.name}
           </Typography>
         </Box>
@@ -273,91 +264,49 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
         </Box>
 
       {/* Nutrients Section */}
-  <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`NUTRIENTS`)}</Typography>
-  <Box sx={{ display: 'flex', flexWrap: 'wrap',padding: '10px' }}>
-  <Box sx={{margin:'6px', borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`CALORIES`)}: {dish.nutreints.calories}</Typography>
+  <Typography variant='h3' color='common.black' fontWeight='bold' sx={{ alignSelf: 'flex-start', ml: 2 }}>{t(`NUTRIENTS`)}</Typography>
+  <Box sx={{ display: 'flex', flexWrap: 'wrap',p: 1 }}>
+  <Box sx={{m: 1, borderRadius: '0.5rem', backgroundColor: 'custom.cardBg', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
+    <Typography p={0.5} variant='h4' color='common.black'>{t(`CALORIES`)}: {dish.nutreints.calories}</Typography>
   </Box>
-  <Box sx={{margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`PROTEIN`)}: {dish.nutreints.protein}</Typography>
+  <Box sx={{m: 1,borderRadius: '0.5rem', backgroundColor: 'custom.cardBg', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
+    <Typography p={0.5} variant='h4' color='common.black'>{t(`PROTEIN`)}: {dish.nutreints.protein}</Typography>
   </Box>
-  <Box sx={{margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`CARBS`)}: {dish.nutreints.carbs}</Typography>
+  <Box sx={{m: 1,borderRadius: '0.5rem', backgroundColor: 'custom.cardBg', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
+    <Typography p={0.5} variant='h4' color='common.black'>{t(`CARBS`)}: {dish.nutreints.carbs}</Typography>
   </Box>
-  <Box sx={{margin:'6px', borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`SUGAR`)}: {dish.nutreints.sugar}</Typography>
+  <Box sx={{m: 1, borderRadius: '0.5rem', backgroundColor: 'custom.cardBg', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
+    <Typography p={0.5} variant='h4' color='common.black'>{t(`SUGAR`)}: {dish.nutreints.sugar}</Typography>
   </Box>
-  <Box sx={{ margin:'6px',borderRadius: '8px', backgroundColor: '#cecece4f', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
-    <Typography padding='5px' fontSize='14px' color='common.black'>{t(`FAT`)}: {dish.nutreints.fat}</Typography>
+  <Box sx={{ m: 1,borderRadius: '0.5rem', backgroundColor: 'custom.cardBg', justifyContent: 'center', alignContent: 'center', whiteSpace: 'nowrap' }}>
+    <Typography p={0.5} variant='h4' color='common.black'>{t(`FAT`)}: {dish.nutreints.fat}</Typography>
   </Box>
 </Box>
         
         {/* Dietary Tags */}
-        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`DIETARY_TAGS`)}</Typography>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
+        <Typography variant='h3' color='common.black' fontWeight='bold' sx={{ alignSelf: 'flex-start', ml:2 }}>{t(`DIETARY_TAGS`)}</Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', p: 1 }}>
           {dish.dietaryTags.map((tag, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', backgroundColor: '#cecece4f', padding: '5px', margin: '5px' }}>
-              <img src={tag.icon} alt={tag.name} style={{ width: '20px', height: '20px', marginRight: '5px' }} />
-              <Typography fontSize='14px' color='common.black'>
+            <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', backgroundColor: 'custom.cardBg',p: 0.5, m: 0.5 }}>
+              <img src={tag.icon} alt={tag.name} style={{ width: '1.5rem', height: '1.5rem', marginRight: '4px' }} />
+              <Typography variant='h4' color='common.black'>
                 {tag.name}
               </Typography>
             </Box>
           ))}
           </Box>
 
-      {/* Other content */}
-      {/* {addOns && addOns.length > 0 && (
-        <Box sx={{ margin:'10px'}}>
-          <Typography fontSize='16px' color='common.black' fontWeight='bold' paddingTop='10px' sx={{ alignSelf: 'flex-start' }}>{t(`PAIRING_SUG`)}</Typography>
-          {addOns.map((addOn) => (
-            addOn && (
-              <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-                <Box sx={{ display: 'flex',margin:'10px'}}>
-                  <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '100px', height: '75px', borderRadius: '8px' }} />
-                  <Box sx={{justifyContent:'center'}}>
-                  <Typography fontSize='14px' color='common.black' padding='10px'>{addOn.name}</Typography>
-                  <Typography fontSize='14px' color='common.black' padding='0 10px 10px 10px'>{dish.currency} {addOn.price.afterDiscount}</Typography>
-                  </Box>
-                </Box>
-                <Box>
-                <IconButton
-              sx={{
-                backgroundColor: 'primary.main',
-                borderRadius: '50%',
-                padding: '5px',
-                alignSelf: 'right',
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleAddOnToggle(addOn._id.toString());
-                if (selectedAddOns.includes(addOn._id.toString())) {
-                  onRemoveFromCard(addOn);
-                } else {
-                  onAddToCard(addOn);
-                }
-              }}
-            >
-              {selectedAddOns.includes(addOn._id.toString()) ? <DeleteIcon sx={{ color: 'common.white' }} /> : <AddIcon sx={{ color: 'common.white' }} />}
-            </IconButton>
-                </Box>
-              </Box>
-              
-            )
-          ))}
-        </Box>
-      )} */}
-
 {addOns && addOns.length > 0 && (
-  <Box sx={{ margin: '10px' }}>
-    <Typography fontSize='16px' color='common.black' fontWeight='bold' paddingTop='10px' sx={{ alignSelf: 'flex-start' }}>{t('PAIRING_SUG')}</Typography>
+  <Box sx={{ m: 2 }}>
+    <Typography variant='h3' color='common.black' fontWeight='bold' sx={{ alignSelf: 'flex-start'}}>{t('PAIRING_SUG')}</Typography>
     {addOns.map((addOn) => (
       addOn && (
-        <Box key={addOn._id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '10px 0' }}>
-          <Box sx={{ display: 'flex', margin: '10px' }}>
-            <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '100px', height: '75px', borderRadius: '8px' }} />
-            <Box sx={{ justifyContent: 'center', marginLeft: '10px' }}>
-              <Typography fontSize='14px' color='common.black' padding='10px'>{addOn.name}</Typography>
-              <Typography fontSize='14px' color='common.black' padding='0 10px 10px 10px'>{dish.currency} {addOn.price.afterDiscount}</Typography>
+        <Box key={addOn._id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0.5rem 0' }}>
+          <Box sx={{ display: 'flex', m: 1 }}>
+            <img src={addOn.media[0].url} alt={addOn.name} style={{ width: '6.25rem', height: '4.5rem', borderRadius: '0.5rem' }} />
+            <Box sx={{ justifyContent: 'center', ml: 1 }}>
+              <Typography variant='h4' color='common.black' p={1}>{addOn.name}</Typography>
+              <Typography variant='h4' color='common.black' m={1}>{dish.currency} {addOn.price.afterDiscount}</Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -367,12 +316,12 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '30px', // Adjust the size as needed
-                  height: '30px', // Adjust the size as needed
+                  width: '2rem', // Adjust the size as needed
+                  height: '2rem', // Adjust the size as needed
                   border: '2px solid',
                   borderColor: 'primary.main', // Adjust the color as needed
                   borderRadius: '50%',
-                  padding: '8px', // Adjust the padding as needed
+                  p: 1, // Adjust the padding as needed
                   cursor: 'pointer',
                 }}
                 onClick={(e) => {
@@ -381,7 +330,7 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                   onAddToCard(addOn);
                 }}
               >
-                <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                <AddIcon sx={{ color: 'primary.main', fontSize: '1.5rem' }} />
               </Box>
             )}
             {selectedAddOns.filter(id => id === addOn._id.toString()).length > 0 && (
@@ -389,9 +338,9 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                 {selectedAddOns.filter(id => id === addOn._id.toString()).length === 1 ? (
                   <DeleteIcon
                     sx={{
-                      fontSize: '20px',
+                      fontSize: '1.5rem',
                       color: 'primary.main',
-                      marginRight: '5px',
+                      ml: 0.5,
                       cursor: 'pointer',
                     }}
                     onClick={(e) => {
@@ -403,9 +352,9 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                 ) : (
                   <RemoveCircleIcon
                     sx={{
-                      fontSize: '20px',
+                      fontSize: '1.5rem',
                       color: 'primary.main',
-                      marginRight: '5px',
+                      ml: 0.5,
                       cursor: 'pointer',
                     }}
                     onClick={(e) => {
@@ -417,18 +366,18 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
                 )}
                 <Typography
                   sx={{
-                    fontSize: '20px',
+                    fontSize: '1.5rem',
                     color: 'common.black',
-                    marginRight: '5px',
+                    ml: 0.5,
                   }}
                 >
                   {selectedAddOns.filter(id => id === addOn._id.toString()).length}
                 </Typography>
                 <AddCircleIcon
                   sx={{
-                    fontSize: '20px',
+                    fontSize: '1.5rem',
                     color: 'primary.main',
-                    marginRight: '5px',
+                    ml: 0.5,
                     cursor: 'pointer',
                   }}
                   onClick={(e) => {
@@ -449,9 +398,9 @@ const AboutFood: React.FC<AboutFoodProps> = ({ dishId, onBack,allDishes,onAddToC
 
       
 
-        <Typography fontSize='16px' color='common.black' fontWeight='bold' padding='10px 10px 0 10px' sx={{ alignSelf: 'flex-start' }}>{t(`GuestReviews`)}</Typography>
+        <Typography variant='h3' color='common.black' fontWeight='bold' sx={{ alignSelf: 'flex-start', ml:2}}>{t(`GuestReviews`)}</Typography>
         {dish.feedback.topReviews.map((review, index) => (
-            <Typography  key={index} fontSize='14px' padding='0 10px 10px 10px' color='common.black' sx={{ alignSelf: 'flex-start' }}>
+            <Typography  key={index} variant='h4' color='common.black' sx={{ alignSelf: 'flex-start', m:2 }}>
               -- {review.review}
             </Typography>
         ))}

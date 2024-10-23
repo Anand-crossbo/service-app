@@ -8,7 +8,7 @@ const MenuSearchBar = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          padding: "10px",
+          p: 1,
           backgroundColor: "background.default",
         }}
       >
@@ -17,12 +17,11 @@ const MenuSearchBar = () => {
           placeholder="Search for dishes & cuisines"
           sx={{
             width: "100%",
-            maxWidth: "600px",
-            borderRadius: "20px", // Increase border radius
-            height: "40px", // Decrease height
+            maxWidth: "37.5rem",
+            borderRadius: "1.5rem", // Increase border radius
             '& .MuiOutlinedInput-root': {
-              borderRadius: "20px", // Increase border radius for input
-              height: "40px", // Decrease height for input
+              borderRadius: "1.5rem", // Increase border radius for input
+              height: "3rem", // Decrease height for input
             },
           }}
           InputProps={{

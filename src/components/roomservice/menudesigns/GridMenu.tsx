@@ -77,88 +77,29 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                 sx={{ objectFit: 'cover', width: '100%' }}
               />
             )}
-            <CardContent sx={{ paddingBottom: '4px !important' }}>
-              <Typography fontSize="18px" fontWeight="bold" component="div" sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <CardContent sx={{ paddingBottom: '0.5rem !important' }}>
+              <Typography variant="h3" fontWeight="bold" component="div" sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {dish.name}
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <StarIcon sx={{ fontSize: '14px', color: 'primary.main', margin: '2px' }} />
-                <Typography fontSize='12px' color='primary.main' margin='2px'> {dish.feedback.rating} </Typography>
-                <FiberManualRecordIcon sx={{ fontSize: '6px', color: 'primary.main', margin: '2px' }} />
-                <Typography fontSize='12px' margin='2px'> {dish.preparationTime} mins </Typography>
+                <StarIcon sx={{ fontSize: '1.25rem', color: 'primary.main', m: 0.25 }} />
+                <Typography variant="h5" color='primary.main' m={0.25}> {dish.feedback.rating} </Typography>
+                <FiberManualRecordIcon sx={{ fontSize: '0.5rem', color: 'primary.main',  m: 0.25 }} />
+                <Typography variant="h5" m={0.25}> {dish.preparationTime} mins </Typography>
               </Box>
-              <Typography fontSize="12px" component="div" sx={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
+              <Typography variant="h5" component="div" sx={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
                 {dish.description}
               </Typography>
-              <Box sx={{ display: "flex", justifyContent: "space-between", marginTop:'10px' }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography
-                    fontSize="16px"
+                    variant="h4"
                     fontWeight="bold"
-                    // paddingTop="10px"
                     component="div"
                   >
                     {dish.currency} {dish.price.afterDiscount}
                   </Typography>
                 </Box>
-                {/* <Box
-                    sx={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '30px', // Adjust the size as needed
-                      height: '30px', // Adjust the size as needed
-                      border: '2px solid',
-                      borderColor: 'primary.main', // Adjust the color as needed
-                      borderRadius: '50%',
-                      padding: '8px', // Adjust the padding as needed
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onAddToCard(dish);
-                    }}
-                  >
-                    <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
-                  </Box> */}
-                {/* <Box
-                  sx={{
-                    paddingTop: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <RemoveCircleIcon
-                    sx={{
-                      fontSize: "20px",
-                      color: "primary.main",
-                      marginRight: "5px",
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onRemoveFromCard(dish);
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: "20px",
-                      color: "common.black",
-                      marginRight: "5px",
-                    }}
-                  >
-                    {counts[dish._id] || 0}
-                  </Typography>
-                  <AddCircleIcon
-                    sx={{
-                      fontSize: "20px",
-                      color: "primary.main",
-                      marginRight: "5px",
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onAddToCard(dish);
-                    }}
-                  />
-                </Box> */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   {count === 0 && (
                     <Box
@@ -166,12 +107,12 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '30px', // Adjust the size as needed
-                        height: '30px', // Adjust the size as needed
+                        width: '2rem', // Adjust the size as needed
+                        height: '2rem', // Adjust the size as needed
                         border: '2px solid',
                         borderColor: 'primary.main', // Adjust the color as needed
                         borderRadius: '50%',
-                        padding: '8px', // Adjust the padding as needed
+                        p: 1, // Adjust the padding as needed
                         cursor: 'pointer',
                       }}
                       onClick={(e) => {
@@ -179,7 +120,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                         onAddToCard(dish);
                       }}
                     >
-                      <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                      <AddIcon sx={{ color: 'primary.main', fontSize: '1.5rem' }} />
                     </Box>
                   )}
                   {count > 0 && (
@@ -187,9 +128,9 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                       {count === 1 ? (
                         <DeleteIcon
                           sx={{
-                            fontSize: '20px',
+                            fontSize: '1.5rem',
                             color: 'primary.main',
-                            marginRight: '5px',
+                            mr: 0.5,
                             cursor: 'pointer',
                           }}
                           onClick={(e) => {
@@ -200,9 +141,9 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                       ) : (
                         <RemoveCircleIcon
                           sx={{
-                            fontSize: '20px',
+                            fontSize: '1.5rem',
                             color: 'primary.main',
-                            marginRight: '5px',
+                            mr: 0.5,
                             cursor: 'pointer',
                           }}
                           onClick={(e) => {
@@ -212,19 +153,19 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                         />
                       )}
                       <Typography
+                      variant="h4"
                         sx={{
-                          fontSize: '20px',
                           color: 'common.black',
-                          marginRight: '5px',
+                          mr: 0.5,
                         }}
                       >
                         {count}
                       </Typography>
                       <AddCircleIcon
                         sx={{
-                          fontSize: '20px',
+                          fontSize: '1.5rem',
                           color: 'primary.main',
-                          marginRight: '5px',
+                          mr: 0.5,
                           cursor: 'pointer',
                         }}
                         onClick={(e) => {
@@ -241,7 +182,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
                 <img
                   key={index}
                   src={tag.icon}
-                  style={{ height: "20px", width: "20px", marginRight: "5px" }}
+                  style={{ height: "1.25rem", width: "1.25rem", marginRight: "4px" }}
                 />
               ))}
             </CardContent>
@@ -251,7 +192,7 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
     );
   })}
 </Grid>
-<Box display="flex" marginTop='10px' justifyContent="center" alignItems="center" width='100%'>
+<Box display="flex" mt={1} justifyContent="center" alignItems="center" width='100%'>
          {Array.from({ length: totalPages }, (_, index) => (
           <Button
             key={index + 1}
@@ -262,9 +203,9 @@ const GridMenu: React.FC<GridMenuProps> = ({ dishes, onCardClick, onAddToCard, o
               mb: 1,
               fontSize: '12px',
               borderRadius: '50%', // Make the button circular
-              width: '20px', // Set the width
-              height: '20px', // Set the height
-              minWidth: '20px', // Ensure the button does not expand
+              width: "1.25rem", // Set the width
+              height: "1.25rem", // Set the height
+              minWidth: "1.25rem", // Ensure the button does not expand
               padding: 0, // Remove padding
               ...(currentPage === index + 1
                 ? {

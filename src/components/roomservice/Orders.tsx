@@ -85,78 +85,78 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '40px',
-          height: '40px',
+          width: '2.5rem',
+          height: '2.5rem',
           border: '2px solid',
           borderColor: 'primary.main',
           borderRadius: '50%',
-          padding: '8px',
+          p: 1,
           cursor: 'pointer',
-          margin: '16px',
+          m: 2,
         }}
         onClick={onBack}
       >
-        <KeyboardBackspaceIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+        <KeyboardBackspaceIcon sx={{ color: 'primary.main', fontSize: '1.5rem' }} />
       </Box>
 
         {/* Basket */}
-        <Typography variant="h5" sx={{ textAlign: 'left', margin: '0 0 16px 16px' }}>Basket</Typography>
+        <Typography variant="h2" sx={{ textAlign: 'left', margin: '0 0 1rem 1rem' }}>Basket</Typography>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <Box key={item.dish._id}>
-          <Typography sx={{ textAlign: 'left', margin: '10px 0 5px 16px', fontSize:'16px' }}>{item.dish.name}</Typography>
+          <Typography variant="h4" sx={{ textAlign: 'left', margin: '0.5rem 0 0.25rem 1rem' }}>{item.dish.name}</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '16px' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
                 <Box
                   sx={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: '25px',
-                    height: '25px',
+                    width: '1.5rem',
+                    height: '1.5rem',
                     border: '2px solid',
                     borderColor: 'primary.main',
                     borderRadius: '50%',
-                    padding: '8px',
+                    p: 1,
                     cursor: 'pointer',
                   }}
                   onClick={() => onRemoveFromCard(item.dish)}
                 >
-                  <RemoveIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                  <RemoveIcon sx={{ color: 'primary.main', fontSize: '1.5rem' }} />
                 </Box>
-                <Typography variant="h6" align='center' sx={{ margin: '0 16px' }}>{item.count}</Typography>
+                <Typography variant="h4" align='center' sx={{ margin: '0 1rem' }}>{item.count}</Typography>
                 <Box
                   sx={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: '25px',
-                    height: '25px',
+                    width: '1.5rem',
+                    height: '1.5rem',
                     border: '2px solid',
                     borderColor: 'primary.main',
                     borderRadius: '50%',
-                    padding: '8px',
+                    p: 1,
                     cursor: 'pointer',
                   }}
                   onClick={() => onAddToCard(item.dish)}
                 >
-                  <AddIcon sx={{ color: 'primary.main', fontSize: '24px' }} />
+                  <AddIcon sx={{ color: 'primary.main', fontSize: '1.5rem' }} />
                 </Box>
               </Box>
-            <Typography sx={{ marginRight: '16px', fontSize:'16px' }}>{item.dish.currency} {calculateTotalAmount(item.dish.price.afterDiscount, item.count).toFixed(2)}</Typography>
+            <Typography variant='h4' sx={{ mr: 2}}>{item.dish.currency} {calculateTotalAmount(item.dish.price.afterDiscount, item.count).toFixed(2)}</Typography>
           </Box>
           </Box>
           ))
         ) : (
-          <Typography fontSize="16px" color='common.black' align="center" padding="10px 40px">
+          <Typography variant='h3' color='common.black' align="center" padding="0.5rem 2.5rem">
             {t(`NoDishSelected`)}
           </Typography>
         )}
 
       {/* Promocode */}
-      <Box sx={{ margin: '16px' }}>
-        <Typography variant="h5">Promocode</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2">Promocode</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
         <TextField
             label="Have a code? Type here"
             variant="outlined"
@@ -175,67 +175,67 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
           />
         </Box>
         {appliedPromoCode && (
-          <Typography sx={{ marginTop: '10px', color: 'green' }}>
+          <Typography sx={{ mt: 1, color: 'green' }}>
             Promo code "{appliedPromoCode}" applied!
           </Typography>
         )}
       </Box>
 
       {/* Tip */}
-      <Box sx={{ margin: '16px' }}>
-        <Typography variant="h5">Reward your captain</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2">Reward your captain</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           {[3, 5, 10, 15, 20].map((tip) => (
             <Button
               key={tip}
               variant={selectedTip === tip ? 'contained' : 'outlined'}
               color="primary"
               onClick={() => handleSelectTip(tip)}
-              sx={{ margin: '0 3px', fontSize: '14px', padding: '5px' }}
+              sx={{ margin: '0 0.25rem', fontSize: '0.75rem', p: 0.5 }}
             >
               {cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {tip}
             </Button>
           ))}
         </Box>
         {selectedTip > 0 && (
-          <Typography sx={{ marginTop: '10px', color: 'green' }}>
+          <Typography sx={{ mt: 1, color: 'green' }}>
             Tip of {cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {selectedTip} selected!
           </Typography>
         )}
       </Box>
 
       {/* Payment Summary */}
-      <Box sx={{ margin: '16px' }}>
-        <Typography variant="h5">Payment Summary</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2">Payment Summary</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           <Typography>Basket Total:</Typography>
           <Typography>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {basketTotal}</Typography>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           <Typography>Delivery Fee:</Typography>
           <Typography>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {deliveryFee}</Typography>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           <Typography>Service Fee:</Typography>
           <Typography>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {serviceFee}</Typography>
         </Box>
         {selectedTip > 0 && (
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
             <Typography>Tip:</Typography>
             <Typography>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {selectedTip}</Typography>
           </Box>
         )}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px'}}>
-          <Typography variant="h6" fontWeight='bold'>Total Amount:</Typography>
-          <Typography variant="h6" fontWeight='bold'>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {calculateTotalWithPromoAndTip()}</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1}}>
+          <Typography variant="h3" fontWeight='bold'>Total Amount:</Typography>
+          <Typography variant="h3" fontWeight='bold'>{cartItems.length > 0 ? cartItems[0].dish.currency : '$'} {calculateTotalWithPromoAndTip()}</Typography>
         </Box>
       </Box>
 
       {/* Deliver To */}
-      <Box sx={{ margin: '16px' }}>
-        <Typography variant="h5">Deliver To</Typography>
-        <Box sx={{ marginTop: '10px' }}>
-        <Typography variant="body1" sx={{ marginBottom: '10px' }}>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2">Deliver To</Typography>
+        <Box sx={{ mt: 1 }}>
+        <Typography variant="h4" sx={{ mb: 1 }}>
             Room Number: {roomNumber}
           </Typography>
           <TextField
@@ -246,7 +246,7 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
             fullWidth
             multiline
             rows={2}
-            sx={{ marginBottom: '10px' }}
+            sx={{ mb: 1 }}
           />
           <FormControlLabel
             control={
@@ -262,9 +262,9 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
       </Box>
 
       {/* Payment Options */}
-      <Box sx={{ margin: '16px' }}>
-        <Typography variant="h5">Payment Options</Typography>
-        <FormControl component="fieldset" sx={{ marginTop: '10px' }}>
+      <Box sx={{ m: 2 }}>
+        <Typography variant="h2">Payment Options</Typography>
+        <FormControl component="fieldset" sx={{ mt: 1 }}>
           <FormLabel component="legend">Select Payment Method</FormLabel>
           <RadioGroup
             aria-label="payment method"
@@ -277,7 +277,7 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
               control={<Radio />}
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <ReceiptLongIcon sx={{ marginRight: '8px' }} />
+                  <ReceiptLongIcon sx={{ mr: 1}} />
                   Add to Room Bill
                 </Box>
               }
@@ -287,7 +287,7 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
               control={<Radio />}
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <CreditCardIcon sx={{ marginRight: '8px' }} />
+                  <CreditCardIcon sx={{ mr: 1 }} />
                   Pay with Card
                 </Box>
               }
@@ -297,7 +297,7 @@ const Orders = ({ cartItems, onBack, onAddToCard, onRemoveFromCard }: OrdersProp
       </Box>
 
       {/* Place Order Button */}
-      <Box sx={{ position: 'sticky', bottom: 0, width: '100%', backgroundColor: 'white', padding: '16px', boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)' }}>
+      <Box sx={{ position: 'sticky', bottom: 0, width: '100%', backgroundColor: 'white', p: 2, boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)' }}>
         <Button
           variant="contained"
           color="primary"

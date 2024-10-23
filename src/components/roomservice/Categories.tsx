@@ -15,8 +15,8 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ src, alt, label, onClick }) => (
 <Box onClick={onClick}>
-<img style={{ borderRadius: '10px', height: '80px', objectFit: 'cover', display: 'flex', margin: "0 auto", width: "90%" }} src={src} alt={alt} />
-<Typography  textAlign='center' fontSize='12px' paddingTop='5px' fontWeight="bold">{label}</Typography>
+<img style={{ borderRadius: '0.5rem', height: '5rem', objectFit: 'cover', display: 'flex', margin: "0 auto", width: "90%" }} src={src} alt={alt} />
+<Typography  textAlign='center' variant='h5' pt={0.5} fontWeight="bold">{label}</Typography>
 </Box>
 );
 

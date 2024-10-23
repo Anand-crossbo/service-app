@@ -5,7 +5,6 @@ import {
 import React, { useState } from "react";
 import { Dish } from "../../store/booking/types";
 import GridMenu from "./menudesigns/GridMenu";
-import SliderMenu from "./menudesigns/SliderMenu";
 
 interface MenuProps {
   dishes: Dish[];
