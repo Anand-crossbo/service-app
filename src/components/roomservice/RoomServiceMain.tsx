@@ -12,6 +12,7 @@ import Categories from './Categories';
 import gsap from "gsap";
 import DefaultNav from '../default/DefaultNav';
 import MenuSearchBar from './MenuSearchBar';
+import RoomServiceSkeleton from '../skeleton/RoomServiceSkeleton';
 
 const RoomServiceMain = () => {
   const [showAboutFood, setShowAboutFood] = useState(false);
@@ -19,6 +20,7 @@ const RoomServiceMain = () => {
   const [showOrders, setShowOrders] = useState(false);
   const [cartItems, setCartItems] = useState<{ dish: Dish; count: number }[]>([]);
   const [selectedCategoryTags, setSelectedCategoryTags] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -36,6 +38,7 @@ const RoomServiceMain = () => {
         const data = await response.json();
         dispatch(setDishes(data[0].dishes as Dish[]));
         dispatch(setCategories(data[1].categories as Category[]));
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -134,6 +137,10 @@ const RoomServiceMain = () => {
     );
   }, []);
 
+  if (loading) {
+    return <RoomServiceSkeleton />;
+  }
+
   return (
     // <Box ref={containerRef} sx={{ backgroundColor: 'white', height:'100vh',  position: 'relative', overflow: showOrders ? 'hidden' : '' }}>
     //   {isMobile && showAboutFood && selectedDishId !== null ? (
@@ -181,15 +188,15 @@ const RoomServiceMain = () => {
       ) : (
         <Box>
           <DefaultNav />
-      <MenuSearchBar />
-      <Categories onCategorySelect={handleCategorySelect} />
-      <Menu
-        dishes={filteredDishes}
-        counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
-        onCardClick={handleCardClick}
-        onAddToCard={handleAddToCard}
-        onRemoveFromCard={handleRemoveFromCard}
-      />
+          <MenuSearchBar />
+          <Categories onCategorySelect={handleCategorySelect} />
+          <Menu
+            dishes={filteredDishes}
+            counts={cartItems.reduce((acc, item) => ({ ...acc, [item.dish._id]: item.count }), {})}
+            onCardClick={handleCardClick}
+            onAddToCard={handleAddToCard}
+            onRemoveFromCard={handleRemoveFromCard}
+          />
       </Box>
       )}
       {cartItems.length > 0 && (

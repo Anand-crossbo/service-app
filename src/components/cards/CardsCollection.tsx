@@ -5,6 +5,7 @@ import cardsLink from "./Mapping/LinksMapping";
 import Advertisement from "../advertisement/Advertisement";
 import QuickActions from "../quickactions/QuickActions";
 import { useTranslation } from 'react-i18next';
+import CardsCollectionSkeleton from "../skeleton/CardsCollectionsSkeleton";
 
 interface Service {
   id: string;
@@ -68,16 +69,12 @@ const CardsCollection = () => {
   };
 
   if (loading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress sx={{ color: 'primary.main'}} />
-      </Box>
-    ); // Show a circular loader while data is being fetched
+    return <CardsCollectionSkeleton />;
   }
 
   return (
     <>
-      <Grid container spacing={2} sx={{ padding: "16px" }}>
+      <Grid container spacing={2} sx={{ p: 2 }}>
         {services.map((service) => (
           <Grid item xs={4} sm={4} md={4} key={service.id}>
             <Card sx={{ backgroundColor: "common.white" }}>
@@ -89,14 +86,14 @@ const CardsCollection = () => {
                 sx={{
                   width: "100%",
                   height: "auto",
-                  maxHeight: "60px", // Set a maximum height for the image
+                  maxHeight: "5rem", // Set a maximum height for the image
                   objectFit: "contain", // Ensure the image scales correctly
-                  padding: "2px", // Optional: Add some padding for better appearance
+                  p: 1, // Optional: Add some padding for better appearance
                 }}
               />
               <CardContent
                 sx={{
-                  height: "40px", // Define the height of CardContent
+                  height: "2.5rem", // Define the height of CardContent
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -105,8 +102,7 @@ const CardsCollection = () => {
               >
                 <Typography
                   align="center"
-                  fontSize="12px"
-                  fontWeight="bold"
+                  variant="h5"
                   component="div"
                 >
                   {service.name}
@@ -125,8 +121,8 @@ const CardsCollection = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "60px", // Set a maximum height for the image
-                padding: "2px", // Optional: Add some padding for better appearance
+                maxHeight: "5rem", // Set a maximum height for the image
+                p: 1, // Optional: Add some padding for better appearance
                 objectFit: "contain", // Ensure the image scales correctly
                 opacity: fadeIn ? 1 : 0,
                 transition: "opacity 0.5s ease-in-out", // Apply fade-in transition
@@ -134,7 +130,7 @@ const CardsCollection = () => {
             />
             <CardContent
               sx={{
-                height: "40px", // Define the height of CardContent
+                height: "2.5rem", // Define the height of CardContent
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -143,8 +139,7 @@ const CardsCollection = () => {
             >
               <Typography
                 align="center"
-                fontSize="12px"
-                fontWeight="bold"
+                variant="h5"
                 component="div"
               >
                 {t(`ALL_SERVICES`)}

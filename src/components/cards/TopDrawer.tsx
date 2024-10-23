@@ -36,7 +36,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
       onOpen={onOpen}
       PaperProps={{
         sx: {
-          borderRadius: '0 0 16px 16px', // Apply border radius to the bottom corners
+          borderRadius: '0 0 1rem 1rem', // Apply border radius to the bottom corners
           backgroundColor: 'background.default',
         },
       }}
@@ -44,14 +44,14 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
       <Box
         sx={{
           width: 'auto',
-          padding: '16px',
+          p: 2,
           backgroundColor: 'background.default',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}
       >
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+        <Typography variant="h3" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
           {t(`RoomNumber`)}: 101
         </Typography>
         <IconButton
@@ -59,9 +59,8 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "40px",
-            height: "40px",
-            // border: `1px solid ${theme.palette.primary.main}`,
+            width: '2rem',
+            height: '2rem',
             borderRadius: "50%",
             backgroundColor: "primary.main",
           }}
@@ -75,7 +74,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             display: 'flex',
             justifyContent: 'space-around',
             width: '100%',
-            marginBottom: '40px',
+            mb: 5,
             backgroundColor: 'background.default',
           }}
         >
@@ -85,8 +84,8 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "40px",
-                height: "40px",
+                width: "3rem",
+                height: "3rem",
                 border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
                 backgroundColor: "background.default",
@@ -94,7 +93,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <HomeOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>{t(`HOME`)}</Typography>
+            <Typography variant='h5' p={0.5}>{t(`HOME`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -102,8 +101,8 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "40px",
-                height: "40px",
+                width: "3rem",
+                height: "3rem",
                 border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
                 backgroundColor: "background.default",
@@ -111,7 +110,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <HeadsetMicOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>{t(`SUPPORT`)}</Typography>
+            <Typography variant='h5' p={0.5}>{t(`SUPPORT`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -119,8 +118,8 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "40px",
-                height: "40px",
+                width: "3rem",
+                height: "3rem",
                 border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
                 backgroundColor: "background.default",
@@ -128,7 +127,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <FeedOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>{t(`ACTIVITIES`)}</Typography>
+            <Typography variant='h5' p={0.5}>{t(`ACTIVITIES`)}</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <IconButton
@@ -136,8 +135,8 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "40px",
-                height: "40px",
+                width: "3rem",
+                height: "3rem",
                 border: `1px solid ${theme.palette.primary.main}`,
                 borderRadius: "50%",
                 backgroundColor: "background.default",
@@ -145,7 +144,7 @@ const TopDrawer: React.FC<TopDrawerProps> = ({ open, onClose, onOpen }) => {
             >
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <Typography fontSize='14px'>{t(`PROFILE`)}</Typography>
+            <Typography variant='h5' p={0.5}>{t(`PROFILE`)}</Typography>
           </Box>
         </Box>
         <Puller />

@@ -5,7 +5,6 @@ import MapProperty from "./components/map/MapProperty";
 import ActivityMain from "./components/activity/ActivityMain";
 import HomeCard from "./components/cards/HomeCard";
 import ServicesCollection from "./components/cards/ServicesCollection";
-import Actions from "./components/quickactions/Actions";
 import ActivityAdAbout from "./components/advertisement/ActivityAdAbout";
 
 export const router = createBrowserRouter([
@@ -32,10 +31,6 @@ export const router = createBrowserRouter([
     {
         path: "/activity",
         element: <ActivityMain />
-    },
-    {
-        path: "/actions",
-        element: <Actions />
     },
     {
         path: "/aboutactivity",

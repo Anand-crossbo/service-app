@@ -38,7 +38,7 @@ const DefaultNav = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "16px",
+        p: 2,
       }}
     >
       <Box
@@ -46,22 +46,20 @@ const DefaultNav = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "40px",
-          height: "40px",
-          // border: "1px solid #4a4949",
+          width: "3rem",
+          height: "3rem",
           borderRadius: "50%",
           backgroundColor: "primary.main",
-          marginRight: "14px",
         }}
         onClick={handleBackClick}
       >
         <CloseIcon sx={{ color: 'common.white'}} />
       </Box>
 
-      <Typography variant="h6" component="div">
+      <Typography variant="h3" component="div">
       {t(`RoomNumber`)}: 101
       </Typography>
-      <IconButton sx={{ backgroundColor: 'primary.main'}} onClick={handleDrawerOpen}>
+      <IconButton sx={{ backgroundColor: 'primary.main', height: '3rem', width: '3rem'}} onClick={handleDrawerOpen}>
         <MenuIcon sx={{ color: 'common.white'}} />
       </IconButton>
       <TopDrawer open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen} />

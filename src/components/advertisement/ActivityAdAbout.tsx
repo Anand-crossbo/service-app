@@ -37,13 +37,13 @@ const ActivityAdAbout = () => {
             width: '100%',
             height: 'auto',
             objectFit: 'contain', // Ensure the image scales correctly
-            borderRadius: '16px',
-            padding: '10px',
+            borderRadius: '1rem',
+            p: 1,
           }}
         />
       )}
-      <Typography margin='5px' align='center' variant="h4">{title}</Typography>
-      <Box display="flex" justifyContent="center" margin="16px">
+      <Typography m={0.5} align='center' variant="h4">{title}</Typography>
+      <Box display="flex" justifyContent="center" m={2}>
       <Button
         variant="contained"
         sx={{

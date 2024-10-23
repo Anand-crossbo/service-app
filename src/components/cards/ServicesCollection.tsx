@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './ServicesCollection.css';
 import cardsLink from './Mapping/LinksMapping';
 import theme from '../../theme';
+import ServicesCollectionSkeleton from '../skeleton/ServicesCollectionSkeleton';
 
 const ServicesCollection = () => {
   
@@ -19,6 +20,7 @@ const ServicesCollection = () => {
   const [informationServices, setInformationServices] = useState([]);
   const [helperServices, setHelperServices] = useState([]);
   const [groomingServices, setGroomingServices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -33,7 +35,7 @@ const ServicesCollection = () => {
         setHelperServices(data.filter((service: { category: string }) => service.category === 'Helper'));
         setGroomingServices(data.filter((service: { category: string }) => service.category === 'Groming'));
         console.log(data);
-        // setLoading(false)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching services:', error);
       }
@@ -59,6 +61,10 @@ const ServicesCollection = () => {
     });
   };
 
+  if (loading) {
+    return <ServicesCollectionSkeleton />;
+  }
+
   const renderCards = (services: { icon: string; name: string }[]) => (
     services.map((service, index) => (
       <Box key={index} sx={{ padding: '8px' }} className="carousel-item">
@@ -70,22 +76,22 @@ const ServicesCollection = () => {
             alt={service.name}
             sx={{
               width: '100%',
-              height: '60px',
+              height: '3rem',
               // maxHeight: '60px', // Set a maximum height for the image
               objectFit: 'contain', // Ensure the image scales correctly
-              padding: '10px', // Optional: Add some padding for better appearance
+              p: 1, // Optional: Add some padding for better appearance
             }}
           />
           <CardContent
             sx={{
-              height: '40px', // Define the height of CardContent
+              height: '2.5rem',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: '5px !important',
+              padding: '0.25rem !important',
             }}
           >
-            <Typography align='center' fontSize='12px' fontWeight='bold' component="div">
+            <Typography align='center' variant='h6' fontWeight='bold' component="div">
               {service.name}
             </Typography>
           </CardContent>
@@ -95,27 +101,27 @@ const ServicesCollection = () => {
     ))
   );
   return (
-    <Box ref={containerRef} sx={{ padding: '16px', overflowX: 'hidden' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+    <Box ref={containerRef} sx={{ p: 2, overflowX: 'hidden' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '40px',
-            height: '40px',
+            width: '2.5rem',
+            height: '2.5rem',
             // border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: '50%',
             backgroundColor: 'primary.main',
-            marginRight: '14px',
+            mr: 2,
           }}
           onClick={handleBackClick}
         >
           <KeyboardBackspaceIcon sx={{ color: 'common.white'}} />
         </Box>
-        <Typography variant="h6">All Services</Typography>
+        <Typography variant="h2">All Services</Typography>
       </Box>
-      <Typography fontSize='16px' marginLeft='6px' fontWeight='bold'>Travel</Typography>
+      <Typography variant='h4' fontWeight='bold'>Travel</Typography>
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className="carousel-content">
@@ -123,7 +129,7 @@ const ServicesCollection = () => {
           </div>
         </div>
       </div>
-      <Typography  fontSize='16px' marginLeft='6px' fontWeight='bold'>Food</Typography>
+      <Typography variant='h4' fontWeight='bold'>Food</Typography>
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className="carousel-content">
@@ -131,7 +137,7 @@ const ServicesCollection = () => {
           </div>
         </div>
       </div>
-      <Typography fontSize='16px' marginLeft='6px' fontWeight='bold'>Entertainment</Typography>
+      <Typography variant='h4' fontWeight='bold'>Entertainment</Typography>
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className="carousel-content">
@@ -139,7 +145,7 @@ const ServicesCollection = () => {
           </div>
         </div>
       </div>
-      <Typography fontSize='16px' marginLeft='6px' fontWeight='bold'>Information</Typography>
+      <Typography variant='h4' fontWeight='bold'>Information</Typography>
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className="carousel-content">
@@ -147,7 +153,7 @@ const ServicesCollection = () => {
           </div>
         </div>
       </div>
-      <Typography fontSize='16px' marginLeft='6px' fontWeight='bold'>Helpers</Typography>
+      <Typography variant='h4' fontWeight='bold'>Helpers</Typography>
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className="carousel-content">
@@ -155,7 +161,7 @@ const ServicesCollection = () => {
           </div>
         </div>
       </div>
-      <Typography fontSize='16px' marginLeft='6px' fontWeight='bold'>Beauty</Typography>
+      <Typography variant='h4' fontWeight='bold'>Beauty</Typography>
       <Box width='115px'>
         {/* <div className="carousel-wrapper"> */}
           {/* <div className="carousel-content"> */}

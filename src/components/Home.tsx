@@ -45,41 +45,44 @@ const Home = () => {
         }}
       >
         <Typography
-          variant={isMobile ? "h2" : "h1"}
-          paddingTop={10}
-          paddingRight={isMobile ? 0 : 15}
-          align={isMobile ? "center" : "right"}
+          variant='h1'
+          pt={10}
+          align="center"
         >
           12:45 PM
         </Typography>
-        <Typography variant={isMobile ? "h5" : "h4"} paddingRight={isMobile ? 0 : 15} align={isMobile ? "center" : "right"}>
+        <Typography variant='h2' align="center">
           Sunday, January 28
         </Typography>
         <Box
-          sx={{ display: "flex", justifyContent:isMobile? "center": "flex-end", width: "100%", paddingTop: 2 }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            pt: 2,
+          }}
         >
-          <WbSunnyIcon
-            sx={{ fontSize:isMobile ? 50 : 65, color: "white", paddingRight: "10px" }}
-          />
-          <Typography variant={isMobile ? "h3" : "h2"} paddingRight={isMobile ? 0 : 15}>
-            17°
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <WbSunnyIcon sx={{ fontSize: '4rem', color: 'white', pr: 1 }} />
+            <Typography variant="h2">17°</Typography>
+          </Box>
         </Box>
         <Box
           sx={{
             display: "flex",
-            alignItems:isMobile? "center": "flex-end",
-            justifyContent: isMobile? "center":"space-between",
-            flexDirection: isMobile ? "column" : "row",
+            alignItems:"center",
+            justifyContent: 'center',
+            flexDirection: "column",
           }}
-          marginTop={10}
+          mt={10}
         >
-          <Box sx={{ paddingLeft:isMobile ? 0: 5 }}>
-            <Typography variant="h4" fontWeight="bold">
+          <Box>
+            <Typography variant="h2" fontWeight="bold">
               {t(`Welcome`)}, Mr. Anand
             </Typography>
           </Box>
-          <Box sx={{ paddingRight:isMobile ? 0 : 15, paddingTop:isMobile ? 10 :0 }}>
+          <Box sx={{ mt: 12}}>
             <Link to="/homecard" style={{ textDecoration: "none" }}>
               <Typography className="round-btn">{t(`BtnBegin`)}</Typography>
             </Link>
